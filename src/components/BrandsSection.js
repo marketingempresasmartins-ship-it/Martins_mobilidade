@@ -4,7 +4,7 @@ export function BrandsSection() {
     <div class="container">
       <div class="brands-wrapper">
         <div class="brands-grid">
-          <a href="/watts" class="brand-item" title="Ver Linha Watts">
+          <div class="brand-item" style="cursor: default;">
             <div class="brand-logo-container">
               <!-- Watts SVG Logo -->
               <svg viewBox="0 0 165 45" class="brand-logo-svg watts-logo">
@@ -13,9 +13,9 @@ export function BrandsSection() {
                 </g>
               </svg>
             </div>
-          </a>
+          </div>
           
-          <a href="/ventura" class="brand-item" title="Ver Linha Ventura">
+          <div class="brand-item" style="cursor: default;">
             <div class="brand-logo-container">
               <!-- Ventura SVG Logo -->
               <svg viewBox="0 0 180 45" class="brand-logo-svg ventura-logo">
@@ -24,9 +24,9 @@ export function BrandsSection() {
                 </g>
               </svg>
             </div>
-          </a>
+          </div>
           
-          <a href="/amazon-motors" class="brand-item" title="Ver Linha Amazon Motors">
+          <div class="brand-item" style="cursor: default;">
             <div class="brand-logo-container">
               <!-- Amazon Motors SVG Logo -->
               <svg viewBox="0 0 180 45" class="brand-logo-svg amazon-logo">
@@ -37,9 +37,9 @@ export function BrandsSection() {
                 </g>
               </svg>
             </div>
-          </a>
+          </div>
           
-          <a href="/importway" class="brand-item" title="Ver Linha Importway">
+          <div class="brand-item" style="cursor: default;">
             <div class="brand-logo-container">
               <!-- Importway SVG Logo -->
               <svg viewBox="0 0 180 45" class="brand-logo-svg importway-logo">
@@ -49,7 +49,7 @@ export function BrandsSection() {
                 </g>
               </svg>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
