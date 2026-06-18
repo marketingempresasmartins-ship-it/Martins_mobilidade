@@ -50,6 +50,15 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Lock body scroll while modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [isOpen]);
+
   // Set initial interest when modal opens
   useEffect(() => {
     if (isOpen) {
