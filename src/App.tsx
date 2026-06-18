@@ -97,14 +97,23 @@ export function App() {
       navigateTo(detail?.href || "/");
     };
 
+    const onMartinsOpenModal = (event: Event) => {
+      const detail = (event as CustomEvent<{ interest?: string; isContact?: boolean }>).detail;
+      setModalInterest(detail?.interest || "");
+      setModalIsContact(detail?.isContact || false);
+      setIsModalOpen(true);
+    };
+
     document.addEventListener("click", onClick);
     window.addEventListener("popstate", onPopState);
     window.addEventListener("martins:navigate", onMartinsNavigate);
+    window.addEventListener("martins:openModal", onMartinsOpenModal);
 
     return () => {
       document.removeEventListener("click", onClick);
       window.removeEventListener("popstate", onPopState);
       window.removeEventListener("martins:navigate", onMartinsNavigate);
+      window.removeEventListener("martins:openModal", onMartinsOpenModal);
     };
   }, [navigateTo]);
 

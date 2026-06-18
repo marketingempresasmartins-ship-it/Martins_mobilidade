@@ -54,13 +54,25 @@ export function initModelsCarousel() {
   const track = section.querySelector(".carousel-track");
   if (track) {
     track.addEventListener("click", (e) => {
+      // ── Lightbox: click on image area ──────────────────────────────────────
       const wrapper = e.target.closest(".card-image-wrapper");
-      if (!wrapper) return;
-      const img = wrapper.querySelector(".card-image");
-      if (!img) return;
-      const card  = wrapper.closest(".carousel-card");
-      const title = card ? (card.querySelector(".card-title")?.textContent || img.alt) : img.alt;
-      openLightbox(img.src, title);
+      if (wrapper) {
+        const img = wrapper.querySelector(".card-image");
+        if (!img) return;
+        const card  = wrapper.closest(".carousel-card");
+        const title = card ? (card.querySelector(".card-title")?.textContent || img.alt) : img.alt;
+        openLightbox(img.src, title);
+        return;
+      }
+
+      // ── Modal: click on CTA button ─────────────────────────────────────────
+      const cta = e.target.closest(".btn-card-cta");
+      if (cta) {
+        const interest = cta.dataset.interest || "";
+        window.dispatchEvent(new CustomEvent("martins:openModal", {
+          detail: { interest, isContact: false }
+        }));
+      }
     });
   }
 

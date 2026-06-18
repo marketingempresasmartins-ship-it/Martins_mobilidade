@@ -33,7 +33,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 90 km/h</span>
                   </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-card-cta" data-interest="Watts W160s">Quero Cotação</a>
+                <button class="btn btn-accent btn-card-cta" data-interest="Watts W160s">Quero Cotação</button>
               </div>
             </div>
 
@@ -55,7 +55,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 100 km/h</span>
                   </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-card-cta" data-interest="Watts W-Trail">Quero Cotação</a>
+                <button class="btn btn-accent btn-card-cta" data-interest="Watts W-Trail">Quero Cotação</button>
               </div>
             </div>
 
@@ -77,7 +77,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 32 km/h</span>
                   </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-card-cta" data-interest="Scooter Watts WS50">Quero Cotação</a>
+                <button class="btn btn-accent btn-card-cta" data-interest="Scooter Watts WS50">Quero Cotação</button>
               </div>
             </div>
 
@@ -99,7 +99,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 32 km/h</span>
                   </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-card-cta" data-interest="Amazon Move">Quero Cotação</a>
+                <button class="btn btn-accent btn-card-cta" data-interest="Amazon Move">Quero Cotação</button>
               </div>
             </div>
 
@@ -121,7 +121,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 25 km/h</span>
                   </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-card-cta" data-interest="Bike Dobrável Importway">Quero Cotação</a>
+                <button class="btn btn-accent btn-card-cta" data-interest="Bike Dobrável Importway">Quero Cotação</button>
               </div>
             </div>
 
@@ -143,7 +143,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 32 km/h</span>
                   </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-card-cta" data-interest="Amazon Pulse">Quero Cotação</a>
+                <button class="btn btn-accent btn-card-cta" data-interest="Amazon Pulse">Quero Cotação</button>
               </div>
             </div>
 
