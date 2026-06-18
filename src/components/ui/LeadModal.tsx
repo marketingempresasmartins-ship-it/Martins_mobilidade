@@ -16,6 +16,7 @@ const VEHICLE_OPTIONS = [
   { value: "Watts W125", label: "Watts W125 (Lançamento)" },
   { value: "Watts W-Trail", label: "Watts W-Trail (Off-Road)" },
   { value: "Scooter WS50", label: "Scooter Watts WS50" },
+  { value: "Amazon Move", label: "Amazon Move (Autopropelido)" },
   { value: "Triciclo de Carga", label: "Triciclo de Carga (Amazon Motors)" },
   { value: "Jet Ventura", label: "Jet Ventura (Náutica)" },
   { value: "Outro", label: "Outro modelo / Ajuda comercial" }

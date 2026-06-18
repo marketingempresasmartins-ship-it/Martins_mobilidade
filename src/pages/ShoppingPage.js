@@ -1,5 +1,5 @@
 import { HeroSection } from "../components/HeroSection.js";
-import { BrandsSection } from "../components/BrandsSection.js";
+import { ModelsCarouselSection } from "../components/ModelsCarouselSection.js";
 import { TestimonialsSection } from "../components/TestimonialsSection.js";
 import { ContactSection } from "../components/ContactSection.js";
 import { Footer } from "../components/Footer.js";
@@ -122,7 +122,7 @@ export function ShoppingPage() {
   return [
     ShoppingNavigation(),
     HeroSection(),
-    BrandsSection(),
+    ModelsCarouselSection(),
     ShoppingFeaturesSection(),
     TestimonialsSection(),
     ContactSection(),

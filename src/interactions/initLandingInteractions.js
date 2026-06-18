@@ -11,19 +11,27 @@ import { initTestimonialsSlider } from "./slider.js";
 import { initPreviewNotice } from "./previewNotice.js";
 import { initAnalyticsTracking } from "./analyticsTracking.js";
 import { initHeroCounters } from "./heroCounters.js";
+import { initModelsCarousel } from "./modelsCarousel.js";
 
 export function initLandingInteractions() {
-  initPreviewNotice();
-  injectContactInfo(MARTINS_CONFIG);
-  initNavigation();
-  initPhoneMasks();
-  initCustomSelect();
-  initLeadForms(MARTINS_CONFIG);
-  initFaq();
-  initWhatsAppFloat(MARTINS_CONFIG);
-  initEconomyCalculator();
-  initTestimonialsSlider();
-  initHeroCounters();
-  initRevealAnimations();
-  initAnalyticsTracking();
+  const safe = (fn, label) => {
+    try { fn(); }
+    catch (e) { console.error(`[init error] ${label}:`, e); }
+  };
+
+  safe(initPreviewNotice,       "previewNotice");
+  safe(() => injectContactInfo(MARTINS_CONFIG), "contactInfo");
+  safe(initNavigation,          "navigation");
+  safe(initPhoneMasks,          "phoneMasks");
+  safe(initCustomSelect,        "customSelect");
+  safe(() => initLeadForms(MARTINS_CONFIG), "leadForms");
+  safe(initFaq,                 "faq");
+  safe(() => initWhatsAppFloat(MARTINS_CONFIG), "whatsAppFloat");
+  safe(initEconomyCalculator,   "calculator");
+  safe(initTestimonialsSlider,  "testimonialsSlider");
+  safe(initHeroCounters,        "heroCounters");
+  safe(initModelsCarousel,      "modelsCarousel");
+  // RevealAnimations ALWAYS runs last — sections are invisible without it
+  safe(initRevealAnimations,    "revealAnimations");
+  safe(initAnalyticsTracking,   "analyticsTracking");
 }

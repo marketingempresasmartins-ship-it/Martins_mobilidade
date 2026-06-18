@@ -65,6 +65,8 @@ export function HeroSection() {
                       <div class="custom-option" data-value="Watts W160s">Watts W160s (Titan Elétrica)</div>
                       <div class="custom-option" data-value="Watts W-Trail">Watts W-Trail (Off-Road)</div>
                       <div class="custom-option" data-value="Scooter WS50">Scooter Watts WS50</div>
+                      <div class="custom-option" data-value="Amazon Move">Amazon Move (Autopropelido)</div>
+                      <div class="custom-option" data-value="Amazon Pulse">Amazon Pulse (Scooter)</div>
                       <div class="custom-option" data-value="Quadriciclo Elétrico">Quadriciclo Elétrico</div>
                       <div class="custom-option" data-value="Jet Ventura">Jet Ventura (Náutica)</div>
                       <div class="custom-option" data-value="Outro">Outro modelo / Ajuda comercial</div>

@@ -39,7 +39,7 @@ export function ContactSection() {
         <!-- Google Map Estilizado -->
         <div class="contact-map-wrapper">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.1487232269993!2d-60.023249!3d-3.068341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x926c195dfb528a47%3A0xe54ef92bb6076b1f!2sAv.%20Torquato%20Tapaj%C3%B3s%2C%205552%20-%20Flores%2C%20Manaus%20-%20AM%2C%2069058-830!5e0!3m2!1spt-BR!2sbr!4v1700000000000" 
+            src="https://www.google.com/maps?q=Av.%20Torquato%20Tapaj%C3%B3s%2C%205552%20-%20Novo%20Israel%2C%20Manaus%20-%20AM%2C%2069039-125%2C%20Brasil&z=17&hl=pt-BR&gl=BR&output=embed" 
             width="100%" 
             height="240" 
             style="border:0;" 

@@ -1,6 +1,6 @@
 import { Navigation } from "../components/Navigation.js";
 import { HeroSection } from "../components/HeroSection.js";
-import { BrandsSection } from "../components/BrandsSection.js";
+import { ModelsCarouselSection } from "../components/ModelsCarouselSection.js";
 import { ShowroomSection } from "../components/ShowroomSection.js";
 import { TechSection } from "../components/TechSection.js";
 import { FeaturesSection } from "../components/FeaturesSection.js";
@@ -14,7 +14,7 @@ export function HomePage() {
   return [
     Navigation(),
     HeroSection(),
-    BrandsSection(),
+    ModelsCarouselSection(),
     ShowroomSection(),
     TechSection(),
     FeaturesSection(),
