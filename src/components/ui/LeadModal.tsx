@@ -50,13 +50,21 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Lock body scroll while modal is open
+  // Lock body scroll while modal is open (blocks html + body + mobile touch)
   useEffect(() => {
-    if (isOpen) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
-    }
+    if (!isOpen) return;
+    const html = document.documentElement;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = html.style.overflow;
+    document.body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    const preventTouch = (e: TouchEvent) => e.preventDefault();
+    document.addEventListener("touchmove", preventTouch, { passive: false });
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      html.style.overflow = prevHtmlOverflow;
+      document.removeEventListener("touchmove", preventTouch);
+    };
   }, [isOpen]);
 
   // Set initial interest when modal opens

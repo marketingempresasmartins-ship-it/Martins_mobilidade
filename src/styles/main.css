@@ -3762,6 +3762,9 @@
       justify-content: center;
       padding: 24px;
       color: #ffffff;
+      /* impede que eventos de scroll vazem para a página */
+      overscroll-behavior: contain;
+      overflow: hidden;
       animation: leadModalFade 0.22s ease-out both;
     }
 
@@ -3779,9 +3782,9 @@
       max-height: min(720px, calc(100vh - 48px));
       overflow-y: auto;
       overflow-x: hidden;
-      /* hide scrollbar until actually needed, then show thin version */
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.12) transparent;
+      /* oculta scrollbar em todos os browsers */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       background: rgba(10, 10, 12, 0.96);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-top: 4px solid var(--accent, #7BE721);
@@ -3792,15 +3795,9 @@
       animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
+    /* webkit: esconde completamente a barra de scroll */
     .lead-modal__dialog::-webkit-scrollbar {
-      width: 4px;
-    }
-    .lead-modal__dialog::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .lead-modal__dialog::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.15);
-      border-radius: 4px;
+      display: none;
     }
 
     .lead-modal__close {
