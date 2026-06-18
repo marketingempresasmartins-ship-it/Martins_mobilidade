@@ -370,7 +370,7 @@ export function VenturaPage() {
         align-items: center !important;
         padding: 110px 0 60px !important;
         border-bottom: 1px solid rgba(8, 37, 58, 0.12) !important;
-        background: url('/assets/ventura/hero-bg-ventura-right.png') center right / cover no-repeat !important;
+        background: url('/assets/ventura/hero-bg-ventura-surf.jpg') center center / cover no-repeat !important;
         isolation: isolate !important;
       }
 
@@ -433,9 +433,12 @@ export function VenturaPage() {
         letter-spacing: 0.08em !important;
       }
 
-      .ventura-hero-copy h1 {
+      .ventura-brand-theme.ventura-experience-page .ventura-hero-copy h1 {
         margin-bottom: 18px !important;
-        color: #eafcff !important;
+        color: #ffffff !important;
+        background: linear-gradient(135deg, #ffffff 40%, #cceeff 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
         font-size: clamp(52px, 7vw, 88px) !important;
         line-height: 0.92 !important;
         letter-spacing: 0.04em !important;
@@ -647,7 +650,7 @@ export function VenturaPage() {
           padding: 28px 22px !important;
         }
 
-        .ventura-hero-copy h1 {
+        .ventura-brand-theme.ventura-experience-page .ventura-hero-copy h1 {
           font-size: 48px !important;
         }
 
@@ -688,7 +691,7 @@ export function VenturaPage() {
 
         <!-- RIGHT: Full-brightness lifestyle image -->
         <div class="ventura-hero-right">
-          <img src="/assets/ventura/hero-bg-ventura-light.png" alt="Estilo de vida Ventura — lanchas e aventura nautica" loading="eager">
+          <img src="/assets/ventura/hero-bg-ventura-surf.jpg" alt="Estilo de vida Ventura — lanchas e aventura nautica" loading="eager">
         </div>
       </header>
 
