@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LegacyPageAdapter } from "./components/layout/LegacyPageAdapter";
 import { getRoute, normalizePath } from "./router/routes";
+import { LeadModal } from "./components/ui/LeadModal";
 
 function getCurrentLocationKey() {
   return `${window.location.pathname}${window.location.search}${window.location.hash}`;
@@ -14,6 +15,11 @@ function isRoutableLink(link: HTMLAnchorElement | null) {
 
 export function App() {
   const [locationKey, setLocationKey] = useState(() => getCurrentLocationKey());
+  
+  // Modal State for Popup Form
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalInterest, setModalInterest] = useState("");
+  const [modalIsContact, setModalIsContact] = useState(false);
 
   const normalizedPath = useMemo(() => normalizePath(window.location.pathname), [locationKey]);
   const route = useMemo(() => getRoute(normalizedPath), [normalizedPath]);
@@ -21,6 +27,24 @@ export function App() {
   const navigateTo = useCallback((href: string) => {
     const url = new URL(href, window.location.href);
     const nextPath = normalizePath(url.pathname);
+    
+    const currentPath = normalizePath(window.location.pathname);
+    const isCurrentlyHome = currentPath === "/";
+
+    if (!isCurrentlyHome) {
+      const isTargetingHomeForm = nextPath === "/" && (url.hash === "#hero" || url.hash === "#contact");
+      const isTargetingCurrentPageForm = nextPath === currentPath && (url.hash === "#hero" || url.hash === "#contact");
+
+      if (isTargetingHomeForm || isTargetingCurrentPageForm) {
+        const interest = url.searchParams.get("interesse") || "";
+        const isContact = url.hash === "#contact";
+        setModalInterest(interest);
+        setModalIsContact(isContact);
+        setIsModalOpen(true);
+        return;
+      }
+    }
+
     const nextUrl = `${nextPath}${url.search}${url.hash}`;
     const currentUrl = getCurrentLocationKey();
 
@@ -74,5 +98,15 @@ export function App() {
     };
   }, [navigateTo]);
 
-  return <LegacyPageAdapter key={normalizedPath} normalizedPath={normalizedPath} route={route} />;
+  return (
+    <>
+      <LegacyPageAdapter key={normalizedPath} normalizedPath={normalizedPath} route={route} />
+      <LeadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialInterest={modalInterest}
+        isContactForm={modalIsContact}
+      />
+    </>
+  );
 }

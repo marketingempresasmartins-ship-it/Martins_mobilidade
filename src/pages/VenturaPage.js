@@ -53,11 +53,11 @@ function renderDivisionCards() {
   return Object.entries(DIVISIONS).map(([key, division]) => `
     <a class="ventura-territory-card stagger-item" href="#showroom" data-ventura-filter="${key}">
       <img src="${division.image}" alt="${division.label}" loading="lazy">
-      <span class="ventura-territory-mark">${getVenturaWaveSvg(division.color, 24)}${division.label}</span>
-      <div>
+      <span class="ventura-territory-mark">${getVenturaWaveSvg(division.color, 20)} ${division.label}</span>
+      <div class="ventura-territory-content">
         <h3>${division.title}</h3>
         <p>${division.text}</p>
-        <strong>Explorar modelos</strong>
+        <strong>Explorar modelos <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></strong>
       </div>
     </a>
   `).join("");
@@ -150,14 +150,17 @@ export function VenturaPage() {
         min-height: 100vh;
       }
 
-      .ventura-hero-right img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
+      .ventura-brand-theme.ventura-experience-page .ventura-hero-right img {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+        opacity: 0;
+        transform: scale(1.05) translateX(30px);
+        animation: venturaHeroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       /* Subtle left-edge fade to blend with the dark column */
@@ -370,7 +373,7 @@ export function VenturaPage() {
         align-items: center !important;
         padding: 110px 0 60px !important;
         border-bottom: 1px solid rgba(8, 37, 58, 0.12) !important;
-        background: url('/assets/ventura/hero-bg-ventura-surf.jpg') center center / cover no-repeat !important;
+        background: url('/assets/ventura/hero-bg-ventura-right.png') center right / cover no-repeat !important;
         isolation: isolate !important;
       }
 
@@ -401,15 +404,18 @@ export function VenturaPage() {
         padding: 0 !important;
       }
 
-      .ventura-hero-copy {
+      .ventura-brand-theme.ventura-experience-page .ventura-hero-copy {
         max-width: 540px !important;
         padding: 34px !important;
         border: 1px solid rgba(175, 224, 239, 0.24) !important;
-        border-radius: 8px !important;
+        border-radius: 0px !important;
         background: rgba(4, 55, 82, 0.86) !important;
         box-shadow: 0 22px 58px rgba(3, 22, 38, 0.28) !important;
         backdrop-filter: blur(14px) saturate(132%);
         -webkit-backdrop-filter: blur(14px) saturate(132%);
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+        animation: venturaCopyFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
       }
 
       .ventura-official-badge {
@@ -435,14 +441,13 @@ export function VenturaPage() {
 
       .ventura-brand-theme.ventura-experience-page .ventura-hero-copy h1 {
         margin-bottom: 18px !important;
-        color: #ffffff !important;
-        background: linear-gradient(135deg, #ffffff 40%, #cceeff 100%) !important;
+        background: linear-gradient(135deg, #ffffff 40%, #a2e8f5 100%) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         font-size: clamp(52px, 7vw, 88px) !important;
         line-height: 0.92 !important;
         letter-spacing: 0.04em !important;
-        text-shadow: 0 14px 34px rgba(3, 22, 38, 0.28) !important;
+        width: fit-content !important;
       }
 
       .ventura-hero-statement {
@@ -549,47 +554,238 @@ export function VenturaPage() {
         color: #5f7889 !important;
       }
 
-      .ventura-territory-grid {
-        border-color: rgba(8, 37, 58, 0.12) !important;
-        background: rgba(8, 37, 58, 0.12) !important;
+      /* ── REDESIGNED TERRITORIES SECTION ── */
+      .ventura-brand-theme.ventura-experience-page .ventura-section-head h2 {
+        font-family: 'Sora', sans-serif !important;
+        font-weight: 800 !important;
+        background: linear-gradient(135deg, #08253a 40%, #0077b6 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        letter-spacing: -0.02em !important;
+        margin-bottom: 18px !important;
       }
 
-      .ventura-territory-card {
-        min-height: 390px !important;
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 24px !important;
+        background: transparent !important;
+        border: none !important;
+        overflow: visible !important;
+        padding: 12px 0 !important;
       }
 
-      .ventura-showcase-card,
-      .ventura-showcase-card.is-reverse {
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card {
+        position: relative !important;
+        min-height: 440px !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        overflow: hidden !important;
+        padding: 32px 24px !important;
+        border: 1px solid rgba(8, 37, 58, 0.08) !important;
+        border-radius: 0px !important;
+        background: #081d2c !important;
+        box-shadow: 0 12px 34px rgba(8, 37, 58, 0.06) !important;
+        text-decoration: none !important;
+        isolation: isolate !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card img {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        opacity: 0.6 !important;
+        transform: scale(1.02) !important;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease !important;
+        z-index: -2 !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card::after {
+        content: '' !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: linear-gradient(180deg, rgba(8, 25, 38, 0) 0%, rgba(8, 25, 38, 0.75) 50%, rgba(8, 25, 38, 0.98) 100%) !important;
+        z-index: -1 !important;
+        transition: opacity 0.4s ease !important;
+      }
+
+      /* Hover states & translation */
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card:hover {
+        transform: translateY(-8px) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card:hover img {
+        opacity: 0.78 !important;
+        transform: scale(1.08) !important;
+      }
+
+      /* Specific division-colored glowing hover states */
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="marine"]:hover {
+        border-color: rgba(0, 180, 216, 0.45) !important;
+        box-shadow: 0 22px 48px rgba(0, 180, 216, 0.22) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="adventure"]:hover {
+        border-color: rgba(196, 122, 63, 0.45) !important;
+        box-shadow: 0 22px 48px rgba(196, 122, 63, 0.22) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="electric"]:hover {
+        border-color: rgba(72, 202, 228, 0.45) !important;
+        box-shadow: 0 22px 48px rgba(72, 202, 228, 0.22) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="infantil"]:hover {
+        border-color: rgba(255, 183, 3, 0.45) !important;
+        box-shadow: 0 22px 48px rgba(255, 183, 3, 0.22) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-content {
+        position: relative !important;
+        z-index: 2 !important;
+        width: 100% !important;
+        transform: translateY(0) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card:hover .ventura-territory-content {
+        transform: translateY(-4px) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card h3 {
+        margin: 0 0 10px !important;
+        color: #ffffff !important;
+        font-family: 'Sora', sans-serif !important;
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+        font-weight: 800 !important;
+        text-shadow: 0 2px 10px rgba(8, 25, 38, 0.5) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card p {
+        margin: 0 0 20px !important;
+        color: rgba(255, 255, 255, 0.82) !important;
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
+        text-shadow: 0 1px 4px rgba(8, 25, 38, 0.4) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card strong {
+        color: #ffffff !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-family: 'Sora', sans-serif !important;
+        font-size: 11.5px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        transition: color 0.3s ease !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card strong svg {
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card:hover strong svg {
+        transform: translateX(6px) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="marine"] strong { color: #8be8fc !important; }
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="adventure"] strong { color: #f2ba8c !important; }
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="electric"] strong { color: #a2f2ff !important; }
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-card[data-ventura-filter="infantil"] strong { color: #ffe39f !important; }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-territory-mark {
+        position: absolute !important;
+        top: 20px !important;
+        left: 20px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 6px 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 999px !important;
+        background: rgba(8, 25, 38, 0.6) !important;
+        color: #ffffff !important;
+        font-family: 'Sora', sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        z-index: 2 !important;
+      }
+
+      /* Responsive adaptations */
+      @media (max-width: 1120px) {
+        .ventura-brand-theme.ventura-experience-page .ventura-territory-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 20px !important;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .ventura-brand-theme.ventura-experience-page .ventura-territory-grid {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+        }
+        .ventura-brand-theme.ventura-experience-page .ventura-territory-card {
+          min-height: 380px !important;
+          padding: 24px 20px !important;
+        }
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-card,
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-card.is-reverse {
         min-height: 500px !important;
         border: 1px solid rgba(8, 37, 58, 0.1) !important;
+        border-radius: 0px !important;
         background: #ffffff !important;
-        box-shadow: 0 24px 58px rgba(8, 37, 58, 0.1) !important;
+        box-shadow: 0 24px 58px rgba(8, 37, 58, 0.08) !important;
       }
 
-      .ventura-showcase-media {
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-media {
         min-height: 500px !important;
+        border-radius: 0px !important;
         background:
-          radial-gradient(circle at center, rgba(0, 119, 182, 0.16), transparent 58%),
+          radial-gradient(circle at center, rgba(0, 119, 182, 0.12), transparent 58%),
           linear-gradient(145deg, #edf8fc, #ffffff) !important;
       }
 
-      .ventura-showcase-copy h3 {
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-copy h3 {
         color: #08253a !important;
       }
 
-      .ventura-showcase-copy p:not(.ventura-kicker) {
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-copy p:not(.ventura-kicker) {
         color: #3d5b6f !important;
       }
 
-      .ventura-showcase-copy .btn-outline,
-      .ventura-card-actions .btn-outline {
-        border-color: rgba(8, 37, 58, 0.2) !important;
-        color: #08253a !important;
-        background: #ffffff !important;
+      .ventura-brand-theme.ventura-experience-page .ventura-spec-grid {
+        border-radius: 0px !important;
+        background: rgba(8, 37, 58, 0.08) !important;
+        border: 1px solid rgba(8, 37, 58, 0.08) !important;
       }
 
-      .ventura-showcase-copy .btn-outline:hover,
-      .ventura-card-actions .btn-outline:hover {
+      .ventura-brand-theme.ventura-experience-page .ventura-spec-grid div {
+        background: #f7fbfd !important;
+      }
+
+      /* Specificity Boost for outline buttons on light background cards */
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-copy .btn-outline,
+      .ventura-brand-theme.ventura-experience-page .ventura-card-actions .btn-outline {
+        border: 1px solid rgba(8, 37, 58, 0.28) !important;
+        color: #08253a !important;
+        background: #ffffff !important;
+        border-radius: 4px !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .ventura-showcase-copy .btn-outline:hover,
+      .ventura-brand-theme.ventura-experience-page .ventura-card-actions .btn-outline:hover {
         background: #08253a !important;
         border-color: #08253a !important;
         color: #ffffff !important;
@@ -609,23 +805,112 @@ export function VenturaPage() {
         color: rgba(255, 255, 255, 0.78) !important;
       }
 
-      .ventura-brand-theme.ventura-experience-page .faq-item {
-        background: #f7fbfd !important;
-        border-color: rgba(8, 37, 58, 0.1) !important;
+      .ventura-brand-theme.ventura-experience-page .ventura-local-media {
+        border-radius: 0px !important;
       }
 
-      .ventura-brand-theme.ventura-experience-page .faq-item.active,
+      .ventura-brand-theme.ventura-experience-page .ventura-local-media figcaption {
+        border-radius: 0px !important;
+      }
+
+      /* ── REDESIGNED FAQ ACCORDION ── */
+      .ventura-brand-theme.ventura-experience-page .faq-item {
+        background: #fcfdfe !important;
+        border: 1px solid rgba(8, 37, 58, 0.08) !important;
+        border-left: 4px solid rgba(8, 37, 58, 0.15) !important;
+        border-radius: 0px !important;
+        margin-bottom: 12px !important;
+        transition: all 0.3s ease !important;
+      }
+
       .ventura-brand-theme.ventura-experience-page .faq-item:hover {
-        background: #eef8fc !important;
-        border-color: rgba(0, 119, 182, 0.28) !important;
+        background: #f4f9fc !important;
+        border-color: rgba(0, 119, 182, 0.18) !important;
+        border-left-color: #0077b6 !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .faq-item.active {
+        background: #eef7fc !important;
+        border-color: rgba(0, 119, 182, 0.24) !important;
+        border-left-color: #0077b6 !important;
+        box-shadow: 0 10px 30px rgba(0, 119, 182, 0.04) !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .faq-header {
+        padding: 22px 24px !important;
+        cursor: pointer !important;
       }
 
       .ventura-brand-theme.ventura-experience-page .faq-header h3 {
         color: #08253a !important;
+        font-family: 'Sora', sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        transition: color 0.3s ease !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .faq-item.active .faq-header h3 {
+        color: #0077b6 !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .faq-icon {
+        color: #08253a !important;
+        font-weight: 800 !important;
+        font-size: 18px !important;
+        transition: transform 0.3s ease, color 0.3s ease !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .faq-item.active .faq-icon {
+        color: #0077b6 !important;
+        transform: rotate(45deg) !important;
+      }
+
+      /* Fix closed accordion answer visibility bug */
+      .ventura-brand-theme.ventura-experience-page .faq-body {
+        padding: 0 24px !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease !important;
+      }
+
+      .ventura-brand-theme.ventura-experience-page .faq-item.active .faq-body {
+        max-height: 300px !important;
+        padding: 0 24px 22px !important;
       }
 
       .ventura-brand-theme.ventura-experience-page .faq-body p {
-        color: #4b6677 !important;
+        color: #3d5b6f !important;
+        font-size: 14.5px !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
+      }
+
+      /* Kicker color refinement based on section brightness */
+      .ventura-brand-theme.ventura-experience-page :is(.ventura-concept-section, .ventura-territories-section, .ventura-showroom-section, .ventura-faq-section) .ventura-kicker {
+        color: #0077b6 !important;
+      }
+
+      /* ── ANIMATIONS KEYFRAMES ── */
+      @keyframes venturaCopyFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.97);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes venturaHeroFadeIn {
+        0% {
+          opacity: 0;
+          transform: scale(1.05) translateX(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.02) translateX(0);
+        }
       }
 
       @media (max-width: 900px) {
@@ -691,7 +976,7 @@ export function VenturaPage() {
 
         <!-- RIGHT: Full-brightness lifestyle image -->
         <div class="ventura-hero-right">
-          <img src="/assets/ventura/hero-bg-ventura-surf.jpg" alt="Estilo de vida Ventura — lanchas e aventura nautica" loading="eager">
+          <img src="/assets/ventura/hero-bg-ventura-light.png" alt="Estilo de vida Ventura — lanchas e aventura nautica" loading="eager">
         </div>
       </header>
 

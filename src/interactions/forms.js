@@ -1,6 +1,12 @@
 import { buildLeadWhatsAppUrl } from "../services/whatsapp.js";
-import { saveLead } from "../services/leadsStorage.js";
+import { saveLead, updateLeadTimeSpent } from "../services/leadsStorage.js";
 import { maskPhoneInput } from "../utils/phone.js";
+
+let pageStartTime = Date.now();
+if (typeof window !== "undefined") {
+  window.pageStartTime = pageStartTime;
+}
+
 
 const successColor = "#7BE721";
 
@@ -27,6 +33,11 @@ export function initPhoneMasks() {
 }
 
 export function initLeadForms(config) {
+  pageStartTime = Date.now();
+  if (typeof window !== "undefined") {
+    window.pageStartTime = pageStartTime;
+  }
+
   const handleLeadSubmit = async (event, formId) => {
     event.preventDefault();
 
@@ -41,7 +52,14 @@ export function initLeadForms(config) {
 
     rawData.origem = `landing_martins_${formId}`;
     rawData.enviadoEm = new Date().toISOString();
-    await saveLead(rawData);
+
+    const secondsSpent = Math.round((Date.now() - pageStartTime) / 1000);
+    rawData.tempoNaPagina = secondsSpent;
+
+    const savedLead = await saveLead(rawData);
+    if (typeof window !== "undefined") {
+      window.lastSubmittedLeadId = savedLead.id;
+    }
 
     try {
       if (config.leadEndpoint) {
@@ -82,3 +100,13 @@ export function initLeadForms(config) {
     handleLeadSubmit(event, "contato");
   });
 }
+
+if (typeof window !== "undefined" && !window.pageTimeUpdateInterval) {
+  window.pageTimeUpdateInterval = setInterval(() => {
+    if (window.lastSubmittedLeadId && !window.location.pathname.startsWith("/dashboard")) {
+      const totalSeconds = Math.round((Date.now() - pageStartTime) / 1000);
+      updateLeadTimeSpent(window.lastSubmittedLeadId, totalSeconds);
+    }
+  }, 5000);
+}
+

@@ -242,3 +242,33 @@ export async function updateLeadStatus(leadId, status) {
 
   return updatedLead;
 }
+
+export async function updateLeadTimeSpent(leadId, secondsSpent) {
+  const leads = await getStoredLeads();
+  let updatedLead = null;
+
+  const updatedLeads = leads.map((lead) => {
+    if (lead.id !== leadId) return lead;
+
+    updatedLead = {
+      ...normalizeLead(lead),
+      tempoNaPagina: secondsSpent,
+      atualizadoEm: new Date().toISOString()
+    };
+
+    return updatedLead;
+  });
+
+  if (!updatedLead) return null;
+
+  writeLocalStorageLeads(updatedLeads);
+
+  try {
+    await putIndexedDbLead(updatedLead);
+  } catch {
+    // Fallback
+  }
+
+  return updatedLead;
+}
+
