@@ -1,5 +1,6 @@
 import { initLandingInteractions } from "../interactions/initLandingInteractions.js";
 import { HomePage } from "../pages/HomePage.js";
+import { ShoppingPage } from "../pages/ShoppingPage.js";
 import { CatalogoPage, initCatalogPage } from "../pages/CatalogPage.js";
 import { ProdutoPage, initProductPage } from "../pages/ProductPage.js";
 import { WattsPage } from "../pages/WattsPage.js";
@@ -37,11 +38,47 @@ export function normalizePath(pathname: string) {
   return pathname;
 }
 
+// Trava de segurança para desativar rotas secundárias (pode ser desativada via código alterando para false)
+const LOCK_SECONDARY_ROUTES = true;
+
 export function getRoute(pathname: string): LegacyRoute {
   const path = normalizePath(pathname);
 
+  // 1. Rota principal: agora mapeada para a Landing Page simplificada (ShoppingPage)
   if (path === "/") {
-    return { id: "home", render: HomePage, init: initLandingInteractions, title: "Martins Mobilidade Manaus" };
+    return { id: "home", render: ShoppingPage, init: initLandingInteractions, title: "Martins Mobilidade Manaus" };
+  }
+
+  // 2. Dashboards: sempre acessíveis para visualização de leads e analytics
+  if (path === "/dashboard") {
+    return { id: "dashboard", render: DashboardPage, init: initDashboardPage, title: "Dashboard | Martins Mobilidade", dashboard: true };
+  }
+
+  if (path === "/dashboard2") {
+    return { id: "dashboard", render: DashboardPage, init: initDashboardPage, title: "Dashboard | Martins Mobilidade", dashboard: true };
+  }
+
+  // 3. Se a trava de segurança estiver ativa, bloqueia e redireciona todas as outras rotas para 404
+  if (LOCK_SECONDARY_ROUTES) {
+    return {
+      id: "not-found",
+      render: () => `
+        <main class="not-found-page">
+          <div class="container">
+            <h1>Pagina nao encontrada</h1>
+            <p>Essa rota nao existe no app da Martins Mobilidade.</p>
+            <a class="btn btn-accent" href="/">Voltar para a landing</a>
+          </div>
+        </main>
+      `,
+      init: initLandingInteractions,
+      title: "Pagina nao encontrada | Martins Mobilidade"
+    };
+  }
+
+  // 4. Rotas secundárias originais (só acessíveis se LOCK_SECONDARY_ROUTES for false)
+  if (path === "/shopping") {
+    return { id: "shopping", render: ShoppingPage, init: initLandingInteractions, title: "Ação Shopping | Martins Mobilidade" };
   }
 
   if (path === "/catalogo") {
@@ -100,14 +137,6 @@ export function getRoute(pathname: string): LegacyRoute {
 
   if (path === "/importway") {
     return { id: "importway", render: ImportwayPage, init: initLandingInteractions, title: "Importway | Martins Mobilidade" };
-  }
-
-  if (path === "/dashboard") {
-    return { id: "dashboard", render: DashboardPage, init: initDashboardPage, title: "Dashboard | Martins Mobilidade", dashboard: true };
-  }
-
-  if (path === "/dashboard2") {
-    return { id: "dashboard", render: DashboardPage, init: initDashboardPage, title: "Dashboard | Martins Mobilidade", dashboard: true };
   }
 
   return {

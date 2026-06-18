@@ -48,9 +48,19 @@ export function App() {
     const nextUrl = `${nextPath}${url.search}${url.hash}`;
     const currentUrl = getCurrentLocationKey();
 
-    if (nextUrl === currentUrl) {
-      if (window.location.hash) {
-        document.querySelector(window.location.hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (nextPath === currentPath) {
+      if (nextUrl !== currentUrl) {
+        window.history.pushState({}, "", nextUrl);
+        setLocationKey(getCurrentLocationKey());
+      }
+      if (url.hash) {
+        try {
+          document.querySelector(url.hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (e) {
+          // ignore invalid selector errors
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
       return;
     }
