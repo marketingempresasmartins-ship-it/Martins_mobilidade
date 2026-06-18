@@ -68,6 +68,8 @@ export function initModelsCarousel() {
       // ── Modal: click on CTA button ─────────────────────────────────────────
       const cta = e.target.closest(".btn-card-cta");
       if (cta) {
+        e.preventDefault();
+        e.stopPropagation();
         const interest = cta.dataset.interest || "";
         window.dispatchEvent(new CustomEvent("martins:openModal", {
           detail: { interest, isContact: false }

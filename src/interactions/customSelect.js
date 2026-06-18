@@ -33,6 +33,8 @@ export function initCustomSelect() {
   });
 
   document.querySelectorAll("[data-interest]").forEach((button) => {
+    if (button.closest("#models-carousel-section")) return;
+
     button.addEventListener("click", function (event) {
       const interest = this.getAttribute("data-interest");
 

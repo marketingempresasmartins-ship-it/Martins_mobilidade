@@ -3779,25 +3779,17 @@
     .lead-modal__dialog {
       position: relative;
       width: min(100%, 500px);
-      max-height: min(720px, calc(100vh - 48px));
-      overflow-y: auto;
-      overflow-x: hidden;
-      /* oculta scrollbar em todos os browsers */
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      height: auto;
+      max-height: none;
+      overflow: visible;
       background: rgba(10, 10, 12, 0.96);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-top: 4px solid var(--accent, #7BE721);
       border-radius: 12px;
-      padding: 40px;
+      padding: 36px 40px 34px;
       box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 30px rgba(123, 231, 33, 0.05);
       outline: none;
       animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    /* webkit: esconde completamente a barra de scroll */
-    .lead-modal__dialog::-webkit-scrollbar {
-      display: none;
     }
 
     .lead-modal__close {
@@ -3857,10 +3849,36 @@
     }
 
     .lead-modal-subtitle {
-      margin: 0 0 28px;
+      margin: 0 0 22px;
       color: #a0aec0;
       font-size: 13px;
       line-height: 1.5;
+    }
+
+    .lead-modal .raw-form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .lead-modal .raw-form label {
+      margin-bottom: 7px;
+    }
+
+    .lead-modal .raw-form input,
+    .lead-modal .raw-form select,
+    .lead-modal .raw-form textarea,
+    .lead-modal .custom-select-trigger {
+      min-height: 48px;
+      padding: 11px 16px;
+    }
+
+    .lead-modal .raw-form textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .lead-modal .raw-form .btn-primary {
+      min-height: 56px;
+      margin-top: 8px !important;
     }
 
     @keyframes leadModalFade {
@@ -3884,7 +3902,56 @@
         padding: 16px;
       }
       .lead-modal__dialog {
-        padding: 30px 20px;
+        padding: 30px 20px 26px;
+      }
+    }
+
+    @media (max-height: 760px) {
+      .lead-modal__dialog {
+        padding: 30px 34px 28px;
+      }
+
+      .lead-modal h2 {
+        font-size: 26px;
+        margin-bottom: 8px;
+      }
+
+      .lead-modal__eyebrow {
+        margin-bottom: 10px;
+      }
+
+      .lead-modal-subtitle {
+        margin-bottom: 18px;
+      }
+
+      .lead-modal .raw-form .form-group {
+        margin-bottom: 16px;
+      }
+
+      .lead-modal .raw-form input,
+      .lead-modal .raw-form select,
+      .lead-modal .raw-form textarea,
+      .lead-modal .custom-select-trigger {
+        min-height: 46px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .lead-modal .raw-form .btn-primary {
+        min-height: 54px;
+      }
+    }
+
+    @media (max-height: 620px) {
+      .lead-modal {
+        align-items: flex-start;
+        padding-block: 12px;
+      }
+
+      .lead-modal__dialog {
+        max-height: calc(100dvh - 24px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
       }
     }
 

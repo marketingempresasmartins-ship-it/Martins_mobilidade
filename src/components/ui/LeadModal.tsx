@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { saveLead } from "../../services/leadsStorage.js";
 import { buildLeadWhatsAppUrl } from "../../services/whatsapp.js";
 import { MARTINS_CONFIG } from "../../config/martinsConfig.js";
@@ -23,6 +23,7 @@ const VEHICLE_OPTIONS = [
 ];
 
 export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: LeadModalProps) {
+  const dialogRef = useRef<HTMLElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState("Escolha o veículo");
   
@@ -50,20 +51,61 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Lock body scroll while modal is open (blocks html + body + mobile touch)
+  // Lock body scroll while preserving the exact page position behind the modal.
   useEffect(() => {
     if (!isOpen) return;
     const html = document.documentElement;
-    const prevBodyOverflow = document.body.style.overflow;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const prevBodyOverflow = body.style.overflow;
+    const prevBodyPosition = body.style.position;
+    const prevBodyTop = body.style.top;
+    const prevBodyLeft = body.style.left;
+    const prevBodyRight = body.style.right;
+    const prevBodyWidth = body.style.width;
+    const prevBodyPaddingRight = body.style.paddingRight;
     const prevHtmlOverflow = html.style.overflow;
-    document.body.style.overflow = "hidden";
+    const prevHtmlScrollBehavior = html.style.scrollBehavior;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+
     html.style.overflow = "hidden";
-    const preventTouch = (e: TouchEvent) => e.preventDefault();
+    html.style.scrollBehavior = "auto";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    const preventTouch = (e: TouchEvent) => {
+      const target = e.target as Element | null;
+      if (!target?.closest(".lead-modal__dialog")) {
+        e.preventDefault();
+      }
+    };
     document.addEventListener("touchmove", preventTouch, { passive: false });
+
+    requestAnimationFrame(() => {
+      dialogRef.current?.focus({ preventScroll: true });
+    });
+
     return () => {
-      document.body.style.overflow = prevBodyOverflow;
+      body.style.overflow = prevBodyOverflow;
+      body.style.position = prevBodyPosition;
+      body.style.top = prevBodyTop;
+      body.style.left = prevBodyLeft;
+      body.style.right = prevBodyRight;
+      body.style.width = prevBodyWidth;
+      body.style.paddingRight = prevBodyPaddingRight;
       html.style.overflow = prevHtmlOverflow;
       document.removeEventListener("touchmove", preventTouch);
+      window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+      requestAnimationFrame(() => {
+        html.style.scrollBehavior = prevHtmlScrollBehavior;
+      });
     };
   }, [isOpen]);
 
@@ -227,6 +269,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     <div className="lead-modal" role="presentation">
       <div className="lead-modal__backdrop" onClick={onClose}></div>
       <section
+        ref={dialogRef}
         className="lead-modal__dialog"
         role="dialog"
         aria-modal="true"
