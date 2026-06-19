@@ -39,7 +39,7 @@ export function ContactSection() {
         <!-- Google Map Estilizado -->
         <div class="contact-map-wrapper">
           <iframe 
-            src="https://www.google.com/maps?q=Av.%20Torquato%20Tapaj%C3%B3s%2C%205552%20-%20Novo%20Israel%2C%20Manaus%20-%20AM%2C%2069039-125%2C%20Brasil&z=17&hl=pt-BR&gl=BR&output=embed" 
+            src="https://www.google.com/maps?q=Martins%20Import%20Kia%2C%20Av.%20Torquato%20Tapaj%C3%B3s%2C%205552%20-%20Flores%2C%20Manaus%20-%20AM%2C%2069058-830%2C%20Brasil&z=17&hl=pt-BR&gl=BR&output=embed" 
             width="100%" 
             height="240" 
             style="border:0;" 
