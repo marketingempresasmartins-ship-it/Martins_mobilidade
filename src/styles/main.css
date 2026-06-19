@@ -4148,4 +4148,53 @@ body.preview-notice-open {
   }
 }
 
+/* ==========================================================================
+   HERO MOBILE CTA & RESPONSIVE LAYOUT
+   ========================================================================== */
+
+/* Hero Mobile CTA (oculto no desktop) */
+.hero-mobile-cta {
+  display: none;
+}
+
+/* Breakpoint para ocultar o formulário fixo da hero e exibir o CTA mobile */
+@media (max-width: 1150px) {
+  #hero {
+    min-height: auto !important;
+  }
+
+  #hero .container {
+    min-height: auto !important;
+  }
+
+  .hero-layout {
+    min-height: auto !important;
+  }
+
+  #hero .hero-right {
+    display: none !important;
+  }
+  
+  #hero .hero-left {
+    border-bottom: none !important;
+    padding-top: 100px !important;
+    padding-bottom: 40px !important;
+    justify-content: flex-start !important;
+    gap: 32px !important;
+  }
+
+  #hero .hero-mobile-cta {
+    display: inline-flex !important;
+    width: 100%;
+    margin-top: 28px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+
 
