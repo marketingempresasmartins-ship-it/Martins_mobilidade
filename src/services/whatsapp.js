@@ -4,20 +4,29 @@ export function buildLeadWhatsAppUrl(data, config) {
   const rawPhone = toWhatsAppPhone(config.whatsappNumber);
   if (!rawPhone) return "";
 
-  const intro = data.mensagem 
-    ? "Olá, Martins Mobilidade. Estou enviando uma mensagem direta."
-    : "Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.";
+  let messageLines;
+  if (data.mensagem) {
+    messageLines = [
+      "Olá, Martins Mobilidade.",
+      "",
+      data.mensagem,
+      "",
+      `*Nome:* ${data.nome || ""}`,
+      `*WhatsApp:* ${data.whatsapp || ""}`,
+      data.email ? `*E-mail:* ${data.email}` : ""
+    ];
+  } else {
+    messageLines = [
+      "Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.",
+      "",
+      `*Nome:* ${data.nome || ""}`,
+      `*WhatsApp:* ${data.whatsapp || ""}`,
+      data.email ? `*E-mail:* ${data.email}` : "",
+      data.interesse ? `*Interesse:* ${data.interesse}` : ""
+    ];
+  }
 
-  const message = [
-    intro,
-    "",
-    `*Nome:* ${data.nome || ""}`,
-    `*WhatsApp:* ${data.whatsapp || ""}`,
-    data.email ? `*E-mail:* ${data.email}` : "",
-    data.interesse ? `*Interesse:* ${data.interesse}` : "",
-    data.mensagem ? `*Mensagem:* ${data.mensagem}` : ""
-  ].filter(Boolean).join("\n");
-
+  const message = messageLines.filter(Boolean).join("\n");
   return `https://wa.me/${rawPhone}?text=${encodeURIComponent(message)}`;
 }
 
