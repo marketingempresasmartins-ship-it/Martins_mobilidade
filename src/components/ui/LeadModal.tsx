@@ -210,16 +210,15 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
       const successColor = "#7BE721";
 
       if (MARTINS_CONFIG.leadEndpoint) {
-        const response = await fetch(MARTINS_CONFIG.leadEndpoint, {
+        await fetch(MARTINS_CONFIG.leadEndpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
           body: JSON.stringify({
             actionType: "lead",
             ...leadData
           })
         });
-
-        if (!response.ok) throw new Error("Erro de rede ao enviar.");
 
         setButtonState({
           text: "✓ Enviado com sucesso!",

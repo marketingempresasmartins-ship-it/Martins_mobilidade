@@ -63,16 +63,15 @@ export function initLeadForms(config) {
 
     try {
       if (config.leadEndpoint) {
-        const response = await fetch(config.leadEndpoint, {
+        await fetch(config.leadEndpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
           body: JSON.stringify({
             actionType: "lead",
             ...rawData
           })
         });
-
-        if (!response.ok) throw new Error("Erro de submissão do endpoint");
 
         setButtonState(button, "✓ Enviado com sucesso!", successColor);
         form.reset();
