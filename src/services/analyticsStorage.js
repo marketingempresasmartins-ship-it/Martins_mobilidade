@@ -83,39 +83,8 @@ function writeEvents(events) {
 
 // ── Core: track an event ──
 export function trackEvent(type, payload = {}) {
-  const event = {
-    id: `ev-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-    type,
-    sessionId: getOrCreateSessionId(),
-    timestamp: new Date().toISOString(),
-    page: window.location.pathname,
-    referrer: document.referrer || null,
-    ...payload
-  };
-
-  const events = readEvents();
-
-  // Cap at 2000 events to avoid unbounded growth
-  if (events.length >= 2000) events.splice(0, events.length - 1999);
-  events.push(event);
-  writeEvents(events);
-
-  // Send event to the Google Sheets endpoint
-  if (MARTINS_CONFIG.leadEndpoint) {
-    fetch(MARTINS_CONFIG.leadEndpoint, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain"
-      },
-      body: JSON.stringify({
-        actionType: "event",
-        ...event
-      })
-    }).catch(() => {});
-  }
-
-  return event;
+  // Desativado a pedido do usuário para salvar apenas o necessário
+  return {};
 }
 
 // ── Convenience wrappers ──
@@ -159,14 +128,43 @@ export function trackWhatsAppOpen(source) {
 }
 
 // ── Read helpers for the dashboard ──
-export async function getStoredEvents() {
+export async function getStoredEvents(force = false) {
+  const localEvents = readEvents();
+
+  // Trava temporal para evitar requisições de rede duplicadas consecutivas no mesmo ciclo de atualização (dentro de 3 segundos)
+  let actualForce = force;
+  if (force) {
+    const lastFetch = sessionStorage.getItem("martins_last_fetch_time");
+    const now = Date.now();
+    if (lastFetch && now - parseInt(lastFetch, 10) < 3000) {
+      actualForce = false;
+    }
+  }
+
+  // Se não for forçado a sincronizar e tivermos dados locais, lemos diretamente do cache local
+  if (!actualForce && localEvents.length > 0) {
+    return localEvents;
+  }
+
   if (MARTINS_CONFIG.leadEndpoint) {
     try {
       const response = await fetch(MARTINS_CONFIG.leadEndpoint);
       if (response.ok) {
+        // Registra o timestamp da última busca bem-sucedida
+        sessionStorage.setItem("martins_last_fetch_time", Date.now().toString());
+
         const data = await response.json();
         const remoteEvents = Array.isArray(data) ? [] : (data.events || []);
+        
+        // Sincroniza localmente para backup
         writeEvents(remoteEvents);
+
+        // Se os leads também vieram no mesmo payload, atualiza o cache local deles
+        if (data && data.leads && Array.isArray(data.leads)) {
+          localStorage.setItem("martins_leads", JSON.stringify(data.leads));
+          localStorage.setItem("martins_leads_sync", new Date().toISOString());
+        }
+
         return remoteEvents;
       }
     } catch (err) {

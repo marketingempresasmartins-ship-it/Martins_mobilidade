@@ -8,7 +8,6 @@ import { initRevealAnimations } from "./revealAnimations.js";
 import { initWhatsAppFloat } from "./whatsappFloat.js";
 import { initEconomyCalculator } from "./calculator.js";
 import { initTestimonialsSlider } from "./slider.js";
-import { initPreviewNotice } from "./previewNotice.js";
 import { initAnalyticsTracking } from "./analyticsTracking.js";
 import { initHeroCounters } from "./heroCounters.js";
 import { initModelsCarousel } from "./modelsCarousel.js";
@@ -19,7 +18,6 @@ export function initLandingInteractions() {
     catch (e) { console.error(`[init error] ${label}:`, e); }
   };
 
-  safe(initPreviewNotice,       "previewNotice");
   safe(() => injectContactInfo(MARTINS_CONFIG), "contactInfo");
   safe(initNavigation,          "navigation");
   safe(initPhoneMasks,          "phoneMasks");

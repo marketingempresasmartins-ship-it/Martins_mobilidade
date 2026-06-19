@@ -882,7 +882,40 @@ body.dashboard-body select {
 
 .ops-detail-actions {
   display: flex;
+  gap: 12px;
   margin-top: 8px;
+}
+
+.ops-detail-actions button.ops-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  background: #fef2f2;
+  color: var(--ops-red);
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ops-detail-actions button.ops-danger:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+@keyframes ops-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  display: inline-block;
+  animation: ops-spin 1s linear infinite;
 }
 
 .ops-detail-actions a.ops-primary {

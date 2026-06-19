@@ -64,6 +64,9 @@ export function initLeadForms(config) {
       window.lastSubmittedLeadId = savedLead.id;
     }
 
+    // Inclui o ID gerado para salvar na planilha também
+    rawData.id = savedLead.id;
+
     try {
       if (config.leadEndpoint) {
         fetch(config.leadEndpoint, {
@@ -80,11 +83,13 @@ export function initLeadForms(config) {
       const waUrl = buildLeadWhatsAppUrl(rawData, config);
       if (waUrl) {
         setButtonState(button, "✓ Cotação registrada. Abrindo WhatsApp...", successColor);
-        form.reset();
-        setTimeout(() => window.open(waUrl, "_blank", "noopener"), 800);
+        setTimeout(() => {
+          window.open(waUrl, "_blank", "noopener");
+          form.reset();
+        }, 800);
       } else {
         setButtonState(button, "✓ Cotação registrada!", successColor);
-        form.reset();
+        setTimeout(() => form.reset(), 800);
       }
 
       setTimeout(() => restoreButton(button, originalText), 4000);

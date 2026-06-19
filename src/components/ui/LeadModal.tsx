@@ -184,7 +184,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     const leadData: Record<string, any> = {
       nome: formData.nome,
       whatsapp: formData.whatsapp,
-      email: formData.email || undefined,
+      email: formData.email || "",
       origem: isContactForm ? "landing_martins_popup_contato" : "landing_martins_popup_proposta",
       enviadoEm: new Date().toISOString()
     };

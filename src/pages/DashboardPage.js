@@ -5,30 +5,21 @@ import {
   LEAD_STATUS_OPTIONS,
   LEADS_STORAGE_KEY,
   LEADS_SYNC_EVENT_KEY,
-  saveLead
+  saveLead,
+  deleteLead
 } from "../services/leadsStorage.js";
 
-import {
-  getStoredEvents,
-  aggregatePageViews,
-  aggregateSectionViews,
-  aggregateProductClicks,
-  aggregateCtaClicks,
-  countUniqueSessions,
-  countTodayEvents,
-  getEventsByDay,
-  clearAnalytics,
-  ANALYTICS_STORAGE_KEY,
-  ANALYTICS_SYNC_EVENT_KEY,
-  EVENT_TYPES
-} from "../services/analyticsStorage.js";
+// Analytics disabled
 
 const SEED_KEY = "martins_ops_dashboard_seeded";
 
+function getViewFromUrl() {
+  return "leads";
+}
+
 const state = {
   leads: [],
-  events: [],
-  view: "analytics", // "analytics" ou "leads"
+  view: "leads",
   query: "",
   selectedLeadId: null
 };
@@ -49,13 +40,6 @@ const icons = {
 };
 
 const viewMeta = {
-  analytics: {
-    label: "Métricas do Site",
-    hint: "Tráfego e Acesso",
-    icon: icons.chart,
-    title: "Métricas do Site",
-    description: "Visualizações de marcas, cliques em produtos e ações que demonstram interesse."
-  },
   leads: {
     label: "Leads Capturados",
     hint: "Contatos de Clientes",
@@ -185,7 +169,6 @@ function renderShell() {
         <span class="ops-sidebar-section-title">Menu Principal</span>
 
         <div class="ops-nav" role="navigation" aria-label="Módulos">
-          ${renderNavItem("analytics")}
           ${renderNavItem("leads")}
         </div>
 
@@ -241,15 +224,15 @@ function renderShell() {
 
 function renderMetrics() {
   const totalLeads = state.leads.length;
-  const sessions = countUniqueSessions(state.events);
-  const totalViews = state.events.filter(e => e.type === EVENT_TYPES.PAGE_VIEW).length;
-  const ctaClicks = state.events.filter(e => e.type === EVENT_TYPES.CTA_CLICK).length;
+  const novos = state.leads.filter(l => l.status === "Novo").length;
+  const emAtendimento = state.leads.filter(l => l.status === "Em atendimento").length;
+  const fechados = state.leads.filter(l => l.status === "Fechado").length;
 
   const metricConfigs = [
-    { label: "Visitas Únicas", value: sessions, hint: "Total de sessões locais", icon: icons.users, colorClass: "metric-sessions" },
-    { label: "Visualizações de Páginas", value: totalViews, hint: "Total de pageviews", icon: icons.chart, colorClass: "metric-views" },
-    { label: "Leads Capturados", value: totalLeads, hint: "Enviados via formulários", icon: icons.plus, colorClass: "metric-leads" },
-    { label: "Cliques em CTAs / WhatsApp", value: ctaClicks, hint: "Intenções de contato", icon: icons.phone, colorClass: "metric-ctas" }
+    { label: "Total de Leads", value: totalLeads, hint: "Total de contatos recebidos", icon: icons.users, colorClass: "metric-sessions" },
+    { label: "Novos", value: novos, hint: "Aguardando atendimento", icon: icons.plus, colorClass: "metric-leads" },
+    { label: "Em Atendimento", value: emAtendimento, hint: "Negociação em andamento", icon: icons.chart, colorClass: "metric-views" },
+    { label: "Fechados (Sucesso)", value: fechados, hint: "Vendas concluídas", icon: icons.phone, colorClass: "metric-ctas" }
   ];
 
   const target = document.querySelector("#opsMetrics");
@@ -267,75 +250,7 @@ function renderMetrics() {
   `).join("");
 }
 
-function renderBarList(items) {
-  const max = Math.max(1, ...items.map(([, count]) => count));
-  if (!items.length) return `<p class="ops-note">Sem interações registradas.</p>`;
 
-  return items.map(([label, count], index) => `
-    <div class="ops-analytics-row">
-      <span>${index + 1}</span>
-      <strong>${escapeHtml(label || "Não informado")}</strong>
-      <i style="width:${Math.max(8, Math.round((count / max) * 100))}%"></i>
-      <em>${count}</em>
-    </div>
-  `).join("");
-}
-
-function renderDayChart() {
-  const days = getEventsByDay(state.events, EVENT_TYPES.PAGE_VIEW, 7);
-  const max = Math.max(1, ...days.map(([, count]) => count));
-
-  return days.map(([day, count]) => {
-    const date = new Date(day);
-    const label = Number.isNaN(date.getTime()) ? day : date.toLocaleDateString("pt-BR", { weekday: "short" });
-    return `
-      <div class="ops-day">
-        <span style="height:${Math.max(6, Math.round((count / max) * 100))}%"></span>
-        <strong>${count}</strong>
-        <small>${escapeHtml(label)}</small>
-      </div>
-    `;
-  }).join("");
-}
-
-function renderAnalytics() {
-  const pageViews = aggregatePageViews(state.events).slice(0, 6);
-  const sectionViews = aggregateSectionViews(state.events).slice(0, 6);
-  const productClicks = aggregateProductClicks(state.events).slice(0, 6);
-  const ctaClicks = aggregateCtaClicks(state.events).slice(0, 6);
-
-  return `
-    <div class="ops-analytics-layout">
-      <article class="ops-panel ops-panel--wide">
-        <div class="ops-panel-header">
-          <div><span>Visualizações</span><h2>Acessos nos últimos 7 dias</h2></div>
-          <button class="ops-danger" id="opsClearAnalytics" type="button">${icons.trash}<span>Limpar Métricas</span></button>
-        </div>
-        <div class="ops-day-chart">${renderDayChart()}</div>
-      </article>
-
-      <article class="ops-panel">
-        <div class="ops-panel-header"><div><span>Marcas</span><h2>Acessos por Linha</h2></div></div>
-        <div class="ops-analytics-list">${renderBarList(pageViews)}</div>
-      </article>
-
-      <article class="ops-panel">
-        <div class="ops-panel-header"><div><span>Páginas</span><h2>Seções mais Vistas</h2></div></div>
-        <div class="ops-analytics-list">${renderBarList(sectionViews)}</div>
-      </article>
-
-      <article class="ops-panel">
-        <div class="ops-panel-header"><div><span>Modelos</span><h2>Cliques em Produtos</h2></div></div>
-        <div class="ops-analytics-list">${renderBarList(productClicks)}</div>
-      </article>
-
-      <article class="ops-panel">
-        <div class="ops-panel-header"><div><span>Ações</span><h2>Cliques em Botões / CTAs</h2></div></div>
-        <div class="ops-analytics-list">${renderBarList(ctaClicks)}</div>
-      </article>
-    </div>
-  `;
-}
 
 function renderLeadCardCompact(lead) {
   const name = getLeadName(lead);
@@ -397,6 +312,9 @@ function renderSelectedLead() {
 
       <div class="ops-detail-actions">
         ${whatsappUrl ? `<a class="ops-primary" href="${escapeHtml(whatsappUrl)}" target="_blank" rel="noopener">${icons.phone}<span>Iniciar no WhatsApp</span></a>` : ""}
+        <button class="ops-danger" id="opsDeleteLead" data-delete-lead-id="${escapeHtml(lead.id)}" type="button">
+          ${icons.trash}<span>Excluir Lead</span>
+        </button>
       </div>
     </article>
   `;
@@ -430,13 +348,7 @@ function renderEmpty(title, text) {
 function renderContent() {
   const content = document.querySelector("#opsContent");
   if (!content) return;
-
-  const views = {
-    analytics: renderAnalytics,
-    leads: renderLeads
-  };
-
-  content.innerHTML = (views[state.view] || renderAnalytics)();
+  content.innerHTML = renderLeads();
 }
 
 function syncShell() {
@@ -459,10 +371,9 @@ function renderAll() {
   renderContent();
 }
 
-async function refreshData({ keepSelection = true } = {}) {
+async function refreshData({ keepSelection = true, force = false } = {}) {
   const previousLeadId = state.selectedLeadId;
-  state.leads = await getStoredLeads();
-  state.events = await getStoredEvents();
+  state.leads = await getStoredLeads(force);
 
   if (keepSelection && state.leads.some((lead) => lead.id === previousLeadId)) {
     state.selectedLeadId = previousLeadId;
@@ -506,7 +417,11 @@ function bindDashboardEvents() {
   root.addEventListener("click", async (event) => {
     const viewButton = event.target.closest("[data-view]");
     if (viewButton) {
-      state.view = viewButton.getAttribute("data-view");
+      const nextView = viewButton.getAttribute("data-view");
+      state.view = nextView;
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", nextView);
+      window.history.pushState({}, "", url.pathname + url.search + url.hash);
       renderAll();
       return;
     }
@@ -519,8 +434,39 @@ function bindDashboardEvents() {
     }
 
     if (event.target.closest("#opsRefresh")) {
-      await refreshData();
+      const refreshBtn = event.target.closest("#opsRefresh");
+      const originalHtml = refreshBtn.innerHTML;
+      refreshBtn.disabled = true;
+      refreshBtn.innerHTML = `<span class="btn-icon animate-spin">${icons.refresh}</span> <span>Sincronizando...</span>`;
+      
+      try {
+        await refreshData({ force: true });
+      } finally {
+        refreshBtn.disabled = false;
+        refreshBtn.innerHTML = originalHtml;
+      }
       renderAll();
+      return;
+    }
+
+    const deleteButton = event.target.closest("#opsDeleteLead");
+    if (deleteButton) {
+      const leadId = deleteButton.getAttribute("data-delete-lead-id");
+      const lead = state.leads.find((l) => l.id === leadId);
+      const leadName = lead ? (lead.nome || lead.name || "Sem nome") : "este lead";
+      if (confirm(`Tem certeza que deseja excluir o lead "${leadName}"?`)) {
+        // Remove do estado em memória imediatamente para dar feedback visual instantâneo
+        state.leads = state.leads.filter((l) => l.id !== leadId);
+        state.selectedLeadId = getFilteredLeads()[0]?.id || state.leads[0]?.id || null;
+        renderAll();
+
+        // Executa a deleção persistente local e na planilha
+        await deleteLead(leadId);
+        
+        // Re-sincroniza o estado local para bater com os storages
+        await refreshData({ keepSelection: false });
+        renderAll();
+      }
       return;
     }
 
@@ -537,13 +483,7 @@ function bindDashboardEvents() {
       return;
     }
 
-    if (event.target.closest("#opsClearAnalytics")) {
-      if (confirm("Limpar todas as métricas locais de acessos e cliques?")) {
-        clearAnalytics();
-        await refreshData();
-        renderAll();
-      }
-    }
+
   });
 
   root.addEventListener("input", (event) => {
@@ -654,7 +594,7 @@ export async function initDashboardPage() {
   }
 
   // Limpa o banco de dados local caso haja dados de teste antigos, garantindo que usemos apenas os dados da planilha
-  const purgeKey = "martins_local_db_purged_v3";
+  const purgeKey = "martins_local_db_purged_v4";
   if (MARTINS_CONFIG.leadEndpoint && !localStorage.getItem(purgeKey)) {
     localStorage.removeItem("martins_leads");
     localStorage.removeItem("martins_ops_dashboard_seeded");
@@ -669,8 +609,18 @@ export async function initDashboardPage() {
     localStorage.setItem(purgeKey, "true");
   }
 
-  await refreshData({ keepSelection: false });
+  await refreshData({ keepSelection: false, force: false });
   bindDashboardEvents();
   bindStorageSync();
+
+  // Escuta eventos popstate para atualizar a aba quando o usuário navegar no histórico do browser
+  window.addEventListener("popstate", () => {
+    const viewFromUrl = getViewFromUrl();
+    if (state.view !== viewFromUrl) {
+      state.view = viewFromUrl;
+      renderAll();
+    }
+  });
+
   renderAll();
 }

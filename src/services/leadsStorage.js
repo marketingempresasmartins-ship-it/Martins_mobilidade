@@ -146,6 +146,77 @@ function createLeadId(lead) {
   return `lead-${timestamp}-${random}`;
 }
 
+/**
+ * Detects the header row that the Google Sheets script mistakenly
+ * includes as a data row. The header contains column names like
+ * "Data/Hora", "Nome", "WhatsApp" as field values.
+ */
+function isSpreadsheetHeaderRow(lead) {
+  const knownHeaders = ["Data/Hora", "Nome", "WhatsApp", "E-mail", "Interesse", "Mensagem", "Origem", "Tempo na Página (s)", "Status"];
+  const values = [lead.nome, lead.whatsapp, lead.email, lead.interesse, lead.mensagem, lead.origem];
+  return values.filter((v) => knownHeaders.includes(v)).length >= 3;
+}
+
+/**
+ * Detects rows where columns are shifted by one position.
+ * In these rows `enviadoEm` is empty and `nome` contains an ISO
+ * timestamp instead of a real name.
+ */
+function isShiftedRow(lead) {
+  if (lead.enviadoEm) return false;
+  const parsed = Date.parse(lead.nome);
+  return !Number.isNaN(parsed) && String(lead.nome).includes("T");
+}
+
+function parseTempoNaPagina(value) {
+  if (value === undefined || value === null) return 0;
+  if (typeof value === "number") return value;
+  
+  const str = String(value);
+  if (str.includes("T")) {
+    const date = new Date(str);
+    if (!isNaN(date.getTime())) {
+      // A base de tempo correspondente a 0 segundos é 1899-12-30T04:32:36.000Z
+      const baseDate = new Date("1899-12-30T04:32:36.000Z");
+      const diffMs = date.getTime() - baseDate.getTime();
+      const diffSecs = Math.round(diffMs / 1000);
+      return diffSecs >= 0 ? diffSecs : 0;
+    }
+  }
+  
+  const parsed = parseInt(str, 10);
+  return isNaN(parsed) ? 0 : parsed;
+}
+
+/**
+ * Re-maps a shifted row so every field points to its correct value.
+ */
+function remapShiftedLead(lead) {
+  return {
+    ...lead,
+    enviadoEm: lead.nome,
+    nome: lead.whatsapp,
+    whatsapp: lead.email,
+    email: lead.interesse,
+    interesse: lead.mensagem,
+    mensagem: "",
+    origem: lead.origem || "landing_martins_hero",
+    tempoNaPagina: parseTempoNaPagina(lead.tempoNaPagina),
+    status: lead.status || "Novo",
+    id: lead.id || ""
+  };
+}
+
+/**
+ * Sanitizes remote leads: removes the header row, fixes shifted
+ * columns, and normalizes every entry.
+ */
+function sanitizeRemoteLeads(rawLeads) {
+  return rawLeads
+    .filter((lead) => !isSpreadsheetHeaderRow(lead))
+    .map((lead) => (isShiftedRow(lead) ? remapShiftedLead(lead) : lead));
+}
+
 export function normalizeLead(rawLead = {}) {
   const now = new Date().toISOString();
   const enviadoEm = rawLead.enviadoEm || rawLead.capturadoEm || now;
@@ -175,18 +246,54 @@ function mergeLeads(primaryLeads, secondaryLeads) {
   return Array.from(byId.values());
 }
 
-export async function getStoredLeads() {
+export async function getStoredLeads(force = false) {
   const localLeads = readLocalStorageLeads().map((lead) => normalizeLead(lead));
 
-  // Se houver uma planilha configurada, carrega em tempo real
+  // Trava temporal para evitar requisições de rede duplicadas consecutivas no mesmo ciclo de atualização (dentro de 3 segundos)
+  let actualForce = force;
+  if (force) {
+    const lastFetch = sessionStorage.getItem("martins_last_fetch_time");
+    const now = Date.now();
+    if (lastFetch && now - parseInt(lastFetch, 10) < 3000) {
+      actualForce = false;
+    }
+  }
+
+  // Se não for forçado a sincronizar e tivermos dados locais, lemos diretamente do cache local
+  if (!actualForce && localLeads.length > 0) {
+    if (!canUseIndexedDb()) {
+      return sortLeads(localLeads);
+    }
+    try {
+      const indexedLeads = (await readIndexedDbLeads()).map((lead) => normalizeLead(lead));
+      const mergedLeads = mergeLeads(indexedLeads, localLeads);
+      return sortLeads(mergedLeads);
+    } catch {
+      return sortLeads(localLeads);
+    }
+  }
+
+  // Se forçado (ou se não houver dados e for o primeiro carregamento) e houver uma planilha configurada, carrega da nuvem
   if (MARTINS_CONFIG.leadEndpoint) {
     try {
       const response = await fetch(MARTINS_CONFIG.leadEndpoint);
       if (response.ok) {
+        // Registra o timestamp da última busca bem-sucedida
+        sessionStorage.setItem("martins_last_fetch_time", Date.now().toString());
+
         const data = await response.json();
-        const remoteLeads = Array.isArray(data) ? data : (data.leads || []);
+        const rawRemoteLeads = Array.isArray(data) ? data : (data.leads || []);
+        const remoteLeads = sanitizeRemoteLeads(rawRemoteLeads).map((lead) => normalizeLead(lead));
+        
         // Sincroniza localmente para backup
         writeLocalStorageLeads(remoteLeads);
+        
+        // Se os eventos também vieram no mesmo payload, atualiza o cache deles para evitar a segunda requisição
+        if (data && data.events && Array.isArray(data.events)) {
+          localStorage.setItem("martins_analytics_events", JSON.stringify(data.events));
+          localStorage.setItem("martins_analytics_sync", Date.now().toString());
+        }
+
         if (canUseIndexedDb()) {
           try {
             await runStoreTransaction("readwrite", (store) => store.clear());
@@ -195,13 +302,14 @@ export async function getStoredLeads() {
             console.warn("Falha ao limpar IndexedDB local:", e);
           }
         }
-        return remoteLeads;
+        return sortLeads(remoteLeads);
       }
     } catch (err) {
       console.warn("Falha ao buscar leads remotos da planilha, usando backup local:", err);
     }
   }
 
+  // Fallback caso a requisição falhe
   if (!canUseIndexedDb()) {
     writeLocalStorageLeads(localLeads);
     return sortLeads(localLeads);
@@ -210,10 +318,8 @@ export async function getStoredLeads() {
   try {
     const indexedLeads = (await readIndexedDbLeads()).map((lead) => normalizeLead(lead));
     const mergedLeads = mergeLeads(indexedLeads, localLeads);
-
     await putManyIndexedDbLeads(mergedLeads);
     writeLocalStorageLeads(mergedLeads);
-
     return sortLeads(mergedLeads);
   } catch {
     writeLocalStorageLeads(localLeads);
@@ -269,7 +375,10 @@ export async function updateLeadStatus(leadId, status) {
       body: JSON.stringify({
         actionType: "updateStatus",
         leadId,
-        status
+        status,
+        nome: updatedLead.nome || updatedLead.name || "",
+        whatsapp: updatedLead.whatsapp || updatedLead.telefone || updatedLead.phone || "",
+        enviadoEm: updatedLead.enviadoEm || ""
       })
     }).catch((err) => console.warn("Falha ao sincronizar alteração de status no Sheets:", err));
   }
@@ -310,5 +419,38 @@ export async function updateLeadTimeSpent(leadId, secondsSpent) {
   }
 
   return updatedLead;
+}
+
+export async function deleteLead(leadId) {
+  const leads = await getStoredLeads();
+  const leadToDelete = leads.find((lead) => lead.id === leadId);
+  const updatedLeads = leads.filter((lead) => lead.id !== leadId);
+
+  writeLocalStorageLeads(updatedLeads);
+
+  if (MARTINS_CONFIG.leadEndpoint && leadToDelete) {
+    fetch(MARTINS_CONFIG.leadEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        actionType: "deleteLead",
+        leadId,
+        nome: leadToDelete.nome || leadToDelete.name || "",
+        whatsapp: leadToDelete.whatsapp || leadToDelete.telefone || leadToDelete.phone || "",
+        enviadoEm: leadToDelete.enviadoEm || ""
+      })
+    }).catch((err) => console.warn("Falha ao sincronizar deleção no Sheets:", err));
+  }
+
+  if (canUseIndexedDb()) {
+    try {
+      await runStoreTransaction("readwrite", (store) => store.delete(leadId));
+    } catch (e) {
+      console.warn("Falha ao deletar do IndexedDB:", e);
+    }
+  }
+
+  return updatedLeads;
 }
 
