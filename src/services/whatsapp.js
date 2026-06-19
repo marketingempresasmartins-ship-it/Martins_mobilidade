@@ -6,9 +6,22 @@ export function buildLeadWhatsAppUrl(data, config) {
 
   let message;
   if (data.mensagem) {
-    message = `${data.mensagem}\n\nNome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}`;
+    const metadata = [
+      `*Nome:* ${data.nome || ""}`,
+      `*WhatsApp:* ${data.whatsapp || ""}`,
+      data.email ? `*E-mail:* ${data.email}` : ""
+    ].filter(Boolean).join("\n");
+    
+    message = `${data.mensagem}\n\n${metadata}`;
   } else {
-    message = `Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.\n\nNome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}${data.interesse ? ` Interesse: ${data.interesse}` : ""}`;
+    const metadata = [
+      `*Nome:* ${data.nome || ""}`,
+      `*WhatsApp:* ${data.whatsapp || ""}`,
+      data.email ? `*E-mail:* ${data.email}` : "",
+      data.interesse ? `*Interesse:* ${data.interesse}` : ""
+    ].filter(Boolean).join("\n");
+
+    message = `Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.\n\n${metadata}`;
   }
 
   return `https://wa.me/${rawPhone}?text=${encodeURIComponent(message)}`;
