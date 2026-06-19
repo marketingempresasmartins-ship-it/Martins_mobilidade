@@ -193,6 +193,10 @@ function renderShell() {
 
         <div class="ops-sidebar-actions">
           <a href="/" class="ops-link">${icons.external}<span>Ir para o Site</span></a>
+          <button id="opsLogout" class="ops-link" style="border: none; background: transparent; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px; width: 100%; color: inherit; font-family: inherit;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Sair do Painel</span>
+          </button>
         </div>
 
         <div class="ops-sidebar-profile">
@@ -520,6 +524,12 @@ function bindDashboardEvents() {
       return;
     }
 
+    if (event.target.closest("#opsLogout")) {
+      sessionStorage.removeItem("martins_dashboard_logged_in");
+      window.location.reload();
+      return;
+    }
+
 
 
     if (event.target.closest("#opsExport")) {
@@ -565,11 +575,84 @@ function bindStorageSync() {
   });
 }
 
+function isAuthenticated() {
+  return sessionStorage.getItem("martins_dashboard_logged_in") === "true";
+}
+
+function renderLoginShell() {
+  return `
+    <div class="ops-login-container">
+      <div class="ops-login-card">
+        <div class="ops-login-logo">MM</div>
+        <h2>Martins Mobilidade</h2>
+        <p>Acesse o painel do dashboard informando as credenciais de acesso.</p>
+        
+        <form id="opsLoginForm" class="ops-login-form">
+          <div id="opsLoginError" class="ops-login-error hidden" role="alert">
+            Usuário ou senha incorretos. Tente novamente.
+          </div>
+          
+          <div class="ops-login-field">
+            <label for="opsUsername">Usuário</label>
+            <input type="text" id="opsUsername" name="username" placeholder="Digite seu usuário" required autocomplete="username">
+          </div>
+          
+          <div class="ops-login-field">
+            <label for="opsPassword">Senha</label>
+            <input type="password" id="opsPassword" name="password" placeholder="Digite sua senha" required autocomplete="current-password">
+          </div>
+          
+          <button type="submit" class="ops-login-submit">
+            <span>Entrar</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  `;
+}
+
+function bindLoginEvents() {
+  const form = document.querySelector("#opsLoginForm");
+  if (!form) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const usernameInput = document.querySelector("#opsUsername")?.value || "";
+    const passwordInput = document.querySelector("#opsPassword")?.value || "";
+
+    const correctUser = MARTINS_CONFIG.dashboardUser;
+    const correctPassword = MARTINS_CONFIG.dashboardPassword;
+
+    if (usernameInput === correctUser && passwordInput === correctPassword) {
+      sessionStorage.setItem("martins_dashboard_logged_in", "true");
+      window.location.reload();
+    } else {
+      const errorDiv = document.querySelector("#opsLoginError");
+      if (errorDiv) {
+        errorDiv.classList.remove("hidden");
+        // Re-trigger CSS shake animation
+        errorDiv.style.animation = "none";
+        errorDiv.offsetHeight; // trigger reflow
+        errorDiv.style.animation = "";
+      }
+    }
+  });
+}
+
 export function DashboardPage() {
+  if (!isAuthenticated()) {
+    return renderLoginShell();
+  }
   return renderShell();
 }
 
 export async function initDashboardPage() {
+  if (!isAuthenticated()) {
+    bindLoginEvents();
+    return;
+  }
+
   // Limpa o banco de dados local caso haja dados de teste antigos, garantindo que usemos apenas os dados da planilha
   const purgeKey = "martins_local_db_purged_v3";
   if (MARTINS_CONFIG.leadEndpoint && !localStorage.getItem(purgeKey)) {
