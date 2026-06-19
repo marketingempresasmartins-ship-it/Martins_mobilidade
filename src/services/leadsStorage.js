@@ -1,3 +1,5 @@
+import { MARTINS_CONFIG } from "../config/martinsConfig.js";
+
 export const LEADS_STORAGE_KEY = "martins_leads";
 export const LEADS_SYNC_EVENT_KEY = "martins_leads_sync";
 export const LEADS_DB_NAME = "martins_admin_test_db";
@@ -176,6 +178,25 @@ function mergeLeads(primaryLeads, secondaryLeads) {
 export async function getStoredLeads() {
   const localLeads = readLocalStorageLeads().map((lead) => normalizeLead(lead));
 
+  // Se houver uma planilha configurada, carrega em tempo real
+  if (MARTINS_CONFIG.leadEndpoint) {
+    try {
+      const response = await fetch(MARTINS_CONFIG.leadEndpoint);
+      if (response.ok) {
+        const data = await response.json();
+        const remoteLeads = data.leads || [];
+        // Sincroniza localmente para backup
+        writeLocalStorageLeads(remoteLeads);
+        if (canUseIndexedDb()) {
+          await putManyIndexedDbLeads(remoteLeads);
+        }
+        return remoteLeads;
+      }
+    } catch (err) {
+      console.warn("Falha ao buscar leads remotos da planilha, usando backup local:", err);
+    }
+  }
+
   if (!canUseIndexedDb()) {
     writeLocalStorageLeads(localLeads);
     return sortLeads(localLeads);
@@ -233,6 +254,20 @@ export async function updateLeadStatus(leadId, status) {
   if (!updatedLead) return null;
 
   writeLocalStorageLeads(updatedLeads);
+
+  // Sincroniza a alteração de status com o Google Sheets
+  if (MARTINS_CONFIG.leadEndpoint) {
+    fetch(MARTINS_CONFIG.leadEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        actionType: "updateStatus",
+        leadId,
+        status
+      })
+    }).catch((err) => console.warn("Falha ao sincronizar alteração de status no Sheets:", err));
+  }
 
   try {
     await putIndexedDbLead(updatedLead);

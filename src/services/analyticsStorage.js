@@ -1,3 +1,5 @@
+import { MARTINS_CONFIG } from "../config/martinsConfig.js";
+
 // ── MARTINS ANALYTICS — Client-side event tracking ──
 // Stores events in localStorage for the dashboard to read.
 // No external calls. Zero dependencies.
@@ -98,6 +100,21 @@ export function trackEvent(type, payload = {}) {
   events.push(event);
   writeEvents(events);
 
+  // Send event to the Google Sheets endpoint
+  if (MARTINS_CONFIG.leadEndpoint) {
+    fetch(MARTINS_CONFIG.leadEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: JSON.stringify({
+        actionType: "event",
+        ...event
+      })
+    }).catch(() => {});
+  }
+
   return event;
 }
 
@@ -142,7 +159,20 @@ export function trackWhatsAppOpen(source) {
 }
 
 // ── Read helpers for the dashboard ──
-export function getStoredEvents() {
+export async function getStoredEvents() {
+  if (MARTINS_CONFIG.leadEndpoint) {
+    try {
+      const response = await fetch(MARTINS_CONFIG.leadEndpoint);
+      if (response.ok) {
+        const data = await response.json();
+        const remoteEvents = data.events || [];
+        writeEvents(remoteEvents);
+        return remoteEvents;
+      }
+    } catch (err) {
+      console.warn("Falha ao buscar eventos remotos, usando backup local:", err);
+    }
+  }
   return readEvents();
 }
 

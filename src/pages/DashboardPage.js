@@ -490,7 +490,7 @@ function renderAll() {
 async function refreshData({ keepSelection = true } = {}) {
   const previousLeadId = state.selectedLeadId;
   state.leads = await getStoredLeads();
-  state.events = getStoredEvents();
+  state.events = await getStoredEvents();
 
   if (keepSelection && state.leads.some((lead) => lead.id === previousLeadId)) {
     state.selectedLeadId = previousLeadId;
