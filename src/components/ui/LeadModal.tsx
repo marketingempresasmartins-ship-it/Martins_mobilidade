@@ -161,7 +161,8 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const handleOptionSelect = (value: string) => {
+  const handleOptionSelect = (e: React.MouseEvent, value: string) => {
+    e.stopPropagation();
     setSelectedVehicle(value);
     setIsDropdownOpen(false);
   };
@@ -395,7 +396,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
                         className={`custom-option ${
                           selectedVehicle === opt.value ? "selected" : ""
                         }`}
-                        onClick={() => handleOptionSelect(opt.value)}
+                        onClick={(e) => handleOptionSelect(e, opt.value)}
                         style={{ display: "flex", alignItems: "center", gap: "12px" }}
                       >
                         {opt.image ? (
