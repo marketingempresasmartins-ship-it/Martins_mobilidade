@@ -184,11 +184,16 @@ export async function getStoredLeads() {
       const response = await fetch(MARTINS_CONFIG.leadEndpoint);
       if (response.ok) {
         const data = await response.json();
-        const remoteLeads = data.leads || [];
+        const remoteLeads = Array.isArray(data) ? data : (data.leads || []);
         // Sincroniza localmente para backup
         writeLocalStorageLeads(remoteLeads);
         if (canUseIndexedDb()) {
-          await putManyIndexedDbLeads(remoteLeads);
+          try {
+            await runStoreTransaction("readwrite", (store) => store.clear());
+            await putManyIndexedDbLeads(remoteLeads);
+          } catch (e) {
+            console.warn("Falha ao limpar IndexedDB local:", e);
+          }
         }
         return remoteLeads;
       }

@@ -165,7 +165,7 @@ export async function getStoredEvents() {
       const response = await fetch(MARTINS_CONFIG.leadEndpoint);
       if (response.ok) {
         const data = await response.json();
-        const remoteEvents = data.events || [];
+        const remoteEvents = Array.isArray(data) ? [] : (data.events || []);
         writeEvents(remoteEvents);
         return remoteEvents;
       }

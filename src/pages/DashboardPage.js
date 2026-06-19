@@ -1,3 +1,4 @@
+import { MARTINS_CONFIG } from "../config/martinsConfig.js";
 import {
   getStoredLeads,
   updateLeadStatus,
@@ -64,35 +65,6 @@ const viewMeta = {
   }
 };
 
-const demoLeads = [
-  {
-    nome: "Lucas Seabra Bento",
-    whatsapp: "(92) 99185-1373",
-    email: "lucasseabra2016@gmail.com",
-    interesse: "Taiga Orca (Jet Elétrico)",
-    mensagem: "Gostaria de saber valores e condições de financiamento para Manaus.",
-    origem: "Linha Ventura",
-    status: "Novo"
-  },
-  {
-    nome: "Carlos Andrade",
-    whatsapp: "(92) 99201-4455",
-    email: "carlos.andrade@gmail.com",
-    interesse: "Watts W160s",
-    mensagem: "Tenho interesse em financiamento para uso diário no trabalho.",
-    origem: "Linha Watts",
-    status: "Em atendimento"
-  },
-  {
-    nome: "Mariana Costa",
-    whatsapp: "(92) 99122-5566",
-    email: "mariana.costa@empresa.com",
-    interesse: "Amazon Motors Triciclo",
-    mensagem: "Preciso de 3 triciclos para logística da minha loja.",
-    origem: "Linha Amazon Motors",
-    status: "Fechado"
-  }
-];
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -235,7 +207,7 @@ function renderShell() {
       <main class="ops-main">
         <header class="ops-topbar">
           <div class="ops-topbar-left">
-            <span class="ops-topbar-badge">Mock DB Local</span>
+            <span class="ops-topbar-badge">${MARTINS_CONFIG.leadEndpoint ? "Google Sheets Live" : "Mock DB Local"}</span>
             <span class="ops-topbar-path">Martins Mobilidade / dashboard</span>
           </div>
 
@@ -243,10 +215,6 @@ function renderShell() {
             <button class="ops-topbar-btn btn-secondary" id="opsRefresh" type="button" title="Atualizar dados">
               <span class="btn-icon">${icons.refresh}</span>
               <span>Sincronizar</span>
-            </button>
-            <button class="ops-topbar-btn btn-primary" id="opsAddLead" type="button" title="Simular lead de formulário">
-              <span class="btn-icon">${icons.plus}</span>
-              <span>Simular Envio</span>
             </button>
             <button class="ops-topbar-btn btn-secondary" id="opsExport" type="button" title="Exportar CSV">
               <span class="btn-icon">${icons.download}</span>
@@ -412,7 +380,7 @@ function renderSelectedLead() {
       </div>
 
       <div class="ops-field">
-        <span>Status Comercial (Mock)</span>
+        <span>Status Comercial</span>
         <select data-status-select="${escapeHtml(lead.id)}" aria-label="Status">
           ${LEAD_STATUS_OPTIONS.map((status) => `<option value="${escapeHtml(status)}" ${status === lead.status ? "selected" : ""}>${escapeHtml(status)}</option>`).join("")}
         </select>
@@ -499,39 +467,6 @@ async function refreshData({ keepSelection = true } = {}) {
   }
 }
 
-async function seedDemoLeadsIfNeeded() {
-  if (localStorage.getItem(SEED_KEY)) return;
-  const current = await getStoredLeads();
-  if (current.length) {
-    localStorage.setItem(SEED_KEY, "1");
-    return;
-  }
-
-  for (const [index, lead] of demoLeads.entries()) {
-    await saveLead({
-      ...lead,
-      enviadoEm: new Date(Date.now() - index * 86400000).toISOString(),
-      tempoNaPagina: Math.floor(Math.random() * 110) + 10
-    });
-  }
-
-  localStorage.setItem(SEED_KEY, "1");
-}
-
-async function addDemoLead() {
-  const base = demoLeads[state.leads.length % demoLeads.length];
-  const saved = await saveLead({
-    ...base,
-    nome: `${base.nome} ${state.leads.length + 1}`,
-    enviadoEm: new Date().toISOString(),
-    tempoNaPagina: Math.floor(Math.random() * 110) + 10
-  });
-  state.selectedLeadId = saved.id;
-  state.view = "leads";
-  state.query = "";
-  await refreshData();
-  renderAll();
-}
 
 function exportCsv() {
   const leads = getFilteredLeads();
@@ -585,10 +520,7 @@ function bindDashboardEvents() {
       return;
     }
 
-    if (event.target.closest("#opsAddLead")) {
-      await addDemoLead();
-      return;
-    }
+
 
     if (event.target.closest("#opsExport")) {
       exportCsv();
@@ -638,7 +570,22 @@ export function DashboardPage() {
 }
 
 export async function initDashboardPage() {
-  await seedDemoLeadsIfNeeded();
+  // Limpa o banco de dados local caso haja dados de teste antigos, garantindo que usemos apenas os dados da planilha
+  const purgeKey = "martins_local_db_purged_v3";
+  if (MARTINS_CONFIG.leadEndpoint && !localStorage.getItem(purgeKey)) {
+    localStorage.removeItem("martins_leads");
+    localStorage.removeItem("martins_ops_dashboard_seeded");
+    localStorage.removeItem("martins_analytics_events");
+    if (typeof indexedDB !== "undefined") {
+      try {
+        indexedDB.deleteDatabase("martins_admin_test_db");
+      } catch (e) {
+        console.warn("Falha ao deletar banco IndexedDB:", e);
+      }
+    }
+    localStorage.setItem(purgeKey, "true");
+  }
+
   await refreshData({ keepSelection: false });
   bindDashboardEvents();
   bindStorageSync();
