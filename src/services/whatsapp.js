@@ -4,22 +4,13 @@ export function buildLeadWhatsAppUrl(data, config) {
   const rawPhone = toWhatsAppPhone(config.whatsappNumber);
   if (!rawPhone) return "";
 
-  let messageLines;
+  let message;
   if (data.mensagem) {
-    messageLines = [
-      data.mensagem,
-      "",
-      `Nome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}`
-    ];
+    message = `${data.mensagem}\n\nNome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}`;
   } else {
-    messageLines = [
-      "Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.",
-      "",
-      `Nome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}${data.interesse ? ` Interesse: ${data.interesse}` : ""}`
-    ];
+    message = `Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.\n\nNome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}${data.interesse ? ` Interesse: ${data.interesse}` : ""}`;
   }
 
-  const message = messageLines.filter(Boolean).join("\n");
   return `https://wa.me/${rawPhone}?text=${encodeURIComponent(message)}`;
 }
 
