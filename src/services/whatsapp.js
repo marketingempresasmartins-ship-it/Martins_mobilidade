@@ -4,8 +4,12 @@ export function buildLeadWhatsAppUrl(data, config) {
   const rawPhone = toWhatsAppPhone(config.whatsappNumber);
   if (!rawPhone) return "";
 
+  const intro = data.mensagem 
+    ? "Olá, Martins Mobilidade. Estou enviando uma mensagem direta."
+    : "Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.";
+
   const message = [
-    "Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.",
+    intro,
     "",
     `*Nome:* ${data.nome || ""}`,
     `*WhatsApp:* ${data.whatsapp || ""}`,
