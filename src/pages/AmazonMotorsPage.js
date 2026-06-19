@@ -8,7 +8,7 @@ const BRAND_INFO = {
   nome: "AMZ Motors",
   titulo: "A NOSSA PARCEIRA LOCAL: AMZ MOTORS",
   subtitulo: "A Martins Mobilidade é a concessionária oficial da AMZ Motors no Amazonas — mobilidade elétrica fabricada aqui, na Zona Franca de Manaus.",
-  background: "/assets/watts/hero-humanized.png",
+  background: "/assets/watts/hero-humanized.webp",
   desc: "Nós da Martins Mobilidade escolhemos a AMZ Motors (Amazon Motors) como nossa parceira na linha de utilitariais elétricos porque ela fabrica localmente: motos, ciclomotores, quadriciclos e triciclos de carga produzidos no Polo Industrial de Manaus. Menos emissões, mais economia e suporte pós-venda perto de você."
 };
 

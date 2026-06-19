@@ -2,34 +2,35 @@ import { Navigation } from "../components/Navigation.js";
 import { Footer } from "../components/Footer.js";
 import { FloatingWhatsApp } from "../components/FloatingWhatsApp.js";
 import { PRODUCTS_DB } from "../config/productsDb.js";
+import "../styles/ventura-brand.css";
 
 const DIVISIONS = {
   marine: {
     label: "Marine",
     title: "Agua como extensao da casa",
     text: "Lanchas e experiencias nauticas para navegar com conforto, silencio e presenca.",
-    image: "/assets/ventura/lancha-ventura.png",
+    image: "/assets/ventura/lancha-ventura.webp",
     color: "#00b4d8"
   },
   adventure: {
     label: "Off-Road",
     title: "Trilha com postura premium",
     text: "ATVs e UTVs para ramais, fazendas, condominio e fim de semana fora da rotina.",
-    image: "/assets/ventura/quadriciclo-ventura.png",
+    image: "/assets/ventura/quadriciclo-ventura.webp",
     color: "#c47a3f"
   },
   electric: {
     label: "Electric",
     title: "Performance sem ruido",
     text: "Propulsao eletrica para viver agua e terra com menos manutencao, cheiro e emissao.",
-    image: "/assets/ventura/jet-ventura.png",
+    image: "/assets/ventura/jet-ventura.webp",
     color: "#48cae4"
   },
   infantil: {
     label: "Kids",
     title: "A primeira aventura",
     text: "Diversao controlada para pequenos pilotos, com seguranca e supervisao familiar.",
-    image: "/assets/ventura/quadriciclo-ventura-kids.png",
+    image: "/assets/ventura/quadriciclo-ventura-kids.webp",
     color: "#ffb703"
   }
 };
@@ -373,7 +374,7 @@ export function VenturaPage() {
         align-items: center !important;
         padding: 110px 0 60px !important;
         border-bottom: 1px solid rgba(8, 37, 58, 0.12) !important;
-        background: url('/assets/ventura/hero-bg-ventura-right.png') center right / cover no-repeat !important;
+        background: url('/assets/ventura/hero-bg-ventura-right.webp') center right / cover no-repeat !important;
         isolation: isolate !important;
       }
 
@@ -976,7 +977,7 @@ export function VenturaPage() {
 
         <!-- RIGHT: Full-brightness lifestyle image -->
         <div class="ventura-hero-right">
-          <img src="/assets/ventura/hero-bg-ventura-light.png" alt="Estilo de vida Ventura — lanchas e aventura nautica" loading="eager">
+          <img src="/assets/ventura/hero-bg-ventura-light.webp" alt="Estilo de vida Ventura — lanchas e aventura nautica" loading="eager">
         </div>
       </header>
 
@@ -1057,7 +1058,7 @@ export function VenturaPage() {
               <a href="/#contact" class="btn btn-accent" data-interest="Linha Ventura">Solicitar atendimento</a>
             </div>
             <figure class="ventura-local-media reveal">
-              <img src="/assets/ventura/hero-bg-ventura.png" alt="Lancha Ventura navegando" loading="lazy">
+              <img src="/assets/ventura/hero-bg-ventura.webp" alt="Lancha Ventura navegando" loading="lazy">
               <figcaption>Curadoria Ventura para rios, condominios, marinas e aventuras fora da rotina.</figcaption>
             </figure>
           </div>

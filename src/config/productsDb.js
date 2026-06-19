@@ -73,7 +73,7 @@ export const PRODUCTS_DB = [
     linha: "amazon-motors",
     categorias: ["utilitarios", "carga", "trabalho"],
     tag: "Trabalho & Logística",
-    imagem: "/assets/watts/quadriciclo-eletrico.png",
+    imagem: "/assets/watts/quadriciclo-eletrico.webp",
     descricao: "Força de tração elétrica incomparável para logística comercial e transporte interno em empresas, condomínios ou propriedades rurais de Manaus.",
     specs: {
       autonomia: "Até 50 km",
@@ -125,7 +125,7 @@ export const PRODUCTS_DB = [
     divisao: "electric",
     categorias: ["aquatico", "lazer"],
     tag: "Lazer Náutico",
-    imagem: "/assets/ventura/jet-ventura.png",
+    imagem: "/assets/ventura/jet-ventura.webp",
     descricao: "A revolução náutica silenciosa nos rios da Amazônia. Desfrute de lazer imediato sobre as águas sem cheiro de óleo, fumaça ou ruído mecânico nas marinas de Manaus.",
     specs: {
       autonomia: "Até 3 horas de uso",
@@ -143,7 +143,7 @@ export const PRODUCTS_DB = [
     divisao: "marine",
     categorias: ["aquatico", "lazer"],
     tag: "Navegação Premium",
-    imagem: "/assets/ventura/lancha-ventura.png",
+    imagem: "/assets/ventura/lancha-ventura.webp",
     descricao: "Navegação silenciosa e confortável em lancha de alto padrão equipada com propulsão 100% elétrica. Espaço gourmet, acabamento premium e zero poluição ambiental.",
     specs: {
       autonomia: "Até 4 horas de navegação",
@@ -161,7 +161,7 @@ export const PRODUCTS_DB = [
     divisao: "adventure",
     categorias: ["off-road", "lazer"],
     tag: "Aventura 4x4",
-    imagem: "/assets/ventura/quadriciclo-ventura.png",
+    imagem: "/assets/ventura/quadriciclo-ventura.webp",
     descricao: "Robustez, tração integral nas quatro rodas e suspensão independente. Perfeito para trilhas desafiadoras, fazendas e exploração off-road com total controle.",
     specs: {
       autonomia: "Até 70 km",
@@ -179,7 +179,7 @@ export const PRODUCTS_DB = [
     divisao: "infantil",
     categorias: ["infantil", "lazer"],
     tag: "Linha Kids",
-    imagem: "/assets/ventura/quadriciclo-ventura-kids.png",
+    imagem: "/assets/ventura/quadriciclo-ventura-kids.webp",
     descricao: "O espírito off-road da Ventura adaptado para os pequenos pilotos. Velocidade controlada, limitador físico e chave parental para diversão 100% segura longe das telas.",
     specs: {
       autonomia: "Até 2 horas de uso",
@@ -196,7 +196,7 @@ export const PRODUCTS_DB = [
     linha: "importway",
     categorias: ["brinquedos", "infantil"],
     tag: "Linha Infantil",
-    imagem: "/assets/watts/kids-drift-eletrico.png",
+    imagem: "/assets/watts/kids-drift-eletrico.webp",
     descricao: "Brinquedo elétrico de alta qualidade para as crianças se divertirem com segurança. Possui rodinhas de apoio, sons de motor e luzes de LED.",
     specs: {
       autonomia: "Até 1.5h de uso contínuo",

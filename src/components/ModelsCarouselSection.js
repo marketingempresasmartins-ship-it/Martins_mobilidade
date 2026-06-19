@@ -18,7 +18,7 @@ export function ModelsCarouselSection() {
             <!-- Card 1: Watts W160s -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/watts/w160s-carousel.png" alt="Watts W160s" class="card-image">
+                <img src="/assets/watts/w160s-carousel.webp" alt="Watts W160s" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">
@@ -40,7 +40,7 @@ export function ModelsCarouselSection() {
             <!-- Card 2: Watts W-Trail -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/watts/wtrail-carousel.png" alt="Watts W-Trail" class="card-image">
+                <img src="/assets/watts/wtrail-carousel.webp" alt="Watts W-Trail" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">
@@ -62,7 +62,7 @@ export function ModelsCarouselSection() {
             <!-- Card 3: Scooter Watts WS50 -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/watts/ws50-carousel.png" alt="Scooter Watts WS50" class="card-image">
+                <img src="/assets/watts/ws50-carousel.webp" alt="Scooter Watts WS50" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">
@@ -84,7 +84,7 @@ export function ModelsCarouselSection() {
             <!-- Card 4: Amazon Move -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/watts/amazon-move-carousel.png" alt="Amazon Move" class="card-image">
+                <img src="/assets/watts/amazon-move-carousel.webp" alt="Amazon Move" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">
@@ -106,7 +106,7 @@ export function ModelsCarouselSection() {
             <!-- Card 5: Bike Elétrica Importway -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/importway/bike-carousel.png" alt="Bike Elétrica Importway" class="card-image">
+                <img src="/assets/importway/bike-carousel.webp" alt="Bike Elétrica Importway" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">
@@ -128,7 +128,7 @@ export function ModelsCarouselSection() {
             <!-- Card 6: Amazon Pulse -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/watts/amazon-pulse-carousel.png" alt="Amazon Pulse" class="card-image">
+                <img src="/assets/watts/amazon-pulse-carousel.webp" alt="Amazon Pulse" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">

@@ -6,7 +6,7 @@ export function Navigation() {
         <img src="/assets/martins/logo-martins-mobilidade.svg" alt="Martins Mobilidade" class="logo-img">
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="/#showroom">Veículos</a>
+        <a href="/#models-carousel-section">Modelos</a>
         <a href="/catalogo">Catálogo</a>
         <a href="/#tech">Tecnologia</a>
         <a href="/#features">Vantagens</a>

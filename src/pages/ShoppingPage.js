@@ -14,6 +14,7 @@ export function ShoppingNavigation() {
         <img src="/assets/martins/logo-martins-mobilidade.svg" alt="Martins Mobilidade" class="logo-img">
       </a>
       <div class="nav-links" id="navLinks">
+        <a href="#models-carousel-section">Modelos</a>
         <a href="#features">Vantagens</a>
         <a href="#testimonials">Depoimentos</a>
         <a href="#contact">Contato</a>

@@ -12,12 +12,12 @@ type LeadModalProps = {
 };
 
 const VEHICLE_OPTIONS = [
-  { value: "Watts W160s", label: "Watts W160s", image: "/assets/watts/w160s-carousel.png" },
-  { value: "Watts W-Trail", label: "Watts W-Trail", image: "/assets/watts/wtrail-carousel.png" },
-  { value: "Scooter Watts WS50", label: "Scooter Watts WS50", image: "/assets/watts/ws50-carousel.png" },
-  { value: "Amazon Move", label: "Amazon Move", image: "/assets/watts/amazon-move-carousel.png" },
-  { value: "Bike Elétrica Importway", label: "Bike Elétrica Importway", image: "/assets/importway/bike-carousel.png" },
-  { value: "Amazon Pulse", label: "Amazon Pulse", image: "/assets/watts/amazon-pulse-carousel.png" },
+  { value: "Watts W160s", label: "Watts W160s", image: "/assets/watts/w160s-carousel.webp" },
+  { value: "Watts W-Trail", label: "Watts W-Trail", image: "/assets/watts/wtrail-carousel.webp" },
+  { value: "Scooter Watts WS50", label: "Scooter Watts WS50", image: "/assets/watts/ws50-carousel.webp" },
+  { value: "Amazon Move", label: "Amazon Move", image: "/assets/watts/amazon-move-carousel.webp" },
+  { value: "Bike Elétrica Importway", label: "Bike Elétrica Importway", image: "/assets/importway/bike-carousel.webp" },
+  { value: "Amazon Pulse", label: "Amazon Pulse", image: "/assets/watts/amazon-pulse-carousel.webp" },
   { value: "Outro", label: "Outro modelo / Ajuda comercial", image: null }
 ];
 

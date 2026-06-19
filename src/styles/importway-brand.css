@@ -1,0 +1,87 @@
+/* IMPORTWAY BRAND THEME - isolated styles */
+.importway-brand-theme {
+  --accent: #e63946;
+  --accent-hover: #c1121f;
+}
+
+.importway-brand-theme nav {
+  background: rgba(10, 10, 10, 0.85) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.importway-brand-theme nav.scrolled {
+  background: rgba(10, 10, 10, 0.97) !important;
+  border-bottom-color: rgba(230, 57, 70, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+.importway-brand-theme nav a:not(.btn-nav) {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.importway-brand-theme nav a:not(.btn-nav):hover {
+  color: #ffffff !important;
+}
+
+.importway-brand-theme nav .btn-nav,
+.importway-brand-theme .btn-accent {
+  background: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+  color: #ffffff !important;
+}
+
+.importway-brand-theme nav .btn-nav:hover,
+.importway-brand-theme .btn-accent:hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+.importway-brand-theme .btn-outline {
+  background: transparent !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  color: var(--text-primary) !important;
+}
+
+.importway-brand-theme .btn-outline:hover {
+  background: #111 !important;
+  border-color: #111 !important;
+  color: #ffffff !important;
+}
+
+/* Reutiliza o split-grid dentro do tema Importway */
+.importway-brand-theme .ventura-split-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Cards de categoria */
+.importway-brand-theme .importway-cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(230, 57, 70, 0.15) !important;
+}
+
+/* Lineup items reaproveitados */
+.importway-brand-theme .lineup-badge {
+  background: rgba(230, 57, 70, 0.1) !important;
+  color: var(--accent) !important;
+  border: 1px solid rgba(230, 57, 70, 0.22) !important;
+}
+
+/* ── RESPONSIVIDADE IMPORTWAY ── */
+@media (max-width: 1024px) {
+  .importway-brand-theme .ventura-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .importway-brand-theme .ventura-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

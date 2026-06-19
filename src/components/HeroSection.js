@@ -10,6 +10,7 @@ export function HeroSection() {
               A <span>EVOLUÇÃO</span><br>
               SOBRE DUAS<br>
               RODAS
+              <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"> — Concessionária de Motos Elétricas em Manaus</span>
             </h1>
             <p class="hero-sub">
               Descubra a linha de motos e scooters elétricas da Martins Mobilidade. Alta performance, torque instantâneo e zero ruído para transformar sua rotina em Manaus.
@@ -25,7 +26,7 @@ export function HeroSection() {
               <div class="hero-stat-lbl">Economia Mensal</div>
             </div>
             <div class="hero-stat-box">
-              <div class="hero-stat-val" data-count-target="0" data-count-suffix="g">0g</div>
+              <div class="hero-stat-val" data-count-target="0" data-count-suffix="kg">0kg</div>
               <div class="hero-stat-lbl">Emissão de CO₂</div>
             </div>
             <div class="hero-stat-box">
@@ -66,27 +67,27 @@ export function HeroSection() {
                     </div>
                     <div class="custom-select-options">
                       <div class="custom-option" data-value="Watts W160s">
-                        <img src="/assets/watts/w160s-carousel.png" alt="Watts W160s" class="dropdown-thumb">
+                        <img src="/assets/watts/w160s-carousel.webp" alt="Watts W160s" class="dropdown-thumb">
                         <span>Watts W160s</span>
                       </div>
                       <div class="custom-option" data-value="Watts W-Trail">
-                        <img src="/assets/watts/wtrail-carousel.png" alt="Watts W-Trail" class="dropdown-thumb">
+                        <img src="/assets/watts/wtrail-carousel.webp" alt="Watts W-Trail" class="dropdown-thumb">
                         <span>Watts W-Trail</span>
                       </div>
                       <div class="custom-option" data-value="Scooter Watts WS50">
-                        <img src="/assets/watts/ws50-carousel.png" alt="Scooter Watts WS50" class="dropdown-thumb">
+                        <img src="/assets/watts/ws50-carousel.webp" alt="Scooter Watts WS50" class="dropdown-thumb">
                         <span>Scooter Watts WS50</span>
                       </div>
                       <div class="custom-option" data-value="Amazon Move">
-                        <img src="/assets/watts/amazon-move-carousel.png" alt="Amazon Move" class="dropdown-thumb">
+                        <img src="/assets/watts/amazon-move-carousel.webp" alt="Amazon Move" class="dropdown-thumb">
                         <span>Amazon Move</span>
                       </div>
                       <div class="custom-option" data-value="Bike Elétrica Importway">
-                        <img src="/assets/importway/bike-carousel.png" alt="Bike Elétrica Importway" class="dropdown-thumb">
+                        <img src="/assets/importway/bike-carousel.webp" alt="Bike Elétrica Importway" class="dropdown-thumb">
                         <span>Bike Elétrica Importway</span>
                       </div>
                       <div class="custom-option" data-value="Amazon Pulse">
-                        <img src="/assets/watts/amazon-pulse-carousel.png" alt="Amazon Pulse" class="dropdown-thumb">
+                        <img src="/assets/watts/amazon-pulse-carousel.webp" alt="Amazon Pulse" class="dropdown-thumb">
                         <span>Amazon Pulse</span>
                       </div>
                       <div class="custom-option" data-value="Outro">

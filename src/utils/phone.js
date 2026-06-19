@@ -10,13 +10,14 @@ export function formatPhoneNumber(numStr) {
 }
 
 export function maskPhoneInput(value) {
-  const digits = String(value || "").replace(/\D/g, "").slice(0, 11);
+  if (!value) return "";
+  const digits = String(value).replace(/\D/g, "").slice(0, 11);
 
-  if (digits.length >= 7) {
+  if (digits.length > 10) {
     return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
-  }
-
-  if (digits.length >= 3) {
+  } else if (digits.length > 6) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  } else if (digits.length > 2) {
     return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
   }
 

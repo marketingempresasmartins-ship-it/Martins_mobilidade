@@ -1,18 +1,9 @@
 import { initLandingInteractions } from "../interactions/initLandingInteractions.js";
-import { HomePage } from "../pages/HomePage.js";
-import { ShoppingPage } from "../pages/ShoppingPage.js";
-import { CatalogoPage, initCatalogPage } from "../pages/CatalogPage.js";
-import { ProdutoPage, initProductPage } from "../pages/ProductPage.js";
-import { WattsPage } from "../pages/WattsPage.js";
-import { VenturaPage, initVenturaPage } from "../pages/VenturaPage.js";
-import { AmazonMotorsPage, initAmazonMotorsPage } from "../pages/AmazonMotorsPage.js";
-import { ImportwayPage } from "../pages/ImportwayPage.js";
-import { DashboardPage, initDashboardPage } from "../pages/DashboardPage.js";
 
 export type LegacyRoute = {
   id: string;
   title: string;
-  render: () => string;
+  render: () => string | Promise<string>;
   init?: () => void | Promise<void>;
   dashboard?: boolean;
   appShell?: boolean;
@@ -46,16 +37,26 @@ export function getRoute(pathname: string): LegacyRoute {
 
   // 1. Rota principal: agora mapeada para a Landing Page simplificada (ShoppingPage)
   if (path === "/") {
-    return { id: "home", render: ShoppingPage, init: initLandingInteractions, title: "Martins Mobilidade Manaus" };
+    return {
+      id: "home",
+      render: () => import("../pages/ShoppingPage.js").then(m => m.ShoppingPage()),
+      init: initLandingInteractions,
+      title: "Martins Mobilidade Manaus"
+    };
   }
 
   // 2. Dashboards: sempre acessíveis para visualização de leads e analytics
-  if (path === "/dashboard") {
-    return { id: "dashboard", render: DashboardPage, init: initDashboardPage, title: "Dashboard | Martins Mobilidade", dashboard: true };
-  }
-
-  if (path === "/dashboard2") {
-    return { id: "dashboard", render: DashboardPage, init: initDashboardPage, title: "Dashboard | Martins Mobilidade", dashboard: true };
+  if (path === "/dashboard" || path === "/dashboard2") {
+    return {
+      id: "dashboard",
+      render: () => import("../pages/DashboardPage.js").then(m => m.DashboardPage()),
+      init: async () => {
+        const { initDashboardPage } = await import("../pages/DashboardPage.js");
+        initDashboardPage();
+      },
+      title: "Dashboard | Martins Mobilidade",
+      dashboard: true
+    };
   }
 
   // 3. Se a trava de segurança estiver ativa, bloqueia e redireciona todas as outras rotas para 404
@@ -78,15 +79,21 @@ export function getRoute(pathname: string): LegacyRoute {
 
   // 4. Rotas secundárias originais (só acessíveis se LOCK_SECONDARY_ROUTES for false)
   if (path === "/shopping") {
-    return { id: "shopping", render: ShoppingPage, init: initLandingInteractions, title: "Ação Shopping | Martins Mobilidade" };
+    return {
+      id: "shopping",
+      render: () => import("../pages/ShoppingPage.js").then(m => m.ShoppingPage()),
+      init: initLandingInteractions,
+      title: "Ação Shopping | Martins Mobilidade"
+    };
   }
 
   if (path === "/catalogo") {
     return {
       id: "catalogo",
-      render: CatalogoPage,
-      init: () => {
+      render: () => import("../pages/CatalogPage.js").then(m => m.CatalogoPage()),
+      init: async () => {
         initLandingInteractions();
+        const { initCatalogPage } = await import("../pages/CatalogPage.js");
         initCatalogPage();
       },
       title: "Catalogo | Martins Mobilidade"
@@ -96,9 +103,10 @@ export function getRoute(pathname: string): LegacyRoute {
   if (path === "/produto" || path.startsWith("/produto/")) {
     return {
       id: "produto",
-      render: ProdutoPage,
-      init: () => {
+      render: () => import("../pages/ProductPage.js").then(m => m.ProdutoPage()),
+      init: async () => {
         initLandingInteractions();
+        const { initProductPage } = await import("../pages/ProductPage.js");
         initProductPage();
       },
       title: "Ficha do Veiculo | Martins Mobilidade",
@@ -107,15 +115,21 @@ export function getRoute(pathname: string): LegacyRoute {
   }
 
   if (path === "/watts") {
-    return { id: "watts", render: WattsPage, init: initLandingInteractions, title: "Linha Watts | Martins Mobilidade" };
+    return {
+      id: "watts",
+      render: () => import("../pages/WattsPage.js").then(m => m.WattsPage()),
+      init: initLandingInteractions,
+      title: "Linha Watts | Martins Mobilidade"
+    };
   }
 
   if (path === "/ventura") {
     return {
       id: "ventura",
-      render: VenturaPage,
-      init: () => {
+      render: () => import("../pages/VenturaPage.js").then(m => m.VenturaPage()),
+      init: async () => {
         initLandingInteractions();
+        const { initVenturaPage } = await import("../pages/VenturaPage.js");
         initVenturaPage();
       },
       title: "Linha Ventura | Martins Mobilidade",
@@ -126,9 +140,10 @@ export function getRoute(pathname: string): LegacyRoute {
   if (path === "/amazon-motors") {
     return {
       id: "amazon-motors",
-      render: AmazonMotorsPage,
-      init: () => {
+      render: () => import("../pages/AmazonMotorsPage.js").then(m => m.AmazonMotorsPage()),
+      init: async () => {
         initLandingInteractions();
+        const { initAmazonMotorsPage } = await import("../pages/AmazonMotorsPage.js");
         initAmazonMotorsPage();
       },
       title: "Amazon Motors | Martins Mobilidade"
@@ -136,7 +151,12 @@ export function getRoute(pathname: string): LegacyRoute {
   }
 
   if (path === "/importway") {
-    return { id: "importway", render: ImportwayPage, init: initLandingInteractions, title: "Importway | Martins Mobilidade" };
+    return {
+      id: "importway",
+      render: () => import("../pages/ImportwayPage.js").then(m => m.ImportwayPage()),
+      init: initLandingInteractions,
+      title: "Importway | Martins Mobilidade"
+    };
   }
 
   return {

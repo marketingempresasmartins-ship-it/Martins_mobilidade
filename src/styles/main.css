@@ -1,28 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
+/* Fontes carregadas de forma otimizada via HTML index.html */
 
     @font-face {
-      font-family: 'BlinkerLocal';
+      font-family: 'Blinker';
       src: url('/fonts/Blinker-Regular.ttf') format('truetype');
       font-weight: 400;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
-      font-family: 'BlinkerLocal';
+      font-family: 'Blinker';
       src: url('/fonts/Blinker-SemiBold.ttf') format('truetype');
       font-weight: 600;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
-      font-family: 'BlinkerLocal';
+      font-family: 'Blinker';
       src: url('/fonts/Blinker-Bold.ttf') format('truetype');
       font-weight: 700;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
-      font-family: 'BlinkerLocal';
+      font-family: 'Blinker';
       src: url('/fonts/Blinker-ExtraBold.ttf') format('truetype');
       font-weight: 800;
       font-style: normal;
+      font-display: swap;
     }
 
     /* â”€â”€ SYSTEM DESIGN (AUTOMOTIVE MOTORCYCLE BRAND STYLE) â”€â”€ */
@@ -46,6 +50,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
       background: var(--bg-base);
     }
 
@@ -3520,2778 +3525,6 @@
       }
     }
 
-    /* â”€â”€ VENTURA GLASS STYLING â”€â”€ */
-    .ventura-brand-theme nav {
-      background: rgba(3, 15, 30, 0.25) !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    }
-
-    .ventura-brand-theme nav a:not(.btn-nav) {
-      color: rgba(255, 255, 255, 0.85) !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    .ventura-brand-theme nav a:not(.btn-nav):hover {
-      color: var(--accent) !important;
-    }
-
-    .ventura-brand-theme nav .btn-nav {
-      background: var(--accent) !important;
-      color: #ffffff !important;
-    }
-
-    .ventura-brand-theme nav .btn-nav:hover {
-      background: var(--accent-hover) !important;
-    }
-
-    .ventura-hero-card {
-      max-width: 620px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-left: 0;
-      background: rgba(3, 15, 30, 0.45);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    }
-
-    @media (max-width: 768px) {
-      .ventura-hero-card {
-        padding: 24px;
-        border-radius: 16px;
-        margin: 0 16px;
-        max-width: calc(100% - 32px);
-      }
-    }
-
-    /* Preview notice popup */
-    body.preview-notice-open {
-      overflow: hidden;
-    }
-
-    .preview-notice {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      color: var(--text-secondary);
-      animation: previewNoticeFade 0.18s ease-out both;
-    }
-
-    .preview-notice--closing {
-      animation: previewNoticeFadeOut 0.18s ease-in both;
-    }
-
-    .preview-notice__backdrop {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 10%, rgba(123, 231, 33, 0.12), transparent 34%),
-        rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-
-    .preview-notice__dialog {
-      position: relative;
-      width: min(100%, 560px);
-      max-height: min(680px, calc(100vh - 48px));
-      overflow-y: auto;
-      background: rgba(10, 10, 12, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-top: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 36px;
-      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.64), 0 0 34px rgba(123, 231, 33, 0.08);
-      outline: none;
-      animation: previewNoticeDialogIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .preview-notice__close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 36px;
-      height: 36px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      color: var(--text-primary);
-      font-size: 24px;
-      line-height: 1;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .preview-notice__close:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #000000;
-      transform: rotate(90deg);
-    }
-
-    .preview-notice__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .preview-notice__eyebrow::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent);
-    }
-
-    .preview-notice__dialog h2 {
-      margin: 0 44px 14px 0;
-      font-size: clamp(26px, 5vw, 36px);
-      line-height: 1.08;
-      letter-spacing: 0;
-    }
-
-    .preview-notice__dialog p {
-      margin: 0 0 22px;
-      color: var(--text-secondary);
-      font-size: 15px;
-      line-height: 1.65;
-    }
-
-    .preview-notice__list {
-      display: grid;
-      gap: 12px;
-      margin: 0 0 28px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .preview-notice__list li {
-      position: relative;
-      padding: 14px 16px 14px 42px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 6px;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .preview-notice__list li::before {
-      content: '';
-      position: absolute;
-      top: 19px;
-      left: 18px;
-      width: 9px;
-      height: 9px;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-    }
-
-    .preview-notice__action {
-      width: 100%;
-      min-height: 52px;
-      border: none;
-      border-radius: 6px;
-    }
-
-    @keyframes previewNoticeFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes previewNoticeFadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
-    @keyframes previewNoticeDialogIn {
-      from {
-        opacity: 0;
-        transform: translateY(16px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @media (max-width: 560px) {
-      .preview-notice {
-        padding: 16px;
-        align-items: flex-end;
-      }
-
-      .preview-notice__dialog {
-        max-height: calc(100vh - 32px);
-        padding: 28px 20px 20px;
-      }
-
-      .preview-notice__dialog h2 {
-        margin-right: 40px;
-      }
-    }
-
-    /* Lead Modal Popup Style */
-    .lead-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 10005;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      color: #ffffff;
-      /* impede que eventos de scroll vazem para a página */
-      overscroll-behavior: contain;
-      overflow: hidden;
-      animation: leadModalFade 0.22s ease-out both;
-    }
-
-    .lead-modal__backdrop {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 10%, rgba(123, 231, 33, 0.1), transparent 45%), rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .lead-modal__dialog {
-      position: relative;
-      width: min(100%, 500px);
-      height: auto;
-      max-height: none;
-      overflow: visible;
-      background: rgba(10, 10, 12, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-top: 4px solid var(--accent, #7BE721);
-      border-radius: 12px;
-      padding: 36px 40px 34px;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 30px rgba(123, 231, 33, 0.05);
-      outline: none;
-      animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .lead-modal__close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 50%;
-      color: #ffffff;
-      font-size: 20px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      z-index: 10;
-    }
-
-    .lead-modal__close:hover {
-      background: var(--accent, #7BE721);
-      border-color: var(--accent, #7BE721);
-      color: #000000;
-      transform: rotate(90deg);
-    }
-
-    .lead-modal__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 12px;
-      color: var(--accent, #7BE721);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .lead-modal__eyebrow::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--accent, #7BE721);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent, #7BE721);
-    }
-
-    .lead-modal h2 {
-      margin: 0 0 10px;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: #ffffff;
-      font-family: 'Sora', sans-serif;
-    }
-
-    .lead-modal-subtitle {
-      margin: 0 0 22px;
-      color: #a0aec0;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .lead-modal .raw-form .form-group {
-      margin-bottom: 18px;
-    }
-
-    .lead-modal .raw-form label {
-      margin-bottom: 7px;
-    }
-
-    .lead-modal .raw-form input,
-    .lead-modal .raw-form select,
-    .lead-modal .raw-form textarea,
-    .lead-modal .custom-select-trigger {
-      min-height: 48px;
-      padding: 11px 16px;
-    }
-
-    .lead-modal .raw-form textarea {
-      min-height: 96px;
-      resize: vertical;
-    }
-
-    .lead-modal .raw-form .btn-primary {
-      min-height: 56px;
-      margin-top: 8px !important;
-    }
-
-    @keyframes leadModalFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes leadModalDialogIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @media (max-width: 560px) {
-      .lead-modal {
-        padding: 16px;
-      }
-      .lead-modal__dialog {
-        padding: 30px 20px 26px;
-      }
-    }
-
-    @media (max-height: 760px) {
-      .lead-modal__dialog {
-        padding: 30px 34px 28px;
-      }
-
-      .lead-modal h2 {
-        font-size: 26px;
-        margin-bottom: 8px;
-      }
-
-      .lead-modal__eyebrow {
-        margin-bottom: 10px;
-      }
-
-      .lead-modal-subtitle {
-        margin-bottom: 18px;
-      }
-
-      .lead-modal .raw-form .form-group {
-        margin-bottom: 16px;
-      }
-
-      .lead-modal .raw-form input,
-      .lead-modal .raw-form select,
-      .lead-modal .raw-form textarea,
-      .lead-modal .custom-select-trigger {
-        min-height: 46px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
-      .lead-modal .raw-form .btn-primary {
-        min-height: 54px;
-      }
-    }
-
-    @media (max-height: 620px) {
-      .lead-modal {
-        align-items: flex-start;
-        padding-block: 12px;
-      }
-
-      .lead-modal__dialog {
-        max-height: calc(100dvh - 24px);
-        overflow-y: auto;
-        overscroll-behavior: contain;
-      }
-    }
-
-    /* â”€â”€ VENTURA NAUTICAL LIGHT THEME OVERRIDES & EXPLORER PILL â”€â”€ */
-    body.ventura-body {
-      background-color: #ffffff !important;
-      color: #1e3d59 !important;
-    }
-
-    .ventura-brand-theme {
-      --accent: #0077b6;
-      --accent-hover: #0096c7;
-      --bg-base: #ffffff;
-      --bg-surface: #f4f8fc; /* Ice blue surface */
-      --text-primary: #0b2545; /* Deep navy */
-      --text-secondary: #1e3d59; /* Slate blue */
-      --text-muted: #5b7083; /* Steel blue */
-      --border: rgba(11, 37, 69, 0.08);
-      background-color: #ffffff !important;
-      color: #1e3d59 !important;
-    }
-
-    /* Override dynamic elements borders and container lines */
-    .ventura-brand-theme .container {
-      border-left: 1px solid rgba(11, 37, 69, 0.05) !important;
-      border-right: 1px solid rgba(11, 37, 69, 0.05) !important;
-    }
-
-    .ventura-brand-theme .btn-outline {
-      border: 1px solid #cbd5e1 !important;
-      color: #0b2545 !important;
-    }
-
-    .ventura-brand-theme .btn-outline:hover {
-      background: #0b2545 !important;
-      color: #ffffff !important;
-    }
-
-    /* Pill layout */
-    .subbrands-pill-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: -34px;
-      position: relative;
-      z-index: 10;
-      padding: 0 16px;
-    }
-
-    .subbrands-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      background: #ffffff;
-      border: 1px solid rgba(11, 37, 69, 0.08);
-      border-radius: 100px;
-      padding: 10px 24px;
-      box-shadow: 0 12px 30px rgba(11, 37, 69, 0.08);
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .subbrands-pill-title {
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 0.12em;
-      color: #0077b6; /* Marine Blue EXPLORAR text */
-      text-transform: uppercase;
-      margin-right: 4px;
-    }
-
-    .subbrand-pill-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #1e3d59;
-      font-size: 13px;
-      font-weight: 700;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 8px 16px;
-      border-radius: 100px;
-      border: 1px solid transparent;
-      background: #f4f8fc;
-    }
-
-    .subbrand-pill-item:hover {
-      color: #0b2545;
-      background: #eef4f8;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(11, 37, 69, 0.05);
-    }
-
-    .subbrand-pill-item.active {
-      background: var(--accent) !important;
-      color: #ffffff !important;
-      border-color: var(--accent) !important;
-      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.25) !important;
-    }
-
-    .subbrand-pill-item svg {
-      transition: transform 0.25s ease;
-    }
-    
-    .subbrand-pill-item:hover svg {
-      transform: scale(1.1);
-    }
-
-    .subbrand-pill-item.active svg circle {
-      fill: #ffffff !important;
-      stroke: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Split grid */
-    .ventura-split-grid {
-      display: grid;
-      grid-template-columns: 1.150fr 0.850fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .ventura-dealer-section {
-      background:
-        radial-gradient(circle at 80% 20%, rgba(0, 119, 182, 0.18), transparent 32%),
-        #07111d !important;
-      color: #ffffff;
-    }
-
-    .ventura-dealer-section .container {
-      border-left-color: rgba(255, 255, 255, 0.08) !important;
-      border-right-color: rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .ventura-dealer-section .ventura-split-grid > .stagger-item:first-child span {
-      color: #8fdcff !important;
-    }
-
-    .ventura-dealer-section .ventura-split-grid > .stagger-item:first-child h3 {
-      color: #ffffff !important;
-    }
-
-    .ventura-dealer-section .ventura-split-grid > .stagger-item:first-child p {
-      color: rgba(255, 255, 255, 0.74) !important;
-    }
-
-    .ventura-dealer-section .ventura-split-grid > .stagger-item:last-child {
-      background: #0d1926 !important;
-      border-color: rgba(255, 255, 255, 0.14) !important;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35) !important;
-    }
-
-    @media (max-width: 991px) {
-      .ventura-split-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-    }
-
-    /* FAQ accordion styling to match screenshot */
-    .ventura-brand-theme .faq-item {
-      background: #ffffff !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .ventura-brand-theme .faq-item.active {
-      background: #f4f8fc !important;
-      border-color: #0077b6 !important;
-      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.04);
-    }
-
-    .ventura-brand-theme .faq-header {
-      padding: 20px 24px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s ease;
-    }
-
-    .ventura-brand-theme .faq-header h3 {
-      font-size: 1.05rem;
-      font-weight: 750;
-      color: #0b2545 !important;
-      text-transform: none;
-      margin: 0;
-      letter-spacing: 0;
-    }
-
-    .ventura-brand-theme .faq-icon {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #0077b6 !important;
-      transition: transform 0.25s ease;
-    }
-
-    .ventura-brand-theme .faq-body {
-      padding: 0 24px 20px;
-      color: #1e3d59 !important;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .ventura-brand-theme :is(h1, h2, h3, h4, h5, h6, p, a, span, strong, button, .btn, .nav-links a) {
-      letter-spacing: 0 !important;
-    }
-
-    .ventura-brand-theme :is(h1, h2, h3, h4, h5, h6) {
-      color: var(--text-primary);
-      text-transform: none !important;
-    }
-
-    .ventura-brand-theme .container {
-      max-width: 1180px;
-      border-left: 1px solid rgba(7, 17, 29, 0.08) !important;
-      border-right: 1px solid rgba(7, 17, 29, 0.08) !important;
-    }
-
-    .ventura-brand-theme nav {
-      background: rgba(3, 12, 22, 0.76) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.13) !important;
-      backdrop-filter: blur(18px) !important;
-      -webkit-backdrop-filter: blur(18px) !important;
-    }
-
-    .ventura-brand-theme nav.scrolled {
-      background: rgba(3, 12, 22, 0.96) !important;
-      border-bottom-color: rgba(0, 119, 182, 0.34) !important;
-      box-shadow: 0 18px 48px rgba(3, 12, 22, 0.28) !important;
-    }
-
-    .ventura-brand-theme nav a:not(.btn-nav) {
-      color: rgba(255, 255, 255, 0.84) !important;
-      text-shadow: none !important;
-    }
-
-    .ventura-brand-theme nav a:not(.btn-nav):hover {
-      color: #ffffff !important;
-    }
-
-    .ventura-brand-theme nav .btn-nav,
-    .ventura-brand-theme .btn-accent {
-      background: var(--accent) !important;
-      border: 1px solid var(--accent) !important;
-      color: #ffffff !important;
-      box-shadow: 0 12px 28px rgba(0, 119, 182, 0.2);
-    }
-
-    .ventura-brand-theme nav .btn-nav:hover,
-    .ventura-brand-theme .btn-accent:hover {
-      background: var(--accent-hover) !important;
-      border-color: var(--accent-hover) !important;
-      color: #ffffff !important;
-      transform: translateY(-1px);
-    }
-
-    .ventura-brand-theme .btn-outline {
-      background: transparent !important;
-      border: 1px solid rgba(7, 17, 29, 0.2) !important;
-      color: var(--text-primary) !important;
-    }
-
-    .ventura-brand-theme .btn-outline:hover {
-      background: #07111d !important;
-      border-color: #07111d !important;
-      color: #ffffff !important;
-    }
-
-    .ventura-hero {
-      position: relative;
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-      padding: 132px 0 96px;
-      border-bottom: 0;
-      background:
-        linear-gradient(90deg, rgba(3, 12, 22, 0.95) 0%, rgba(3, 12, 22, 0.78) 40%, rgba(3, 12, 22, 0.22) 74%),
-        linear-gradient(180deg, rgba(3, 12, 22, 0.1) 0%, rgba(3, 12, 22, 0.72) 100%),
-        url('/assets/ventura/hero-bg-ventura-right.png') center right / cover no-repeat;
-      color: #ffffff;
-    }
-
-    .ventura-hero .container {
-      border-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    .ventura-hero__content {
-      width: min(100%, 620px);
-    }
-
-    .ventura-kicker {
-      margin: 0 0 14px;
-      color: var(--accent);
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .ventura-wordmark {
-      margin: 0 0 22px;
-      color: #ffffff;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 86px;
-      font-weight: 900;
-      line-height: 0.9;
-      text-transform: uppercase;
-      text-shadow: 0 18px 46px rgba(0, 0, 0, 0.32);
-    }
-
-    .ventura-hero h1 {
-      margin: 0 0 20px;
-      color: #ffffff;
-      font-size: 54px;
-      font-weight: 850;
-      line-height: 1.02;
-    }
-
-    .ventura-hero p:not(.ventura-kicker) {
-      max-width: 560px;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    .ventura-hero__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .ventura-hero .btn-outline {
-      border-color: rgba(255, 255, 255, 0.34) !important;
-      color: #ffffff !important;
-      background: rgba(255, 255, 255, 0.05) !important;
-    }
-
-    .ventura-hero .btn-outline:hover {
-      background: #ffffff !important;
-      border-color: #ffffff !important;
-      color: #07111d !important;
-    }
-
-    .ventura-hero__metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      width: min(100%, 600px);
-      margin-top: 42px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .ventura-hero__metrics div {
-      min-height: 88px;
-      padding: 18px;
-      background: rgba(3, 12, 22, 0.52);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-
-    .ventura-hero__metrics strong {
-      display: block;
-      margin-bottom: 6px;
-      color: #ffffff;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .ventura-hero__metrics span {
-      color: rgba(255, 255, 255, 0.68);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .ventura-explore-bar {
-      position: relative;
-      z-index: 5;
-      margin-top: -38px;
-      padding: 0 0 58px;
-      background: #f3f7fb;
-      border-bottom: 0;
-    }
-
-    .ventura-explore-bar__inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: fit-content;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 10px;
-      background: #ffffff;
-      border: 1px solid rgba(7, 17, 29, 0.12);
-      border-radius: 8px;
-      box-shadow: 0 20px 48px rgba(7, 17, 29, 0.14);
-      overflow-x: auto;
-    }
-
-    .ventura-explore-bar__inner > span {
-      flex: 0 0 auto;
-      padding: 0 10px;
-      color: #748397;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .ventura-brand-theme .subbrand-pill-item {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 16px;
-      background: #f3f7fb;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      color: #253242;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .ventura-brand-theme .subbrand-pill-item:hover {
-      background: #e9f0f7;
-      box-shadow: none;
-      transform: none;
-    }
-
-    .ventura-brand-theme .subbrand-pill-item.active {
-      background: #07111d !important;
-      border-color: #07111d !important;
-      color: #ffffff !important;
-      box-shadow: none !important;
-    }
-
-    .ventura-snapshot-section,
-    .ventura-showroom-section,
-    .ventura-industrial-section,
-    .ventura-local-section,
-    .ventura-faq-section {
-      padding: 96px 0;
-      background: #f3f7fb;
-      border-bottom: 1px solid rgba(7, 17, 29, 0.1);
-    }
-
-    .ventura-snapshot {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 56px;
-      align-items: start;
-    }
-
-    .ventura-section-copy h2,
-    .ventura-section-head h2 {
-      margin: 0 0 18px;
-      color: #07111d;
-      font-size: 40px;
-      line-height: 1.08;
-      font-weight: 850;
-    }
-
-    .ventura-section-copy p:not(.ventura-kicker),
-    .ventura-section-head p:not(.ventura-kicker) {
-      max-width: 700px;
-      margin: 0;
-      color: #405166;
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    .ventura-section-head {
-      max-width: 760px;
-      margin: 0 auto 52px;
-      text-align: center;
-    }
-
-    .ventura-section-head .ventura-kicker {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .ventura-section-head p:not(.ventura-kicker) {
-      margin: 0 auto;
-    }
-
-    .ventura-proof-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .ventura-proof-card,
-    .ventura-factory-card {
-      min-height: 220px;
-      padding: 28px;
-      background: #ffffff;
-      border: 1px solid rgba(7, 17, 29, 0.1);
-      border-radius: 8px;
-      box-shadow: 0 18px 48px rgba(7, 17, 29, 0.06);
-    }
-
-    .ventura-proof-card span,
-    .ventura-factory-card span {
-      display: block;
-      margin-bottom: 28px;
-      color: var(--accent);
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 13px;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .ventura-proof-card h3,
-    .ventura-factory-card h3 {
-      margin: 0 0 12px;
-      font-size: 20px;
-      line-height: 1.18;
-      font-weight: 850;
-    }
-
-    .ventura-proof-card p,
-    .ventura-factory-card p {
-      margin: 0;
-      color: #405166;
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .ventura-divisions-section {
-      padding: 96px 0;
-      background: #07111d;
-      border-bottom: 0;
-      color: #ffffff;
-    }
-
-    .ventura-divisions-section .container {
-      border-color: rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .ventura-divisions-section .ventura-section-head h2,
-    .ventura-divisions-section .ventura-section-head p:not(.ventura-kicker) {
-      color: #ffffff;
-    }
-
-    .ventura-divisions-section .ventura-section-head p:not(.ventura-kicker) {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .ventura-division-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .ventura-division-card {
-      position: relative;
-      min-height: 420px;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-      isolation: isolate;
-      text-decoration: none;
-      background: #0d1926;
-    }
-
-    .ventura-division-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.82;
-      transform: scale(1.02);
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
-      z-index: -2;
-    }
-
-    .ventura-division-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(7, 17, 29, 0.05) 0%, rgba(7, 17, 29, 0.92) 100%);
-      z-index: -1;
-    }
-
-    .ventura-division-card:hover img {
-      opacity: 1;
-      transform: scale(1.08);
-    }
-
-    .ventura-division-card__copy {
-      padding: 28px;
-      color: #ffffff;
-    }
-
-    .ventura-division-card__copy span {
-      display: block;
-      margin-bottom: 10px;
-      color: #8fdcff;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 12px;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .ventura-division-card__copy h3 {
-      margin: 0 0 12px;
-      color: #ffffff;
-      font-size: 25px;
-      line-height: 1.08;
-      font-weight: 850;
-    }
-
-    .ventura-division-card__copy p {
-      margin: 0 0 18px;
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .ventura-division-card__copy strong {
-      color: #ffffff;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 13px;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .ventura-showroom-section {
-      background: #ffffff;
-    }
-
-    .ventura-showroom-section .container {
-      border-color: rgba(7, 17, 29, 0.08) !important;
-    }
-
-    .ventura-lineup {
-      display: grid;
-      gap: 28px;
-    }
-
-    .ventura-lineup-card {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      min-height: 460px;
-      overflow: hidden;
-      background: #ffffff;
-      border: 1px solid rgba(7, 17, 29, 0.11);
-      border-radius: 8px;
-      box-shadow: 0 18px 52px rgba(7, 17, 29, 0.08);
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.25s ease;
-    }
-
-    .ventura-lineup-card[hidden] {
-      display: none;
-    }
-
-    .ventura-lineup-card.is-filtered-out {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-
-    .ventura-lineup-card:hover {
-      box-shadow: 0 24px 70px rgba(7, 17, 29, 0.13);
-    }
-
-    .ventura-lineup-card.is-reverse {
-      grid-template-columns: 1.05fr 0.95fr;
-    }
-
-    .ventura-lineup-card.is-reverse .ventura-lineup-card__copy {
-      grid-column: 2;
-      grid-row: 1;
-    }
-
-    .ventura-lineup-card.is-reverse .ventura-lineup-card__media {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .ventura-lineup-card__copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 46px;
-    }
-
-    .ventura-product-kicker {
-      margin: 0 0 14px;
-      color: var(--accent);
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 12px;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .ventura-lineup-card h3 {
-      margin: 0 0 14px;
-      font-size: 34px;
-      line-height: 1.08;
-      font-weight: 850;
-    }
-
-    .ventura-lineup-card p:not(.ventura-product-kicker) {
-      margin: 0 0 28px;
-      color: #405166;
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .ventura-spec-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      margin: 0 0 28px;
-      padding: 0;
-      background: rgba(7, 17, 29, 0.12);
-      border: 1px solid rgba(7, 17, 29, 0.12);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .ventura-spec {
-      min-height: 94px;
-      padding: 16px;
-      background: #f7fafc;
-    }
-
-    .ventura-spec dt {
-      margin: 0 0 8px;
-      color: #748397;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 11px;
-      font-weight: 850;
-      text-transform: uppercase;
-    }
-
-    .ventura-spec dd {
-      margin: 0;
-      color: #07111d;
-      font-family: 'Sora', 'BlinkerLocal', sans-serif;
-      font-size: 15px;
-      font-weight: 850;
-      line-height: 1.25;
-    }
-
-    .ventura-card-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .ventura-lineup-card__media {
-      position: relative;
-      display: block;
-      min-height: 460px;
-      overflow: hidden;
-      background: #07111d;
-    }
-
-    .ventura-lineup-card__media img {
-      width: 100%;
-      height: 100%;
-      min-height: 460px;
-      object-fit: cover;
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .ventura-lineup-card:hover .ventura-lineup-card__media img {
-      transform: scale(1.04);
-    }
-
-    .ventura-industrial-section {
-      background: #eef4f9;
-    }
-
-    .ventura-factory-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .ventura-local-section {
-      background: #07111d;
-      color: #ffffff;
-    }
-
-    .ventura-local-section .container {
-      border-color: rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .ventura-local-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .ventura-local-section .ventura-section-copy h2 {
-      color: #ffffff;
-    }
-
-    .ventura-local-section .ventura-section-copy p:not(.ventura-kicker) {
-      color: rgba(255, 255, 255, 0.72);
-      margin-bottom: 28px;
-    }
-
-    .ventura-local-media {
-      position: relative;
-      min-height: 420px;
-      margin: 0;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 8px;
-    }
-
-    .ventura-local-media img {
-      width: 100%;
-      height: 100%;
-      min-height: 420px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .ventura-local-media figcaption {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      padding: 14px 16px;
-      color: #ffffff;
-      background: rgba(3, 12, 22, 0.74);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 700;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .ventura-faq-section {
-      background: #ffffff;
-    }
-
-    .ventura-brand-theme .faq-container {
-      max-width: 880px;
-      margin-top: 0;
-      gap: 12px;
-    }
-
-    .ventura-faq-item {
-      background: #ffffff !important;
-      border: 1px solid rgba(7, 17, 29, 0.12) !important;
-      border-radius: 8px !important;
-      box-shadow: none !important;
-    }
-
-    .ventura-faq-item:hover {
-      background: #f7fafc !important;
-      border-color: rgba(0, 119, 182, 0.32) !important;
-    }
-
-    .ventura-faq-item .faq-header {
-      width: 100%;
-      padding: 24px 26px;
-      background: transparent;
-      border: 0;
-      text-align: left;
-    }
-
-    .ventura-faq-item .faq-header h3 {
-      color: #07111d !important;
-      font-size: 16px;
-      font-weight: 850;
-      line-height: 1.35;
-    }
-
-    .ventura-faq-item .faq-icon {
-      flex: 0 0 auto;
-      color: var(--accent);
-      font-weight: 850;
-    }
-
-    .ventura-faq-item .faq-body p {
-      color: #405166 !important;
-      font-size: 15px;
-    }
-
-    .ventura-faq-item.active {
-      border-color: rgba(0, 119, 182, 0.42) !important;
-      background: #f7fafc !important;
-    }
-
-    .ventura-brand-theme footer {
-      background: #07111d;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    @media (max-width: 1120px) {
-      .ventura-division-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .ventura-proof-grid,
-      .ventura-factory-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ventura-snapshot {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .ventura-hero {
-        min-height: auto;
-        padding: 122px 0 84px;
-        background-position: 64% center;
-      }
-
-      .ventura-wordmark {
-        font-size: 64px;
-      }
-
-      .ventura-hero h1,
-      .ventura-section-copy h2,
-      .ventura-section-head h2 {
-        font-size: 36px;
-      }
-
-      .ventura-hero__metrics,
-      .ventura-lineup-card,
-      .ventura-lineup-card.is-reverse,
-      .ventura-local-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ventura-lineup-card.is-reverse .ventura-lineup-card__copy,
-      .ventura-lineup-card.is-reverse .ventura-lineup-card__media {
-        grid-column: auto;
-        grid-row: auto;
-      }
-
-      .ventura-lineup-card__copy {
-        padding: 34px;
-      }
-
-      .ventura-lineup-card__media,
-      .ventura-lineup-card__media img {
-        min-height: 340px;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .ventura-brand-theme .container {
-        padding: 0 18px;
-      }
-
-      .ventura-hero {
-        padding: 112px 0 70px;
-        background-position: 68% center;
-      }
-
-      .ventura-wordmark {
-        font-size: 48px;
-      }
-
-      .ventura-hero h1 {
-        font-size: 34px;
-      }
-
-      .ventura-hero p:not(.ventura-kicker),
-      .ventura-section-copy p:not(.ventura-kicker),
-      .ventura-section-head p:not(.ventura-kicker) {
-        font-size: 15px;
-      }
-
-      .ventura-hero__actions,
-      .ventura-card-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .ventura-hero__actions .btn,
-      .ventura-card-actions .btn {
-        width: 100%;
-      }
-
-      .ventura-hero__metrics {
-        grid-template-columns: 1fr;
-      }
-
-      .ventura-explore-bar {
-        margin-top: -22px;
-        padding-bottom: 42px;
-      }
-
-      .ventura-explore-bar__inner {
-        justify-content: flex-start;
-        width: 100%;
-      }
-
-      .ventura-snapshot-section,
-      .ventura-showroom-section,
-      .ventura-industrial-section,
-      .ventura-local-section,
-      .ventura-faq-section,
-      .ventura-divisions-section {
-        padding: 70px 0;
-      }
-
-      .ventura-division-grid,
-      .ventura-spec-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ventura-division-card {
-        min-height: 340px;
-      }
-
-      .ventura-lineup-card__copy {
-        padding: 26px;
-      }
-
-      .ventura-lineup-card h3,
-      .ventura-division-card__copy h3 {
-        font-size: 26px;
-      }
-    }
-
-/* IMPORTWAY BRAND THEME - isolated styles */
-.importway-brand-theme {
-  --accent: #e63946;
-  --accent-hover: #c1121f;
-}
-
-.importway-brand-theme nav {
-  background: rgba(10, 10, 10, 0.85) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.importway-brand-theme nav.scrolled {
-  background: rgba(10, 10, 10, 0.97) !important;
-  border-bottom-color: rgba(230, 57, 70, 0.3) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
-}
-
-.importway-brand-theme nav a:not(.btn-nav) {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.importway-brand-theme nav a:not(.btn-nav):hover {
-  color: #ffffff !important;
-}
-
-.importway-brand-theme nav .btn-nav,
-.importway-brand-theme .btn-accent {
-  background: var(--accent) !important;
-  border: 1px solid var(--accent) !important;
-  color: #ffffff !important;
-}
-
-.importway-brand-theme nav .btn-nav:hover,
-.importway-brand-theme .btn-accent:hover {
-  background: var(--accent-hover) !important;
-  border-color: var(--accent-hover) !important;
-}
-
-.importway-brand-theme .btn-outline {
-  background: transparent !important;
-  border: 1px solid rgba(0, 0, 0, 0.2) !important;
-  color: var(--text-primary) !important;
-}
-
-.importway-brand-theme .btn-outline:hover {
-  background: #111 !important;
-  border-color: #111 !important;
-  color: #ffffff !important;
-}
-
-/* Reutiliza o split-grid dentro do tema Importway */
-.importway-brand-theme .ventura-split-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 64px;
-  align-items: center;
-}
-
-/* Cards de categoria */
-.importway-brand-theme .importway-cat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(230, 57, 70, 0.15) !important;
-}
-
-/* Lineup items reaproveitados */
-.importway-brand-theme .lineup-badge {
-  background: rgba(230, 57, 70, 0.1) !important;
-  color: var(--accent) !important;
-  border: 1px solid rgba(230, 57, 70, 0.22) !important;
-}
-
-/* ── RESPONSIVIDADE IMPORTWAY ── */
-@media (max-width: 1024px) {
-  .importway-brand-theme .ventura-split-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .importway-brand-theme .ventura-split-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Ventura full redesign - Martins lifestyle system */
-body.ventura-body {
-  background: #050505 !important;
-  color: #d9e2e8 !important;
-}
-
-.ventura-brand-theme.ventura-experience-page {
-  --accent: #00b4d8 !important;
-  --accent-hover: #7be721 !important;
-  --bg-base: #050505 !important;
-  --bg-surface: #0e0e10 !important;
-  --text-primary: #ffffff !important;
-  --text-secondary: #b8c4cc !important;
-  --text-muted: #6f7c86 !important;
-  --border: rgba(255, 255, 255, 0.09) !important;
-  display: block;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 82% 8%, rgba(0, 180, 216, 0.14), transparent 28%),
-    radial-gradient(circle at 8% 42%, rgba(123, 231, 33, 0.08), transparent 24%),
-    #050505;
-  color: var(--text-secondary);
-}
-
-.ventura-brand-theme.ventura-experience-page :is(h1, h2, h3, h4, h5, h6) {
-  color: #ffffff !important;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
-}
-
-.ventura-brand-theme.ventura-experience-page :is(p, a, span, strong, button, .btn, .nav-links a) {
-  letter-spacing: 0 !important;
-}
-
-.ventura-brand-theme.ventura-experience-page .container {
-  max-width: 1240px;
-  border-left-color: rgba(255, 255, 255, 0.07) !important;
-  border-right-color: rgba(255, 255, 255, 0.07) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page nav {
-  height: 78px !important;
-  background:
-    linear-gradient(180deg, rgba(16, 20, 22, 0.58), rgba(5, 5, 5, 0.34)) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(22px) saturate(155%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page nav.scrolled {
-  height: 70px !important;
-  background:
-    linear-gradient(180deg, rgba(10, 12, 14, 0.86), rgba(5, 5, 5, 0.7)) !important;
-  border-bottom-color: rgba(0, 180, 216, 0.24) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page nav a:not(.btn-nav) {
-  color: rgba(255, 255, 255, 0.72) !important;
-  text-shadow: none !important;
-}
-
-.ventura-brand-theme.ventura-experience-page nav a:not(.btn-nav):hover {
-  color: #ffffff !important;
-}
-
-.ventura-brand-theme.ventura-experience-page nav .btn-nav,
-.ventura-brand-theme.ventura-experience-page .btn-accent {
-  background: var(--accent) !important;
-  border: 1px solid var(--accent) !important;
-  color: #031016 !important;
-  box-shadow: 0 12px 28px rgba(0, 180, 216, 0.24) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page nav .btn-nav:hover,
-.ventura-brand-theme.ventura-experience-page .btn-accent:hover {
-  background: var(--accent-hover) !important;
-  border-color: var(--accent-hover) !important;
-  color: #050505 !important;
-}
-
-.ventura-brand-theme.ventura-experience-page .btn-outline {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1px solid rgba(255, 255, 255, 0.24) !important;
-  color: #ffffff !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.ventura-brand-theme.ventura-experience-page .btn-outline:hover {
-  background: #ffffff !important;
-  border-color: #ffffff !important;
-  color: #050505 !important;
-}
-
-.ventura-lifestyle-hero {
-  position: relative;
-  min-height: 92vh;
-  display: flex;
-  align-items: stretch;
-  padding: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-  background:
-    linear-gradient(90deg, rgba(5, 5, 5, 0.98) 0%, rgba(5, 5, 5, 0.82) 39%, rgba(5, 5, 5, 0.22) 76%),
-    linear-gradient(180deg, rgba(5, 5, 5, 0.1) 0%, rgba(5, 5, 5, 0.7) 100%),
-    url('/assets/ventura/hero-bg-ventura-right.png') center right / cover no-repeat;
-  isolation: isolate;
-}
-
-.ventura-lifestyle-hero::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 34%;
-  background: linear-gradient(180deg, transparent, #050505);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.ventura-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
-  align-items: end;
-  gap: 48px;
-  min-height: 92vh;
-  padding-top: 140px !important;
-  padding-bottom: 78px !important;
-}
-
-.ventura-hero-copy {
-  max-width: 720px;
-}
-
-.ventura-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 14px;
-  color: var(--accent) !important;
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 12px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.ventura-hero-copy h1 {
-  margin: 0 0 18px;
-  color: #ffffff !important;
-  font-size: clamp(72px, 13vw, 178px);
-  line-height: 0.82;
-  font-weight: 900;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  text-shadow: 0 24px 64px rgba(0, 0, 0, 0.48);
-}
-
-.ventura-hero-statement {
-  max-width: 760px;
-  margin: 0 0 16px;
-  color: #ffffff !important;
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: clamp(30px, 4vw, 58px);
-  line-height: 0.98;
-  font-weight: 850;
-}
-
-.ventura-hero-desc {
-  max-width: 610px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.72) !important;
-  font-size: 16px;
-  line-height: 1.75;
-}
-
-.ventura-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 34px;
-}
-
-.ventura-hero-panel {
-  display: grid;
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.38);
-  backdrop-filter: blur(22px) saturate(145%);
-  -webkit-backdrop-filter: blur(22px) saturate(145%);
-}
-
-.ventura-hero-panel > span,
-.ventura-hero-panel > div {
-  padding: 20px;
-  background: rgba(6, 12, 16, 0.68);
-}
-
-.ventura-hero-panel > span {
-  color: var(--accent);
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 12px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.ventura-hero-panel strong {
-  display: block;
-  margin-bottom: 4px;
-  color: #ffffff;
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 38px;
-  line-height: 1;
-  font-weight: 900;
-}
-
-.ventura-hero-panel p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.68) !important;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.ventura-lifestyle-bar {
-  position: sticky;
-  top: 78px;
-  z-index: 30;
-  padding: 12px 0;
-  background: rgba(5, 5, 5, 0.72);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.ventura-filter-strip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow-x: auto;
-}
-
-.ventura-filter {
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: 0 0 auto;
-  padding: 0 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.045);
-  color: rgba(255, 255, 255, 0.72);
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.ventura-filter:hover,
-.ventura-filter.is-active {
-  border-color: rgba(0, 180, 216, 0.48);
-  background: rgba(0, 180, 216, 0.14);
-  color: #ffffff;
-}
-
-.ventura-filter:active {
-  transform: translateY(1px);
-}
-
-.ventura-concept-section,
-.ventura-territories-section,
-.ventura-showroom-section,
-.ventura-local-section,
-.ventura-faq-section {
-  padding: 104px 0;
-  background: #050505;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.ventura-concept-grid {
-  display: grid;
-  grid-template-columns: 0.88fr 1.12fr;
-  gap: 56px;
-  align-items: start;
-}
-
-.ventura-section-copy h2,
-.ventura-section-head h2 {
-  margin: 0 0 18px;
-  color: #ffffff !important;
-  font-size: clamp(34px, 5vw, 58px);
-  line-height: 0.98;
-  font-weight: 850;
-}
-
-.ventura-section-copy p:not(.ventura-kicker),
-.ventura-section-head p:not(.ventura-kicker) {
-  max-width: 660px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.66) !important;
-  font-size: 16px;
-  line-height: 1.75;
-}
-
-.ventura-section-head {
-  max-width: 760px;
-  margin: 0 auto 52px;
-  text-align: center;
-}
-
-.ventura-section-head .ventura-kicker {
-  justify-content: center;
-}
-
-.ventura-section-head p:not(.ventura-kicker) {
-  margin: 0 auto;
-}
-
-.ventura-mood-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.ventura-mood-grid article {
-  min-height: 250px;
-  padding: 26px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
-    #0b0d0f;
-}
-
-.ventura-mood-grid span {
-  display: block;
-  margin-bottom: 44px;
-  color: var(--accent);
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.ventura-mood-grid h3 {
-  margin: 0 0 12px;
-  color: #ffffff !important;
-  font-size: 20px;
-  line-height: 1.15;
-  font-weight: 850;
-}
-
-.ventura-mood-grid p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.62) !important;
-  font-size: 14px;
-  line-height: 1.65;
-}
-
-.ventura-territories-section {
-  background:
-    radial-gradient(circle at 78% 18%, rgba(0, 180, 216, 0.12), transparent 30%),
-    #08090b;
-}
-
-.ventura-territory-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.ventura-territory-card {
-  position: relative;
-  min-height: 440px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  padding: 24px;
-  color: #ffffff;
-  text-decoration: none;
-  isolation: isolate;
-}
-
-.ventura-territory-card img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.74;
-  transform: scale(1.03);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
-  z-index: -2;
-}
-
-.ventura-territory-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(5, 5, 5, 0.08) 0%, rgba(5, 5, 5, 0.92) 100%),
-    linear-gradient(90deg, rgba(5, 5, 5, 0.35), transparent);
-  z-index: -1;
-}
-
-.ventura-territory-card:hover img {
-  opacity: 1;
-  transform: scale(1.09);
-}
-
-.ventura-territory-mark {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  background: rgba(5, 5, 5, 0.34);
-  color: rgba(255, 255, 255, 0.86);
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 12px;
-  font-weight: 850;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.ventura-territory-card h3 {
-  margin: 0 0 12px;
-  color: #ffffff !important;
-  font-size: 28px;
-  line-height: 1.05;
-  font-weight: 850;
-}
-
-.ventura-territory-card p {
-  margin: 0 0 18px;
-  color: rgba(255, 255, 255, 0.72) !important;
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.ventura-territory-card strong {
-  color: #ffffff;
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 12px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.ventura-showroom-section {
-  background:
-    radial-gradient(circle at 18% 16%, rgba(123, 231, 33, 0.075), transparent 26%),
-    #050505;
-}
-
-.ventura-showcase-list {
-  display: grid;
-  gap: 28px;
-}
-
-.ventura-showcase-card {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  overflow: hidden;
-  min-height: 520px;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px !important;
-  background: #0b0d0f !important;
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.32) !important;
-}
-
-.ventura-showcase-card.is-reverse {
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-}
-
-.ventura-showcase-card.is-filtered-out,
-.ventura-showcase-card[hidden] {
-  display: none !important;
-}
-
-.ventura-showcase-card.is-reverse .ventura-showcase-copy {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.ventura-showcase-card.is-reverse .ventura-showcase-media {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.ventura-showcase-media {
-  position: relative;
-  min-height: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at center, rgba(0, 180, 216, 0.16), transparent 56%),
-    linear-gradient(145deg, #11171c, #050505) !important;
-}
-
-.ventura-showcase-media img {
-  width: min(88%, 520px);
-  max-height: 430px;
-  object-fit: contain;
-  border: 0 !important;
-  filter: drop-shadow(0 24px 52px rgba(0, 0, 0, 0.5));
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ventura-showcase-card:hover .ventura-showcase-media img {
-  transform: scale(1.045) translateY(-4px);
-}
-
-.ventura-showcase-media > span {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  padding: 7px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  background: rgba(5, 5, 5, 0.48);
-  color: rgba(255, 255, 255, 0.78);
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 11px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.ventura-showcase-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 48px;
-}
-
-.ventura-showcase-copy h3 {
-  margin: 0 0 16px;
-  color: #ffffff !important;
-  font-size: clamp(30px, 4vw, 46px);
-  line-height: 1.02;
-  font-weight: 850;
-}
-
-.ventura-showcase-copy p:not(.ventura-kicker) {
-  margin: 0 0 30px;
-  color: rgba(255, 255, 255, 0.66) !important;
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-.ventura-spec-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin: 0 0 30px;
-  padding: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.ventura-spec-grid div {
-  min-height: 98px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.035);
-}
-
-.ventura-spec-grid dt {
-  margin: 0 0 8px;
-  color: rgba(255, 255, 255, 0.48);
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 11px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.ventura-spec-grid dd {
-  margin: 0;
-  color: #ffffff;
-  font-family: 'Sora', 'BlinkerLocal', sans-serif !important;
-  font-size: 15px;
-  font-weight: 850;
-  line-height: 1.25;
-}
-
-.ventura-card-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.ventura-local-section {
-  background:
-    linear-gradient(90deg, rgba(5, 5, 5, 0.96), rgba(5, 5, 5, 0.72)),
-    #07111d;
-}
-
-.ventura-local-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 52px;
-  align-items: center;
-}
-
-.ventura-local-section .ventura-section-copy p:not(.ventura-kicker) {
-  margin-bottom: 30px;
-}
-
-.ventura-local-media {
-  position: relative;
-  min-height: 440px;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: #0b0d0f;
-}
-
-.ventura-local-media img {
-  width: 100%;
-  height: 100%;
-  min-height: 440px;
-  display: block;
-  object-fit: cover;
-}
-
-.ventura-local-media figcaption {
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
-  padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 6px;
-  background: rgba(5, 5, 5, 0.58);
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 13px;
-  font-weight: 700;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.ventura-faq-section {
-  background: #050505;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-container {
-  max-width: 900px;
-  display: grid;
-  gap: 12px;
-  margin: 0 auto;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-item {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.035) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-item.active,
-.ventura-brand-theme.ventura-experience-page .faq-item:hover {
-  border-color: rgba(0, 180, 216, 0.36) !important;
-  background: rgba(0, 180, 216, 0.06) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-header {
-  padding: 22px 24px;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-header h3 {
-  color: #ffffff !important;
-  font-size: 16px;
-  line-height: 1.35;
-  font-weight: 850;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-icon {
-  color: var(--accent) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-body {
-  padding: 0 24px 22px;
-}
-
-.ventura-brand-theme.ventura-experience-page .faq-body p {
-  color: rgba(255, 255, 255, 0.66) !important;
-}
-
-.ventura-brand-theme.ventura-experience-page footer {
-  background: #050505;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-@media (max-width: 1120px) {
-  .ventura-hero-grid,
-  .ventura-concept-grid,
-  .ventura-local-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ventura-hero-panel {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .ventura-hero-panel > span {
-    grid-column: 1 / -1;
-  }
-
-  .ventura-territory-grid,
-  .ventura-mood-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 900px) {
-  .ventura-lifestyle-hero {
-    min-height: auto;
-    background-position: 62% center;
-  }
-
-  .ventura-hero-grid {
-    min-height: auto;
-    padding-top: 128px !important;
-    padding-bottom: 72px !important;
-  }
-
-  .ventura-showcase-card,
-  .ventura-showcase-card.is-reverse {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .ventura-showcase-card.is-reverse .ventura-showcase-copy,
-  .ventura-showcase-card.is-reverse .ventura-showcase-media {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .ventura-showcase-media,
-  .ventura-showcase-media img {
-    min-height: 340px;
-  }
-
-  .ventura-showcase-copy {
-    padding: 34px;
-  }
-}
-
-@media (max-width: 680px) {
-  .ventura-brand-theme.ventura-experience-page .container {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .ventura-lifestyle-bar {
-    top: 70px;
-  }
-
-  .ventura-hero-copy h1 {
-    font-size: 58px;
-  }
-
-  .ventura-hero-statement {
-    font-size: 34px;
-  }
-
-  .ventura-hero-actions,
-  .ventura-card-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .ventura-hero-actions .btn,
-  .ventura-card-actions .btn {
-    width: 100%;
-  }
-
-  .ventura-hero-panel,
-  .ventura-territory-grid,
-  .ventura-mood-grid,
-  .ventura-spec-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ventura-concept-section,
-  .ventura-territories-section,
-  .ventura-showroom-section,
-  .ventura-local-section,
-  .ventura-faq-section {
-    padding: 76px 0;
-  }
-
-  .ventura-territory-card {
-    min-height: 360px;
-  }
-
-  .ventura-showcase-copy {
-    padding: 26px;
-  }
-
-  .ventura-local-media,
-  .ventura-local-media img {
-    min-height: 340px;
-  }
-}
-
-/* ==========================================================================
-   PRODUCT DETAIL PAGE - LIGHT MODE OVERRIDES (.product-light-body)
-   ========================================================================== */
-body.product-light-body {
-  background-color: #fcfcfd !important;
-  color: #4b5563 !important;
-  --bg-base: #fcfcfd;
-  --bg-surface: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-}
-
-/* Base elements in light mode body */
-body.product-light-body h1,
-body.product-light-body h2,
-body.product-light-body h3,
-body.product-light-body h4,
-body.product-light-body h5,
-body.product-light-body h6,
-body.product-light-body .product-title {
-  color: #111827 !important;
-}
-
-body.product-light-body .container {
-  border-left: 1px solid rgba(0, 0, 0, 0.06);
-  border-right: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-/* Navigation Overrides */
-body.product-light-body nav {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-}
-
-body.product-light-body nav.scrolled {
-  background: rgba(255, 255, 255, 0.98) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-}
-
-body.product-light-body nav a:not(.btn-nav) {
-  color: #374151 !important;
-}
-
-body.product-light-body nav a:not(.btn-nav):hover {
-  color: #000000 !important;
-}
-
-body.product-light-body nav .logo-img {
-  filter: invert(1) brightness(0.1);
-}
-
-body.product-light-body .mobile-toggle span {
-  background: #111827 !important;
-}
-
-/* Product Detail Sections & Layouts */
-body.product-light-body .product-media-card {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
-}
-
-body.product-light-body .product-media-badge {
-  background: rgba(31, 111, 54, 0.08) !important;
-  color: #1a5c2d !important;
-  border: 1px solid rgba(31, 111, 54, 0.15) !important;
-}
-
-body.product-light-body .product-brand-teaser {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
-}
-
-body.product-light-body .product-brand-teaser p {
-  color: #4b5563 !important;
-}
-
-body.product-light-body .btn-brand-teaser {
-  color: #1a5c2d !important;
-}
-
-body.product-light-body .btn-brand-teaser:hover {
-  color: #111827 !important;
-}
-
-body.product-light-body .product-specs-box {
-  background: #f9fafb !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-}
-
-body.product-light-body .product-specs-box h3 {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-}
-
-body.product-light-body .product-spec-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
-}
-
-body.product-light-body .product-spec-lbl {
-  color: #6b7280 !important;
-}
-
-body.product-light-body .product-spec-val {
-  color: #111827 !important;
-}
-
-/* Form Styling in Light Mode */
-body.product-light-body .product-form-box {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04) !important;
-}
-
-body.product-light-body .product-form-box h3 {
-  color: #111827 !important;
-}
-
-body.product-light-body .product-form-box p {
-  color: #4b5563 !important;
-}
-
-body.product-light-body .form-group label {
-  color: #374151 !important;
-}
-
-body.product-light-body .raw-form input,
-body.product-light-body .raw-form select,
-body.product-light-body .raw-form textarea {
-  background: #f9fafb !important;
-  border: 1px solid rgba(0, 0, 0, 0.12) !important;
-  color: #111827 !important;
-}
-
-body.product-light-body .raw-form input::placeholder {
-  color: #9ca3af !important;
-}
-
-body.product-light-body .raw-form input:focus,
-body.product-light-body .raw-form select:focus,
-body.product-light-body .raw-form textarea:focus {
-  background: #ffffff !important;
-  border-color: #1a5c2d !important;
-  box-shadow: 0 0 0 3px rgba(26, 92, 45, 0.12) !important;
-}
-
-/* Footer Overrides */
-body.product-light-body footer {
-  background: #f9fafb !important;
-  border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
-}
-
-body.product-light-body .footer-copy {
-  color: #6b7280 !important;
-}
-
-body.product-light-body .footer-links a {
-  color: #4b5563 !important;
-}
-
-body.product-light-body .footer-links a:hover {
-  color: #1a5c2d !important;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   LIGHTBOX — escopo global (position:fixed na página inteira)
-   ═══════════════════════════════════════════════════════════ */
-
-#model-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(10, 10, 10, 0.72);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-#model-lightbox.lb-open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-#model-lightbox .lb-card {
-  background: #ffffff;
-  border-radius: 4px;               /* quadrado — mesma estética da landing */
-  padding: 52px 48px 40px;
-  max-width: min(640px, 92vw);
-  width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  position: relative;
-  transform: scale(0.94) translateY(24px);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-#model-lightbox.lb-open .lb-card {
-  transform: scale(1) translateY(0);
-}
-
-/* linha verde no topo — assinatura visual da landing */
-#model-lightbox .lb-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #7BE721;
-  border-radius: 4px 4px 0 0;
-}
-
-#model-lightbox .lb-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: transparent;
-  border: 1.5px solid #d1d5db;
-  border-radius: 2px;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s ease, border-color 0.15s ease;
-  z-index: 1;
-}
-
-#model-lightbox .lb-close:hover {
-  background: #f3f4f6;
-  border-color: #9ca3af;
-}
-
-#model-lightbox .lb-close svg {
-  width: 15px;
-  height: 15px;
-  stroke: #374151;
-  stroke-width: 2.5;
-}
-
-#model-lightbox .lb-img {
-  max-height: 58vh;
-  max-width: 100%;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.08));
-}
-
-#model-lightbox .lb-title {
-  font-family: 'Sora', 'Blinker', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: #0a0a0a;
-  text-align: center;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-/* ==========================================================================
-   SUPORTE MOBILE PREMIUM & DROPDOWN UPGRADE (ANTIGRAVITY)
-   ========================================================================== */
-
-/* Hero Mobile CTA (oculto no desktop) */
-.hero-mobile-cta {
-  display: none;
-}
-
-/* Breakpoint para ocultar o formulário fixo da hero e exibir o CTA mobile */
-@media (max-width: 1150px) {
-  #hero {
-    min-height: auto !important;
-  }
-
-  #hero .container {
-    min-height: auto !important;
-  }
-
-  .hero-layout {
-    min-height: auto !important;
-  }
-
-  #hero .hero-right {
-    display: none !important;
-  }
-  
-  #hero .hero-left {
-    border-bottom: none !important;
-    padding-top: 100px !important;
-    padding-bottom: 40px !important;
-    justify-content: flex-start !important;
-    gap: 32px !important;
-  }
-
-  #hero .hero-mobile-cta {
-    display: inline-flex !important;
-    width: 100%;
-    margin-top: 28px;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-}
-
-/* Transformação do Popup de Lead em Bottom Sheet Premium para Mobile */
-@media (max-width: 640px) {
-  .lead-modal {
-    align-items: center !important;
-    padding: 16px !important;
-  }
-
-  .lead-modal__dialog {
-    width: 100% !important;
-    max-width: 480px !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-top: 4px solid var(--accent, #7BE721) !important;
-    padding: 32px 20px 28px !important;
-    margin: 0 auto !important;
-    max-height: calc(100dvh - 32px) !important;
-    overflow-y: auto !important;
-    animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-  }
-
-  /* Evitar zoom automático irritante do iOS Safari ao focar nos inputs */
-  .lead-modal .raw-form input,
-  .lead-modal .raw-form select,
-  .lead-modal .raw-form textarea,
-  .lead-modal .custom-select-trigger {
-    font-size: 16px !important;
-  }
-
-  /* Deixar itens de seleção customizada mais fáceis de tocar (touch target ideal) */
-  .lead-modal .custom-option {
-    padding: 14px 16px !important;
-    font-size: 14.5px !important;
-  }
-
-  /* Posicionamento do botão fechar no Bottom Sheet */
-  .lead-modal__close {
-    top: 14px !important;
-    right: 16px !important;
-  }
-}
-
-@keyframes leadModalBottomSheetIn {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-/* Upgrade do Dropdown Premium (Miniaturas e Layout) */
-.custom-select-options .custom-option {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  transition: background 0.15s ease, padding-left 0.15s ease !important;
-}
-
-.custom-select-options .custom-option:hover {
-  padding-left: 20px !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
 .dropdown-thumb {
   width: 36px !important;
   height: 26px !important;
@@ -6448,3 +3681,287 @@ html, body {
     margin-top: 16px !important;
   }
 }
+
+/* ==========================================================================
+   LEAD MODAL GLOBAL STYLES (Copied from ventura-brand.css for global use)
+   ========================================================================== */
+.lead-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #ffffff;
+  overscroll-behavior: contain;
+  overflow: hidden;
+  animation: leadModalFade 0.22s ease-out both;
+}
+
+.lead-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 10%, rgba(123, 231, 33, 0.1), transparent 45%), rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.lead-modal__dialog {
+  position: relative;
+  width: min(100%, 500px);
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  background: rgba(10, 10, 12, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 4px solid var(--accent, #7BE721);
+  border-radius: 12px;
+  padding: 36px 40px 34px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 30px rgba(123, 231, 33, 0.05);
+  outline: none;
+  animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lead-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.lead-modal__close:hover {
+  background: var(--accent, #7BE721);
+  border-color: var(--accent, #7BE721);
+  color: #000000;
+  transform: rotate(90deg);
+}
+
+.lead-modal__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  color: var(--accent, #7BE721);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lead-modal__eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent, #7BE721);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent, #7BE721);
+}
+
+.lead-modal h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+}
+
+.lead-modal-subtitle {
+  margin: 0 0 22px;
+  color: #a0aec0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.lead-modal .raw-form .form-group {
+  margin-bottom: 18px;
+}
+
+.lead-modal .raw-form label {
+  margin-bottom: 7px;
+}
+
+.lead-modal .raw-form input,
+.lead-modal .raw-form select,
+.lead-modal .raw-form textarea,
+.lead-modal .custom-select-trigger {
+  min-height: 48px;
+  padding: 11px 16px;
+}
+
+.lead-modal .raw-form textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.lead-modal .raw-form .btn-primary {
+  min-height: 56px;
+  margin-top: 8px !important;
+}
+
+@keyframes leadModalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes leadModalDialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 560px) {
+  .lead-modal {
+    padding: 16px;
+  }
+  .lead-modal__dialog {
+    padding: 30px 20px 26px;
+  }
+}
+
+@media (max-height: 760px) {
+  .lead-modal__dialog {
+    padding: 30px 34px 28px;
+  }
+
+  .lead-modal h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .lead-modal__eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .lead-modal-subtitle {
+    margin-bottom: 18px;
+  }
+
+  .lead-modal .raw-form .form-group {
+    margin-bottom: 16px;
+  }
+
+  .lead-modal .raw-form input,
+  .lead-modal .raw-form select,
+  .lead-modal .raw-form textarea,
+  .lead-modal .custom-select-trigger {
+    min-height: 46px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .lead-modal .raw-form .btn-primary {
+    min-height: 54px;
+  }
+}
+
+@media (max-height: 620px) {
+  .lead-modal {
+    align-items: flex-start;
+    padding-block: 12px;
+  }
+
+  .lead-modal__dialog {
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Transformação do Popup de Lead em Bottom Sheet Premium para Mobile */
+@media (max-width: 640px) {
+  .lead-modal {
+    align-items: center !important;
+    padding: 16px !important;
+  }
+
+  .lead-modal__dialog {
+    width: 100% !important;
+    max-width: 480px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 4px solid var(--accent, #7BE721) !important;
+    padding: 32px 20px 28px !important;
+    margin: 0 auto !important;
+    max-height: calc(100dvh - 32px) !important;
+    overflow-y: auto !important;
+    animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+
+  /* Evitar zoom automático irritante do iOS Safari ao focar nos inputs */
+  .lead-modal .raw-form input,
+  .lead-modal .raw-form select,
+  .lead-modal .raw-form textarea,
+  .lead-modal .custom-select-trigger {
+    font-size: 16px !important;
+  }
+
+  /* Deixar itens de seleção customizada mais fáceis de tocar (touch target ideal) */
+  .lead-modal .custom-option {
+    padding: 14px 16px !important;
+    font-size: 14.5px !important;
+  }
+
+  /* Posicionamento do botão fechar no Bottom Sheet */
+  .lead-modal__close {
+    top: 14px !important;
+    right: 16px !important;
+  }
+}
+
+@keyframes leadModalBottomSheetIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Upgrade do Dropdown Premium (Miniaturas e Layout) */
+.custom-select-options .custom-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: background 0.15s ease, padding-left 0.15s ease !important;
+}
+
+.custom-select-options .custom-option:hover {
+  padding-left: 20px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Forçar dropdown do hero na versão PC a abrir para cima (Dropup UX) */
+@media (min-width: 1151px) {
+  #hero .custom-select-options {
+    bottom: 100% !important;
+    top: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+    transform: translateY(10px) !important;
+    box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  #hero .custom-select.open .custom-select-options {
+    transform: translateY(0) !important;
+  }
+}
+

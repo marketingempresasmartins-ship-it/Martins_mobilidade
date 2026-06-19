@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home Page / Landing Principal -->
+  <url>
+    <loc>https://martinsmobilidade.com.br/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Linha Watts -->
+  <url>
+    <loc>https://martinsmobilidade.com.br/watts</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Linha Ventura -->
+  <url>
+    <loc>https://martinsmobilidade.com.br/ventura</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Linha Amazon Motors -->
+  <url>
+    <loc>https://martinsmobilidade.com.br/amazon-motors</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Linha Importway -->
+  <url>
+    <loc>https://martinsmobilidade.com.br/importway</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Catálogo de Veículos -->
+  <url>
+    <loc>https://martinsmobilidade.com.br/catalogo</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

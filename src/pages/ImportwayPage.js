@@ -2,11 +2,12 @@ import { Navigation } from "../components/Navigation.js";
 import { Footer } from "../components/Footer.js";
 import { FloatingWhatsApp } from "../components/FloatingWhatsApp.js";
 import { PRODUCTS_DB } from "../config/productsDb.js";
+import "../styles/importway-brand.css";
 
 // Informações institucionais da Importway — baseadas no site oficial importway.com.br
 const BRAND_INFO = {
   nome: "Importway",
-  background: "/assets/importway/hero-bg-importway.png",
+  background: "/assets/importway/hero-bg-importway.webp",
   accentColor: "#e63946",
   accentHover: "#c1121f",
 
@@ -148,7 +149,7 @@ export function ImportwayPage() {
         align-items: center;
         background:
           linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.72) 42%, rgba(10,10,10,0.15) 70%),
-          url('/assets/importway/hero-bg-importway.png') center right / cover no-repeat;
+          url('/assets/importway/hero-bg-importway.webp') center right / cover no-repeat;
         padding: 120px 0 80px;
         overflow: hidden;
       ">
@@ -363,7 +364,7 @@ export function ImportwayPage() {
               </a>
             </div>
             <div class="stagger-item" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.08); border: 1px solid #e5e7eb; min-height: 380px; background: #f9fafb; display: flex; align-items: center; justify-content: center;">
-              <img src="/assets/importway/carro-kids-importway.png"
+              <img src="/assets/importway/carro-kids-importway.webp"
                 alt="Mini Veículo Elétrico Importway"
                 style="width: 100%; height: 100%; object-fit: contain; padding: 32px;"
                 loading="lazy">

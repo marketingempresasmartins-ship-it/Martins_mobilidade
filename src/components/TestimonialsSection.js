@@ -100,7 +100,7 @@ export function TestimonialsSection() {
                 </svg>
               </div>
               <p class="quote-txt">
-                "Uso o Jet Ventura nos finais de semana no Tarumã. O silêncio absoluto sobre a água e a ausência completa de fumaça e cheiro de óleo combustível tornam o passeio incomparável. A equipe da Martins fez toda a entrega técnica e a manutenção na concessionária local é de alto nível."
+                "Eu tinha um pé atrás com moto elétrica, mas peguei a W-Trail na Martins e mudei de ideia na hora. Faço o trajeto Adrianópolis-Distrito todo dia. Enfrentar a Djalma naquele mormaço de Manaus sem a moto esquentar entre as pernas é outra vida. E a economia de gasolina foi absurda! Ter a oficina deles aqui no Flores dá muita segurança."
               </p>
             </div>
             <div class="quote-author">
@@ -115,7 +115,7 @@ export function TestimonialsSection() {
                   <div class="author-name">André Lima</div>
                   <span class="verified-label">Verificado</span>
                 </div>
-                <div class="author-role">Empresário, Manaus - AM</div>
+                <div class="author-role">Gerente Comercial, Manaus - AM</div>
               </div>
             </div>
           </div>

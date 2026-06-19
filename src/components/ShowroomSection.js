@@ -42,7 +42,7 @@ export function ShowroomSection() {
         <div class="segment-card stagger-item">
           <div class="segment-media">
             <span class="segment-badge">Lazer Premium</span>
-            <img src="/assets/watts/jet-ventura.png" alt="Náutica Ventura">
+            <img src="/assets/watts/jet-ventura.webp" alt="Náutica Ventura">
           </div>
           <div class="segment-content">
             <h3>Náutica &amp; Off-Road Ventura</h3>
@@ -69,7 +69,7 @@ export function ShowroomSection() {
         <div class="segment-card stagger-item">
           <div class="segment-media">
             <span class="segment-badge">Trabalho &amp; Carga</span>
-            <img src="/assets/watts/quadriciclo-eletrico.png" alt="Amazon Motors">
+            <img src="/assets/watts/quadriciclo-eletrico.webp" alt="Amazon Motors">
           </div>
           <div class="segment-content">
             <h3>Amazon Motors</h3>
@@ -196,7 +196,7 @@ export function ShowroomSection() {
           </div>
         </div>
         <div class="lineup-media">
-          <img src="/assets/watts/quadriciclo-eletrico.png" alt="Quadriciclo Watts">
+          <img src="/assets/watts/quadriciclo-eletrico.webp" alt="Quadriciclo Watts">
         </div>
       </div>
 
@@ -228,7 +228,7 @@ export function ShowroomSection() {
           </div>
         </div>
         <div class="lineup-media">
-          <img src="/assets/watts/jet-ventura.png" alt="Jet Ventura Watts">
+          <img src="/assets/watts/jet-ventura.webp" alt="Jet Ventura Watts">
         </div>
       </div>
     </div>
