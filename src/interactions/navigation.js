@@ -13,12 +13,18 @@ export function initNavigation() {
     
     if (navLinks?.classList.contains("active")) {
       document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
     } else {
       document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
+    }
+  });
+
+  // Close drawer when clicking on the backdrop (left of the drawer)
+  navLinks?.addEventListener("click", (e) => {
+    const drawerWidth = Math.min(300, window.innerWidth * 0.85);
+    if (e.target === navLinks && e.clientX < window.innerWidth - drawerWidth) {
+      navLinks.classList.remove("active");
+      mobileToggle?.classList.remove("active");
+      document.body.style.overflow = "";
     }
   });
 
@@ -27,8 +33,6 @@ export function initNavigation() {
       navLinks.classList.remove("active");
       mobileToggle?.classList.remove("active");
       document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
     });
   });
 }
