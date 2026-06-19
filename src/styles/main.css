@@ -6180,3 +6180,188 @@ body.product-light-body .footer-links a:hover {
   text-transform: uppercase;
   margin: 0;
 }
+
+/* ==========================================================================
+   SUPORTE MOBILE PREMIUM & DROPDOWN UPGRADE (ANTIGRAVITY)
+   ========================================================================== */
+
+/* Hero Mobile CTA (oculto no desktop) */
+.hero-mobile-cta {
+  display: none;
+}
+
+/* Breakpoint para ocultar o formulário fixo da hero e exibir o CTA mobile */
+@media (max-width: 1150px) {
+  #hero {
+    min-height: auto !important;
+  }
+
+  #hero .container {
+    min-height: auto !important;
+  }
+
+  .hero-layout {
+    min-height: auto !important;
+  }
+
+  #hero .hero-right {
+    display: none !important;
+  }
+  
+  #hero .hero-left {
+    border-bottom: none !important;
+    padding-top: 100px !important;
+    padding-bottom: 40px !important;
+    justify-content: flex-start !important;
+    gap: 32px !important;
+  }
+
+  #hero .hero-mobile-cta {
+    display: inline-flex !important;
+    width: 100%;
+    margin-top: 28px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+/* Transformação do Popup de Lead em Bottom Sheet Premium para Mobile */
+@media (max-width: 640px) {
+  .lead-modal {
+    align-items: center !important;
+    padding: 16px !important;
+  }
+
+  .lead-modal__dialog {
+    width: 100% !important;
+    max-width: 480px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 4px solid var(--accent, #7BE721) !important;
+    padding: 32px 20px 28px !important;
+    margin: 0 auto !important;
+    max-height: calc(100dvh - 32px) !important;
+    overflow-y: auto !important;
+    animation: leadModalDialogIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+
+  /* Evitar zoom automático irritante do iOS Safari ao focar nos inputs */
+  .lead-modal .raw-form input,
+  .lead-modal .raw-form select,
+  .lead-modal .raw-form textarea,
+  .lead-modal .custom-select-trigger {
+    font-size: 16px !important;
+  }
+
+  /* Deixar itens de seleção customizada mais fáceis de tocar (touch target ideal) */
+  .lead-modal .custom-option {
+    padding: 14px 16px !important;
+    font-size: 14.5px !important;
+  }
+
+  /* Posicionamento do botão fechar no Bottom Sheet */
+  .lead-modal__close {
+    top: 14px !important;
+    right: 16px !important;
+  }
+}
+
+@keyframes leadModalBottomSheetIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Upgrade do Dropdown Premium (Miniaturas e Layout) */
+.custom-select-options .custom-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: background 0.15s ease, padding-left 0.15s ease !important;
+}
+
+.custom-select-options .custom-option:hover {
+  padding-left: 20px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dropdown-thumb {
+  width: 36px !important;
+  height: 26px !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 2px !important;
+  transition: transform 0.2s ease !important;
+}
+
+.custom-option:hover .dropdown-thumb {
+  transform: scale(1.1) !important;
+}
+
+.custom-select-trigger span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.dropdown-thumb-trigger {
+  width: 24px !important;
+  height: 18px !important;
+  object-fit: contain !important;
+  border-radius: 3px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Ajustes de compactação para os boxes de estatísticas no mobile */
+@media (max-width: 640px) {
+  #hero .hero-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    padding-top: 20px !important;
+    max-width: 100% !important;
+  }
+
+  #hero .hero-stat-box {
+    padding: 10px 8px !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  #hero .hero-stat-val {
+    font-size: 20px !important;
+    margin-bottom: 2px !important;
+  }
+
+  #hero .hero-stat-lbl {
+    font-size: 8px !important;
+    letter-spacing: 0.05em !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* Forçar dropdown do modal a abrir para cima (Dropup UX) para não extrapolar o viewport */
+.lead-modal .custom-select-options {
+  bottom: 100% !important;
+  top: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+  transform: translateY(10px) !important;
+  box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.lead-modal .custom-select.open .custom-select-options {
+  transform: translateY(0) !important;
+}

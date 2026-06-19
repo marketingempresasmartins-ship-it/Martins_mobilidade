@@ -10,7 +10,25 @@ export function initCustomSelect() {
     const option = options.find((item) => item.getAttribute("data-value") === model);
 
     if (hiddenInput) hiddenInput.value = model;
-    if (selectTrigger) selectTrigger.textContent = option?.textContent || model;
+    if (selectTrigger) {
+      selectTrigger.innerHTML = "";
+      
+      const img = option?.querySelector(".dropdown-thumb")?.cloneNode(true);
+      const placeholder = option?.querySelector(".dropdown-thumb-placeholder")?.cloneNode(true);
+      
+      if (img) {
+        img.className = "dropdown-thumb-trigger";
+        img.removeAttribute("style");
+        selectTrigger.appendChild(img);
+      } else if (placeholder) {
+        placeholder.className = "dropdown-thumb-trigger";
+        selectTrigger.appendChild(placeholder);
+      }
+      
+      const spanText = option?.querySelector("span")?.textContent || option?.textContent || model;
+      const textNode = document.createTextNode(" " + spanText.trim());
+      selectTrigger.appendChild(textNode);
+    }
     options.forEach((item) => item.classList.remove("selected"));
     option?.classList.add("selected");
   };

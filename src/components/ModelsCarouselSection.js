@@ -103,14 +103,14 @@ export function ModelsCarouselSection() {
               </div>
             </div>
 
-            <!-- Card 5: Bike Dobrável Importway -->
+            <!-- Card 5: Bike Elétrica Importway -->
             <div class="carousel-card">
               <div class="card-image-wrapper">
-                <img src="/assets/importway/bike-carousel.png" alt="Bike Dobrável Importway" class="card-image">
+                <img src="/assets/importway/bike-carousel.png" alt="Bike Elétrica Importway" class="card-image">
                 <span class="card-image-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
               </div>
               <div class="card-info">
-                <h3 class="card-title">Bike Importway</h3>
+                <h3 class="card-title">Bike Elétrica Importway</h3>
                 <div class="card-specs">
                   <div class="spec-item">
                     <span class="spec-label">Autonomia</span>
@@ -121,7 +121,7 @@ export function ModelsCarouselSection() {
                     <span class="spec-val">Até 25 km/h</span>
                   </div>
                 </div>
-                <button type="button" class="btn btn-accent btn-card-cta" data-interest="Bike Dobrável Importway">Quero Cotação</button>
+                <button type="button" class="btn btn-accent btn-card-cta" data-interest="Bike Elétrica Importway">Quero Cotação</button>
               </div>
             </div>
 

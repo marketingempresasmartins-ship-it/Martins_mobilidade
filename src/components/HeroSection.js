@@ -14,6 +14,9 @@ export function HeroSection() {
             <p class="hero-sub">
               Descubra a linha de motos e scooters elétricas da Martins Mobilidade. Alta performance, torque instantâneo e zero ruído para transformar sua rotina em Manaus.
             </p>
+            <button type="button" class="btn btn-accent btn-primary hero-mobile-cta">
+              Simular proposta →
+            </button>
           </div>
 
           <div class="hero-stats">
@@ -62,14 +65,34 @@ export function HeroSection() {
                       <div class="arrow"></div>
                     </div>
                     <div class="custom-select-options">
-                      <div class="custom-option" data-value="Watts W160s">Watts W160s (Titan Elétrica)</div>
-                      <div class="custom-option" data-value="Watts W-Trail">Watts W-Trail (Off-Road)</div>
-                      <div class="custom-option" data-value="Scooter WS50">Scooter Watts WS50</div>
-                      <div class="custom-option" data-value="Amazon Move">Amazon Move (Autopropelido)</div>
-                      <div class="custom-option" data-value="Amazon Pulse">Amazon Pulse (Scooter)</div>
-                      <div class="custom-option" data-value="Quadriciclo Elétrico">Quadriciclo Elétrico</div>
-                      <div class="custom-option" data-value="Jet Ventura">Jet Ventura (Náutica)</div>
-                      <div class="custom-option" data-value="Outro">Outro modelo / Ajuda comercial</div>
+                      <div class="custom-option" data-value="Watts W160s">
+                        <img src="/assets/watts/w160s-carousel.png" alt="Watts W160s" class="dropdown-thumb">
+                        <span>Watts W160s</span>
+                      </div>
+                      <div class="custom-option" data-value="Watts W-Trail">
+                        <img src="/assets/watts/wtrail-carousel.png" alt="Watts W-Trail" class="dropdown-thumb">
+                        <span>Watts W-Trail</span>
+                      </div>
+                      <div class="custom-option" data-value="Scooter Watts WS50">
+                        <img src="/assets/watts/ws50-carousel.png" alt="Scooter Watts WS50" class="dropdown-thumb">
+                        <span>Scooter Watts WS50</span>
+                      </div>
+                      <div class="custom-option" data-value="Amazon Move">
+                        <img src="/assets/watts/amazon-move-carousel.png" alt="Amazon Move" class="dropdown-thumb">
+                        <span>Amazon Move</span>
+                      </div>
+                      <div class="custom-option" data-value="Bike Elétrica Importway">
+                        <img src="/assets/importway/bike-carousel.png" alt="Bike Elétrica Importway" class="dropdown-thumb">
+                        <span>Bike Elétrica Importway</span>
+                      </div>
+                      <div class="custom-option" data-value="Amazon Pulse">
+                        <img src="/assets/watts/amazon-pulse-carousel.png" alt="Amazon Pulse" class="dropdown-thumb">
+                        <span>Amazon Pulse</span>
+                      </div>
+                      <div class="custom-option" data-value="Outro">
+                        <div class="dropdown-thumb-placeholder" style="width: 36px; height: 26px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; font-size: 12px; color: var(--text-muted);">❔</div>
+                        <span>Outro modelo / Ajuda comercial</span>
+                      </div>
                     </div>
                   </div>
                   <input type="hidden" name="interesse" id="interesse" required>

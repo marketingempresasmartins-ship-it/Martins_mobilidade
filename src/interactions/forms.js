@@ -99,6 +99,14 @@ export function initLeadForms(config) {
   document.querySelector('[data-lead-form="contact"]')?.addEventListener("submit", (event) => {
     handleLeadSubmit(event, "contato");
   });
+
+  // Mobile CTA click handler
+  document.querySelector(".hero-mobile-cta")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("martins:openModal", {
+      detail: { interest: "", isContact: false }
+    }));
+  });
 }
 
 if (typeof window !== "undefined" && !window.pageTimeUpdateInterval) {

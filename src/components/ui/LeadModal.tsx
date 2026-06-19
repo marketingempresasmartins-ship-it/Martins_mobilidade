@@ -12,14 +12,13 @@ type LeadModalProps = {
 };
 
 const VEHICLE_OPTIONS = [
-  { value: "Watts W160s", label: "Watts W160s (Titan Elétrica)" },
-  { value: "Watts W125", label: "Watts W125 (Lançamento)" },
-  { value: "Watts W-Trail", label: "Watts W-Trail (Off-Road)" },
-  { value: "Scooter WS50", label: "Scooter Watts WS50" },
-  { value: "Amazon Move", label: "Amazon Move (Autopropelido)" },
-  { value: "Triciclo de Carga", label: "Triciclo de Carga (Amazon Motors)" },
-  { value: "Jet Ventura", label: "Jet Ventura (Náutica)" },
-  { value: "Outro", label: "Outro modelo / Ajuda comercial" }
+  { value: "Watts W160s", label: "Watts W160s", image: "/assets/watts/w160s-carousel.png" },
+  { value: "Watts W-Trail", label: "Watts W-Trail", image: "/assets/watts/wtrail-carousel.png" },
+  { value: "Scooter Watts WS50", label: "Scooter Watts WS50", image: "/assets/watts/ws50-carousel.png" },
+  { value: "Amazon Move", label: "Amazon Move", image: "/assets/watts/amazon-move-carousel.png" },
+  { value: "Bike Elétrica Importway", label: "Bike Elétrica Importway", image: "/assets/importway/bike-carousel.png" },
+  { value: "Amazon Pulse", label: "Amazon Pulse", image: "/assets/watts/amazon-pulse-carousel.png" },
+  { value: "Outro", label: "Outro modelo / Ajuda comercial", image: null }
 ];
 
 export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: LeadModalProps) {
@@ -358,8 +357,34 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
                 >
                   <div className="custom-select-trigger">
                     <span>
-                      {VEHICLE_OPTIONS.find((o) => o.value === selectedVehicle)?.label ||
-                        selectedVehicle}
+                      {(() => {
+                        const opt = VEHICLE_OPTIONS.find((o) => o.value === selectedVehicle);
+                        if (opt) {
+                          return (
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                              {opt.image ? (
+                                <img
+                                  src={opt.image}
+                                  alt={opt.label}
+                                  className="dropdown-thumb-trigger"
+                                  style={{ width: "24px", height: "18px", objectFit: "contain", display: "inline-block", verticalAlign: "middle" }}
+                                />
+                              ) : (
+                                opt.value !== "Escolha o veículo" && (
+                                  <div
+                                    className="dropdown-thumb-trigger-placeholder"
+                                    style={{ width: "24px", height: "18px", display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "4px", fontSize: "10px", color: "var(--text-muted)" }}
+                                  >
+                                    ❔
+                                  </div>
+                                )
+                              )}
+                              <span>{opt.label}</span>
+                            </span>
+                          );
+                        }
+                        return selectedVehicle;
+                      })()}
                     </span>
                     <div className="arrow"></div>
                   </div>
@@ -371,8 +396,23 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
                           selectedVehicle === opt.value ? "selected" : ""
                         }`}
                         onClick={() => handleOptionSelect(opt.value)}
+                        style={{ display: "flex", alignItems: "center", gap: "12px" }}
                       >
-                        {opt.label}
+                        {opt.image ? (
+                          <img
+                            src={opt.image}
+                            alt={opt.label}
+                            className="dropdown-thumb"
+                          />
+                        ) : (
+                          <div
+                            className="dropdown-thumb-placeholder"
+                            style={{ width: "36px", height: "26px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "4px", fontSize: "12px", color: "var(--text-muted)" }}
+                          >
+                            ❔
+                          </div>
+                        )}
+                        <span>{opt.label}</span>
                       </div>
                     ))}
                   </div>
