@@ -210,7 +210,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
       const successColor = "#7BE721";
 
       if (MARTINS_CONFIG.leadEndpoint) {
-        await fetch(MARTINS_CONFIG.leadEndpoint, {
+        fetch(MARTINS_CONFIG.leadEndpoint, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "text/plain" },
@@ -218,31 +218,25 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
             actionType: "lead",
             ...leadData
           })
-        });
+        }).catch((err) => console.warn("Erro ao enviar lead para a planilha:", err));
+      }
 
+      const waUrl = buildLeadWhatsAppUrl(leadData, MARTINS_CONFIG);
+      if (waUrl) {
         setButtonState({
-          text: "✓ Enviado com sucesso!",
+          text: "✓ Cotação registrada. Abrindo WhatsApp...",
           color: successColor,
           disabled: true
         });
+        setTimeout(() => {
+          window.open(waUrl, "_blank", "noopener");
+        }, 800);
       } else {
-        const waUrl = buildLeadWhatsAppUrl(leadData, MARTINS_CONFIG);
-        if (waUrl) {
-          setButtonState({
-            text: "✓ Cotação registrada. Abrindo WhatsApp...",
-            color: successColor,
-            disabled: true
-          });
-          setTimeout(() => {
-            window.open(waUrl, "_blank", "noopener");
-          }, 800);
-        } else {
-          setButtonState({
-            text: "✓ Cotação registrada!",
-            color: successColor,
-            disabled: true
-          });
-        }
+        setButtonState({
+          text: "✓ Cotação registrada!",
+          color: successColor,
+          disabled: true
+        });
       }
 
       // Close modal after success

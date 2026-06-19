@@ -63,7 +63,7 @@ export function initLeadForms(config) {
 
     try {
       if (config.leadEndpoint) {
-        await fetch(config.leadEndpoint, {
+        fetch(config.leadEndpoint, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "text/plain" },
@@ -71,20 +71,17 @@ export function initLeadForms(config) {
             actionType: "lead",
             ...rawData
           })
-        });
+        }).catch((err) => console.warn("Erro ao enviar lead para a planilha:", err));
+      }
 
-        setButtonState(button, "✓ Enviado com sucesso!", successColor);
+      const waUrl = buildLeadWhatsAppUrl(rawData, config);
+      if (waUrl) {
+        setButtonState(button, "✓ Cotação registrada. Abrindo WhatsApp...", successColor);
         form.reset();
+        setTimeout(() => window.open(waUrl, "_blank", "noopener"), 800);
       } else {
-        const waUrl = buildLeadWhatsAppUrl(rawData, config);
-        if (waUrl) {
-          setButtonState(button, "✓ Cotação registrada. Abrindo WhatsApp...", successColor);
-          form.reset();
-          setTimeout(() => window.open(waUrl, "_blank", "noopener"), 800);
-        } else {
-          setButtonState(button, "✓ Cotação registrada!", successColor);
-          form.reset();
-        }
+        setButtonState(button, "✓ Cotação registrada!", successColor);
+        form.reset();
       }
 
       setTimeout(() => restoreButton(button, originalText), 4000);
