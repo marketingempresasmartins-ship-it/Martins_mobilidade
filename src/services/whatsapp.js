@@ -7,22 +7,15 @@ export function buildLeadWhatsAppUrl(data, config) {
   let messageLines;
   if (data.mensagem) {
     messageLines = [
-      "Olá, Martins Mobilidade.",
-      "",
       data.mensagem,
       "",
-      `*Nome:* ${data.nome || ""}`,
-      `*WhatsApp:* ${data.whatsapp || ""}`,
-      data.email ? `*E-mail:* ${data.email}` : ""
+      `Nome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}`
     ];
   } else {
     messageLines = [
       "Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.",
       "",
-      `*Nome:* ${data.nome || ""}`,
-      `*WhatsApp:* ${data.whatsapp || ""}`,
-      data.email ? `*E-mail:* ${data.email}` : "",
-      data.interesse ? `*Interesse:* ${data.interesse}` : ""
+      `Nome: ${data.nome || ""} WhatsApp: ${data.whatsapp || ""}${data.email ? ` E-mail: ${data.email}` : ""}${data.interesse ? ` Interesse: ${data.interesse}` : ""}`
     ];
   }
 
