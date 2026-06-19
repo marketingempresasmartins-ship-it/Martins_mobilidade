@@ -66,7 +66,10 @@ export function initLeadForms(config) {
         const response = await fetch(config.leadEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(rawData)
+          body: JSON.stringify({
+            actionType: "lead",
+            ...rawData
+          })
         });
 
         if (!response.ok) throw new Error("Erro de submissão do endpoint");

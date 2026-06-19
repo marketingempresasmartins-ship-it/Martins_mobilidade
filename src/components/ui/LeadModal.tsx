@@ -213,7 +213,10 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
         const response = await fetch(MARTINS_CONFIG.leadEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(leadData)
+          body: JSON.stringify({
+            actionType: "lead",
+            ...leadData
+          })
         });
 
         if (!response.ok) throw new Error("Erro de rede ao enviar.");

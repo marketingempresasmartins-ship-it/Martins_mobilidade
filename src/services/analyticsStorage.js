@@ -1,3 +1,5 @@
+import { MARTINS_CONFIG } from "../config/martinsConfig.js";
+
 // ── MARTINS ANALYTICS — Client-side event tracking ──
 // Stores events in localStorage for the dashboard to read.
 // No external calls. Zero dependencies.
@@ -97,6 +99,21 @@ export function trackEvent(type, payload = {}) {
   if (events.length >= 2000) events.splice(0, events.length - 1999);
   events.push(event);
   writeEvents(events);
+
+  // Send event to the Google Sheets endpoint
+  if (MARTINS_CONFIG.leadEndpoint) {
+    fetch(MARTINS_CONFIG.leadEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        actionType: "event",
+        ...event
+      })
+    }).catch(() => {});
+  }
 
   return event;
 }
