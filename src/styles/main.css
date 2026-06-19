@@ -6365,3 +6365,77 @@ body.product-light-body .footer-links a:hover {
 .lead-modal .custom-select.open .custom-select-options {
   transform: translateY(0) !important;
 }
+
+/* Impedir rolagem horizontal e "puxadas para o lado" no mobile */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+/* Otimização e correção do Menu Hamburguer Mobile */
+@media (max-width: 1150px) {
+  .mobile-toggle {
+    display: flex !important;
+    position: relative !important;
+    width: 24px !important;
+    height: 18px !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    z-index: 1000001 !important;
+  }
+
+  .mobile-toggle span {
+    display: block !important;
+    width: 24px !important;
+    height: 2px !important;
+    background: var(--text-primary) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform-origin: left center !important;
+  }
+
+  .mobile-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(1px, -1px) !important;
+  }
+
+  .mobile-toggle.active span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+
+  .mobile-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(1px, 1px) !important;
+  }
+
+  /* Overlay do menu mobile com fundo preto fosco sólido e centralizado */
+  .nav-links.active {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: #050505 !important;
+    padding: 80px 40px !important;
+    gap: 32px !important;
+    z-index: 1000000 !important;
+  }
+
+  .nav-links.active a {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: var(--text-primary) !important;
+  }
+
+  .nav-links.active .btn-nav {
+    width: 100% !important;
+    max-width: 280px !important;
+    text-align: center !important;
+    margin-top: 16px !important;
+  }
+}
