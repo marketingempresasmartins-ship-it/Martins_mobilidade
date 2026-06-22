@@ -5,6 +5,7 @@ import { PRODUCTS_DB } from "../config/productsDb.js";
 import { MARTINS_CONFIG } from "../config/martinsConfig.js";
 import { buildLeadWhatsAppUrl } from "../services/whatsapp.js";
 import { saveLead } from "../services/leadsStorage.js";
+import { enrichLeadTemperature } from "../services/leadTemperature.js";
 
 function getUrlParam(param) {
   const params = new URLSearchParams(window.location.search);
@@ -110,8 +111,24 @@ export function initProductPage() {
     const rawData = Object.fromEntries(new FormData(form).entries());
     rawData.origem = `landing_martins_produto_detalhe`;
     rawData.enviadoEm = new Date().toISOString();
+    const pageStartTime = window.pageStartTime || Date.now();
+    rawData.tempoNaPagina = Math.round((Date.now() - pageStartTime) / 1000);
+    Object.assign(rawData, enrichLeadTemperature(rawData));
 
-    await saveLead(rawData);
+    const savedLead = await saveLead(rawData);
+    rawData.id = savedLead.id;
+
+    if (MARTINS_CONFIG.leadEndpoint) {
+      fetch(MARTINS_CONFIG.leadEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          actionType: "lead",
+          ...rawData
+        })
+      }).catch((err) => console.warn("Erro ao enviar lead para a planilha:", err));
+    }
 
     // Abrir WhatsApp
     const waUrl = buildLeadWhatsAppUrl(rawData, MARTINS_CONFIG);

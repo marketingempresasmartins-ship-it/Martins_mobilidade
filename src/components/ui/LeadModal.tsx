@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { saveLead } from "../../services/leadsStorage.js";
+import { enrichLeadTemperature } from "../../services/leadTemperature.js";
 import { buildLeadWhatsAppUrl } from "../../services/whatsapp.js";
 import { MARTINS_CONFIG } from "../../config/martinsConfig.js";
 import { maskPhoneInput } from "../../utils/phone.js";
@@ -199,6 +200,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
     const pageStartTime = (window as any).pageStartTime || Date.now();
     const secondsSpent = Math.round((Date.now() - pageStartTime) / 1000);
     leadData.tempoNaPagina = secondsSpent;
+    Object.assign(leadData, enrichLeadTemperature(leadData));
 
     try {
       const savedLead = await saveLead(leadData).catch((err) => {

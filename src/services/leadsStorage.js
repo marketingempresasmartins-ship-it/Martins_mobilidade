@@ -1,4 +1,5 @@
 import { MARTINS_CONFIG } from "../config/martinsConfig.js";
+import { enrichLeadTemperature } from "./leadTemperature.js";
 
 export const LEADS_STORAGE_KEY = "martins_leads";
 export const LEADS_SYNC_EVENT_KEY = "martins_leads_sync";
@@ -168,28 +169,9 @@ function isShiftedRow(lead) {
   return !Number.isNaN(parsed) && String(lead.nome).includes("T");
 }
 
-function parseTempoNaPagina(value) {
-  if (value === undefined || value === null) return 0;
-  if (typeof value === "number") return value;
-  
-  const str = String(value);
-  if (str.includes("T")) {
-    const date = new Date(str);
-    if (!isNaN(date.getTime())) {
-      // A base de tempo correspondente a 0 segundos é 1899-12-30T04:32:36.000Z
-      const baseDate = new Date("1899-12-30T04:32:36.000Z");
-      const diffMs = date.getTime() - baseDate.getTime();
-      const diffSecs = Math.round(diffMs / 1000);
-      return diffSecs >= 0 ? diffSecs : 0;
-    }
-  }
-  
-  const parsed = parseInt(str, 10);
-  return isNaN(parsed) ? 0 : parsed;
-}
-
 /**
  * Re-maps a shifted row so every field points to its correct value.
+ * The shift is: enviadoEm←nome, nome←whatsapp, whatsapp←email, ...
  */
 function remapShiftedLead(lead) {
   return {
@@ -199,11 +181,11 @@ function remapShiftedLead(lead) {
     whatsapp: lead.email,
     email: lead.interesse,
     interesse: lead.mensagem,
-    mensagem: "",
-    origem: lead.origem || "landing_martins_hero",
-    tempoNaPagina: parseTempoNaPagina(lead.tempoNaPagina),
-    status: lead.status || "Novo",
-    id: lead.id || ""
+    mensagem: lead.origem,
+    origem: String(lead.tempoNaPagina ?? ""),
+    tempoNaPagina: typeof lead.status === "number" ? lead.status : undefined,
+    status: typeof lead.whatsappStatus === "string" && lead.whatsappStatus ? lead.whatsappStatus : "Novo",
+    whatsappStatus: ""
   };
 }
 
@@ -220,9 +202,10 @@ function sanitizeRemoteLeads(rawLeads) {
 export function normalizeLead(rawLead = {}) {
   const now = new Date().toISOString();
   const enviadoEm = rawLead.enviadoEm || rawLead.capturadoEm || now;
+  const leadWithTemperature = enrichLeadTemperature(rawLead);
 
   return {
-    ...rawLead,
+    ...leadWithTemperature,
     id: rawLead.id || createLeadId({ ...rawLead, enviadoEm }),
     status: rawLead.status || "Novo",
     capturadoEm: rawLead.capturadoEm || now,
@@ -453,4 +436,3 @@ export async function deleteLead(leadId) {
 
   return updatedLeads;
 }
-

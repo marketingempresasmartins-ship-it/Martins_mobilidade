@@ -1,5 +1,6 @@
 import { buildLeadWhatsAppUrl } from "../services/whatsapp.js";
 import { saveLead, updateLeadTimeSpent } from "../services/leadsStorage.js";
+import { enrichLeadTemperature } from "../services/leadTemperature.js";
 import { maskPhoneInput } from "../utils/phone.js";
 
 let pageStartTime = Date.now();
@@ -55,6 +56,7 @@ export function initLeadForms(config) {
 
     const secondsSpent = Math.round((Date.now() - pageStartTime) / 1000);
     rawData.tempoNaPagina = secondsSpent;
+    Object.assign(rawData, enrichLeadTemperature(rawData));
 
     const savedLead = await saveLead(rawData).catch((err) => {
       console.warn("Falha ao salvar lead localmente:", err);

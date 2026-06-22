@@ -65,6 +65,9 @@ function getLeadEmail(lead) { return lead.email || ""; }
 function getLeadInterest(lead) { return lead.interesse || "Não informado"; }
 function getLeadSource(lead) { return lead.origem || "Origem não informada"; }
 
+function getLeadTemperature(lead) { return lead.temperaturaLead || lead.temperatura || "Frio"; }
+function getLeadScore(lead) { return Number.parseInt(lead.scoreLead ?? lead.score ?? 0, 10) || 0; }
+
 function formatDateTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "Sem data";
@@ -118,6 +121,7 @@ function getFilteredLeads() {
       getLeadEmail(lead),
       getLeadInterest(lead),
       getLeadSource(lead),
+      getLeadTemperature(lead),
       lead.status
     ].join(" ").toLowerCase();
 
@@ -256,6 +260,8 @@ function renderLeadCardCompact(lead) {
   const name = getLeadName(lead);
   const isSelected = lead.id === state.selectedLeadId;
   const timeStr = formatTimeAgo(lead.enviadoEm);
+  const temperature = getLeadTemperature(lead);
+  const tempClass = temperature === "Quente" ? "is-hot" : "is-cold";
 
   return `
     <article class="ops-lead-card-compact ${isSelected ? "is-selected" : ""}">
@@ -265,7 +271,10 @@ function renderLeadCardCompact(lead) {
           <strong>${escapeHtml(name)}</strong>
           <small>${escapeHtml(getLeadInterest(lead))}</small>
         </span>
-        <span class="ops-lead-time">${escapeHtml(timeStr)}</span>
+        <span class="ops-lead-meta">
+          <span class="ops-temp-badge ${tempClass}">${escapeHtml(temperature)}</span>
+          <span class="ops-lead-time">${escapeHtml(timeStr)}</span>
+        </span>
       </button>
     </article>
   `;
@@ -296,6 +305,7 @@ function renderSelectedLead() {
         <div><span>WhatsApp</span><strong>${escapeHtml(getLeadPhone(lead) || "Não informado")}</strong></div>
         <div><span>Tempo na Página</span><strong>${escapeHtml(formatTimeSpent(lead.tempoNaPagina))}</strong></div>
         <div><span>Status WhatsApp</span><strong>${escapeHtml(lead.whatsappStatus || "Não disponível")}</strong></div>
+        <div><span>Temperatura</span><strong>${escapeHtml(getLeadTemperature(lead))} (${escapeHtml(getLeadScore(lead))}/100)</strong></div>
       </div>
 
       <div class="ops-field">
@@ -390,12 +400,14 @@ function exportCsv() {
     return;
   }
 
-  const header = ["Nome", "WhatsApp", "Email", "Interesse", "Status", "Origem", "Entrada"].join(";");
+  const header = ["Nome", "WhatsApp", "Email", "Interesse", "Temperatura", "Score", "Status", "Origem", "Entrada"].join(";");
   const rows = leads.map((lead) => [
     getLeadName(lead),
     getLeadPhone(lead),
     getLeadEmail(lead),
     getLeadInterest(lead),
+    getLeadTemperature(lead),
+    getLeadScore(lead),
     lead.status || "Novo",
     getLeadSource(lead),
     formatDateTime(lead.enviadoEm)
