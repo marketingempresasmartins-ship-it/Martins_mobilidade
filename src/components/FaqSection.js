@@ -25,7 +25,7 @@ export function FaqSection() {
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-body">
-            <p>A Watts oferece uma das maiores garantias do mercado nacional: 5 anos de garantia para o chassis metálico e até 2 anos para o motor elétrico e a bateria de lítio. Todo o suporte de garantia é feito diretamente pela Martins Mobilidade aqui em Manaus.</p>
+            <p>A Watts oferece uma das maiores garantias do mercado nacional: 5 anos de garantia para o chassis metálico e até 2 anos para o motor elétrico e a bateria de lítio. Todo o suporte de garantia é feito diretamente pela Martins Tech aqui em Manaus.</p>
           </div>
         </div>
 

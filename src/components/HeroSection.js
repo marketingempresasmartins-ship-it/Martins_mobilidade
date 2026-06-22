@@ -5,7 +5,7 @@ export function HeroSection() {
       <div class="hero-layout">
         <div class="hero-left">
           <div class="hero-top">
-            <div class="hero-badge">Martins Mobilidade — Manaus</div>
+            <div class="hero-badge">Martins Tech — Manaus</div>
             <h1 class="hero-title">
               A <span>EVOLUÇÃO</span><br>
               SOBRE DUAS<br>
@@ -13,7 +13,7 @@ export function HeroSection() {
               <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"> — Concessionária de Motos Elétricas em Manaus</span>
             </h1>
             <p class="hero-sub">
-              Descubra a linha de motos e scooters elétricas da Martins Mobilidade. Alta performance, torque instantâneo e zero ruído para transformar sua rotina em Manaus.
+              Descubra a linha de motos e scooters elétricas da Martins Tech. Alta performance, torque instantâneo e zero ruído para transformar sua rotina em Manaus.
             </p>
             <button type="button" class="btn btn-accent btn-primary hero-mobile-cta">
               Simular proposta →

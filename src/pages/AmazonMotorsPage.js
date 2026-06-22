@@ -7,9 +7,9 @@ import { PRODUCTS_DB } from "../config/productsDb.js";
 const BRAND_INFO = {
   nome: "AMZ Motors",
   titulo: "A NOSSA PARCEIRA LOCAL: AMZ MOTORS",
-  subtitulo: "A Martins Mobilidade é a concessionária oficial da AMZ Motors no Amazonas — mobilidade elétrica fabricada aqui, na Zona Franca de Manaus.",
+  subtitulo: "A Martins Tech é a concessionária oficial da AMZ Motors no Amazonas — mobilidade elétrica fabricada aqui, na Zona Franca de Manaus.",
   background: "/assets/watts/hero-humanized.webp",
-  desc: "Nós da Martins Mobilidade escolhemos a AMZ Motors (Amazon Motors) como nossa parceira na linha de utilitariais elétricos porque ela fabrica localmente: motos, ciclomotores, quadriciclos e triciclos de carga produzidos no Polo Industrial de Manaus. Menos emissões, mais economia e suporte pós-venda perto de você."
+  desc: "Nós da Martins Tech escolhemos a AMZ Motors (Amazon Motors) como nossa parceira na linha de utilitariais elétricos porque ela fabrica localmente: motos, ciclomotores, quadriciclos e triciclos de carga produzidos no Polo Industrial de Manaus. Menos emissões, mais economia e suporte pós-venda perto de você."
 };
 
 // Proxies de CORS para raspagem dinâmica de identidade em runtime
@@ -152,7 +152,7 @@ export function AmazonMotorsPage() {
       <!-- ── HERO MARTINS APRESENTA AMZ ── -->
       <header class="brand-hero" style="background-image: linear-gradient(to bottom, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.6) 60%, rgba(5, 5, 5, 0.95) 100%), url('${BRAND_INFO.background}'); height: 85vh; display: flex; align-items: center; justify-content: center; position: relative;">
         <div class="container" style="text-align: center;">
-          <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block;">MARTINS MOBILIDADE APRESENTA</span>
+          <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block;">MARTINS TECH APRESENTA</span>
           <h1 class="hero-banner-title" style="font-size: 3.5rem; font-weight: 900; letter-spacing: -0.01em; margin-bottom: 20px; font-family: 'Sora', sans-serif; text-transform: uppercase; line-height: 1.1;">LINHA AMZ MOTORS</h1>
           <p class="hero-banner-desc" style="max-width: 640px; margin: 0 auto 36px; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6;">${BRAND_INFO.subtitulo}</p>
           <div style="display: flex; gap: 16px; justify-content: center; align-items: center;">
@@ -332,7 +332,7 @@ export function AmazonMotorsPage() {
                 <span class="faq-icon">+</span>
               </div>
               <div class="faq-body">
-                <p>A concessionária Martins Mobilidade em Manaus oferece faturamento direto da fábrica com isenções fiscais específicas do polo de desenvolvimento para clientes que compram via CNPJ comercial. Oferecemos pacotes com descontos progressivos de frotista.</p>
+                <p>A concessionária Martins Tech em Manaus oferece faturamento direto da fábrica com isenções fiscais específicas do polo de desenvolvimento para clientes que compram via CNPJ comercial. Oferecemos pacotes com descontos progressivos de frotista.</p>
               </div>
             </div>
 
@@ -352,7 +352,7 @@ export function AmazonMotorsPage() {
                 <span class="faq-icon">+</span>
               </div>
               <div class="faq-body">
-                <p>Toda a assistência técnica especializada e revisões de fábrica são executadas na oficina física da concessionária Martins Mobilidade em Manaus. Mantemos um estoque constante de peças de desgaste e técnicos dedicados à marca.</p>
+                <p>Toda a assistência técnica especializada e revisões de fábrica são executadas na oficina física da concessionária Martins Tech em Manaus. Mantemos um estoque constante de peças de desgaste e técnicos dedicados à marca.</p>
               </div>
             </div>
           </div>

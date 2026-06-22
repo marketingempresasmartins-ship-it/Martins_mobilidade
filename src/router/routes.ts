@@ -41,7 +41,7 @@ export function getRoute(pathname: string): LegacyRoute {
       id: "home",
       render: () => import("../pages/ShoppingPage.js").then(m => m.ShoppingPage()),
       init: initLandingInteractions,
-      title: "Martins Mobilidade Manaus"
+      title: "Martins Tech Manaus"
     };
   }
 
@@ -54,7 +54,7 @@ export function getRoute(pathname: string): LegacyRoute {
         const { initDashboardPage } = await import("../pages/DashboardPage.js");
         initDashboardPage();
       },
-      title: "Dashboard | Martins Mobilidade",
+      title: "Dashboard | Martins Tech",
       dashboard: true
     };
   }
@@ -67,13 +67,13 @@ export function getRoute(pathname: string): LegacyRoute {
         <main class="not-found-page">
           <div class="container">
             <h1>Pagina nao encontrada</h1>
-            <p>Essa rota nao existe no app da Martins Mobilidade.</p>
+            <p>Essa rota nao existe no app da Martins Tech.</p>
             <a class="btn btn-accent" href="/">Voltar para a landing</a>
           </div>
         </main>
       `,
       init: initLandingInteractions,
-      title: "Pagina nao encontrada | Martins Mobilidade"
+      title: "Pagina nao encontrada | Martins Tech"
     };
   }
 
@@ -83,7 +83,7 @@ export function getRoute(pathname: string): LegacyRoute {
       id: "shopping",
       render: () => import("../pages/ShoppingPage.js").then(m => m.ShoppingPage()),
       init: initLandingInteractions,
-      title: "Ação Shopping | Martins Mobilidade"
+      title: "Ação Shopping | Martins Tech"
     };
   }
 
@@ -96,7 +96,7 @@ export function getRoute(pathname: string): LegacyRoute {
         const { initCatalogPage } = await import("../pages/CatalogPage.js");
         initCatalogPage();
       },
-      title: "Catalogo | Martins Mobilidade"
+      title: "Catalogo | Martins Tech"
     };
   }
 
@@ -109,7 +109,7 @@ export function getRoute(pathname: string): LegacyRoute {
         const { initProductPage } = await import("../pages/ProductPage.js");
         initProductPage();
       },
-      title: "Ficha do Veiculo | Martins Mobilidade",
+      title: "Ficha do Veiculo | Martins Tech",
       bodyClass: "product-light-body"
     };
   }
@@ -119,7 +119,7 @@ export function getRoute(pathname: string): LegacyRoute {
       id: "watts",
       render: () => import("../pages/WattsPage.js").then(m => m.WattsPage()),
       init: initLandingInteractions,
-      title: "Linha Watts | Martins Mobilidade"
+      title: "Linha Watts | Martins Tech"
     };
   }
 
@@ -132,7 +132,7 @@ export function getRoute(pathname: string): LegacyRoute {
         const { initVenturaPage } = await import("../pages/VenturaPage.js");
         initVenturaPage();
       },
-      title: "Linha Ventura | Martins Mobilidade",
+      title: "Linha Ventura | Martins Tech",
       bodyClass: "ventura-body"
     };
   }
@@ -146,7 +146,7 @@ export function getRoute(pathname: string): LegacyRoute {
         const { initAmazonMotorsPage } = await import("../pages/AmazonMotorsPage.js");
         initAmazonMotorsPage();
       },
-      title: "Amazon Motors | Martins Mobilidade"
+      title: "Amazon Motors | Martins Tech"
     };
   }
 
@@ -155,7 +155,7 @@ export function getRoute(pathname: string): LegacyRoute {
       id: "importway",
       render: () => import("../pages/ImportwayPage.js").then(m => m.ImportwayPage()),
       init: initLandingInteractions,
-      title: "Importway | Martins Mobilidade"
+      title: "Importway | Martins Tech"
     };
   }
 
@@ -165,12 +165,12 @@ export function getRoute(pathname: string): LegacyRoute {
       <main class="not-found-page">
         <div class="container">
           <h1>Pagina nao encontrada</h1>
-          <p>Essa rota nao existe no app da Martins Mobilidade.</p>
+          <p>Essa rota nao existe no app da Martins Tech.</p>
           <a class="btn btn-accent" href="/">Voltar para a landing</a>
         </div>
       </main>
     `,
     init: initLandingInteractions,
-    title: "Pagina nao encontrada | Martins Mobilidade"
+    title: "Pagina nao encontrada | Martins Tech"
   };
 }

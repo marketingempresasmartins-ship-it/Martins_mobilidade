@@ -4,9 +4,9 @@ export function Footer() {
     <div class="container">
     <div class="footer-layout">
       <a class="logo" href="/">
-        <img src="/assets/martins/logo-martins-mobilidade.svg" alt="Martins Mobilidade" class="logo-img">
+        <img src="/assets/martins/logo-martins-tech-light-text.webp" alt="Martins Tech" class="logo-img">
       </a>
-      <p class="footer-copy">© 2026 Martins Mobilidade — Mobilidade elétrica em Manaus. Todos os direitos reservados.</p>
+      <p class="footer-copy">© 2026 Martins Tech — Mobilidade elétrica em Manaus. Todos os direitos reservados.</p>
       <div class="footer-links" data-footer-links>
         <a href="/#models-carousel-section">Modelos</a>
         <a href="/#features">Vantagens</a>

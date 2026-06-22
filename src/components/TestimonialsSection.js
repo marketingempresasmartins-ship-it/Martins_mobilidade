@@ -4,7 +4,7 @@ export function TestimonialsSection() {
     <div class="container">
       <div class="reveal">
         <div class="section-eyebrow">Quem já roda elétrico</div>
-        <h2 class="section-title">Clientes Martins Mobilidade</h2>
+        <h2 class="section-title">Clientes Martins Tech</h2>
         <p class="section-desc">Relatos reais de quem transformou a rotina e economizou enfrentando o trânsito e o calor de Manaus.</p>
       </div>
       <div class="testimonials-slider-wrapper reveal-grid">

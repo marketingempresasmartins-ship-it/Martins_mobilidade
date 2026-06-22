@@ -961,7 +961,7 @@ export function VenturaPage() {
               <div class="ventura-hero-copy reveal">
                 <span class="ventura-official-badge">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                  Martins Mobilidade | Amazonas
+                  Martins Tech | Amazonas
                 </span>
                 <h1>VENTURA</h1>
                 <p class="ventura-hero-statement">Nautica, off-road e eletricos para viver o Amazonas.</p>
@@ -1054,7 +1054,7 @@ export function VenturaPage() {
             <div class="ventura-section-copy reveal">
               <p class="ventura-kicker">Concessionaria no Amazonas</p>
               <h2>O lifestyle e aspiracional. O atendimento e local.</h2>
-              <p>A Martins Mobilidade conecta a marca Ventura ao cliente amazonense com proposta, orientacao de uso, pos-venda e suporte para escolher entre agua, terra ou eletrico.</p>
+              <p>A Martins Tech conecta a marca Ventura ao cliente amazonense com proposta, orientacao de uso, pos-venda e suporte para escolher entre agua, terra ou eletrico.</p>
               <a href="/#contact" class="btn btn-accent" data-interest="Linha Ventura">Solicitar atendimento</a>
             </div>
             <figure class="ventura-local-media reveal">
@@ -1108,7 +1108,7 @@ export function VenturaPage() {
                   <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-body">
-                  <p>Sim. A pagina posiciona a Ventura dentro do atendimento comercial da Martins Mobilidade no Amazonas, com proposta, orientacao e relacionamento local.</p>
+                  <p>Sim. A pagina posiciona a Ventura dentro do atendimento comercial da Martins Tech no Amazonas, com proposta, orientacao e relacionamento local.</p>
                 </div>
               </div>
             </div>

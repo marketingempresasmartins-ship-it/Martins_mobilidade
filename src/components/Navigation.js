@@ -3,7 +3,7 @@ export function Navigation() {
 <nav>
     <div class="container nav-container">
       <a class="logo" href="/">
-        <img src="/assets/martins/logo-martins-mobilidade.svg" alt="Martins Mobilidade" class="logo-img">
+        <img src="/assets/martins/logo-martins-tech-light-text.webp" alt="Martins Tech" class="logo-img">
       </a>
       <div class="nav-links" id="navLinks">
         <a href="/#models-carousel-section">Modelos</a>

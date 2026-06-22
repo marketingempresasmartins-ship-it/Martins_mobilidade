@@ -10,7 +10,7 @@ const BRAND_INFO = {
   subtitulo: "Somos a concessionária oficial da Watts no Amazonas — motos e scooters elétricas de alta performance com fábrica aqui em Manaus.",
   logo: "/assets/watts/logo-watts-preto.png",
   background: "/assets/watts/hero-bg-wide-new.jpg",
-  desc: "A Martins Mobilidade traz para o Amazonas a linha completa da Watts Mobilidade Elétrica — marca do Grupo Multi com fábrica própria aqui na Zona Franca de Manaus. Somos distribuidores autorizados e oferecemos toda a estrutura de atendimento, financiamento e pós-venda para que você aproveite o melhor da mobilidade elétrica nacional."
+  desc: "A Martins Tech traz para o Amazonas a linha completa da Watts Mobilidade Elétrica — marca do Grupo Multi com fábrica própria aqui na Zona Franca de Manaus. Somos distribuidores autorizados e oferecemos toda a estrutura de atendimento, financiamento e pós-venda para que você aproveite o melhor da mobilidade elétrica nacional."
 };
 
 export function WattsPage() {
@@ -67,11 +67,11 @@ export function WattsPage() {
     <header class="brand-hero" style="background-image: linear-gradient(to right, rgba(5, 5, 5, 0.96) 0%, rgba(5, 5, 5, 0.75) 50%, rgba(5, 5, 5, 0.2) 100%), url('${BRAND_INFO.background}');">
       <div class="container">
         <div class="brand-hero-content">
-          <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; display: block; color: var(--accent); font-family: 'Sora', sans-serif;">MARTINS MOBILIDADE APRESENTA</span>
+          <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; display: block; color: var(--accent); font-family: 'Sora', sans-serif;">MARTINS TECH APRESENTA</span>
           <div style="margin-bottom: 24px;">
             <img src="/assets/watts/logo-watts-cinza.png" alt="Watts Logo" style="height: 48px; object-fit: contain; filter: brightness(0) invert(1); display: block;">
           </div>
-          <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Linha Watts — Martins Mobilidade Manaus</h1>
+          <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Linha Watts — Martins Tech Manaus</h1>
           <div class="brand-hero-badge" style="margin-bottom: 24px;">Concessionária Oficial no Amazonas</div>
           <h2 class="brand-hero-subtitle">${BRAND_INFO.titulo}</h2>
           <p class="brand-hero-desc">${BRAND_INFO.desc}</p>

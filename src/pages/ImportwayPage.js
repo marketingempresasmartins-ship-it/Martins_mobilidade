@@ -164,7 +164,7 @@ export function ImportwayPage() {
                 font-size: 11px; font-weight: 800;
                 letter-spacing: 0.2em; text-transform: uppercase;
                 padding: 6px 14px; border-radius: 4px;
-              ">MARTINS MOBILIDADE APRESENTA</span>
+              ">MARTINS TECH APRESENTA</span>
             </div>
 
             <!-- Wordmark -->
@@ -250,10 +250,10 @@ export function ImportwayPage() {
                 A linha que a Martins<br>escolheu para você
               </h2>
               <p style="color: #6b7280; line-height: 1.8; margin-bottom: 16px; font-size: 1.05rem;">
-                Escolhemos a <strong style="color: ${BRAND_INFO.accentColor};">Importway</strong> pela sua seriedade: mais de 15 anos no mercado, produtos certificados e logistica nacional. Nós da Martins Mobilidade somos os distribuidores autorizados no Amazonas.
+                Escolhemos a <strong style="color: ${BRAND_INFO.accentColor};">Importway</strong> pela sua seriedade: mais de 15 anos no mercado, produtos certificados e logistica nacional. Nós da Martins Tech somos os distribuidores autorizados no Amazonas.
               </p>
               <p style="color: #6b7280; line-height: 1.8; margin-bottom: 32px; font-size: 1.05rem;">
-                Atendemos hipermercados, magazines, e-commerces e lojas especializadas em todo o Brasil. A Martins Mobilidade é a distribuidora autorizada no Amazonas.
+                Atendemos hipermercados, magazines, e-commerces e lojas especializadas em todo o Brasil. A Martins Tech é a distribuidora autorizada no Amazonas.
               </p>
               <a href="https://importway.com.br/sobre/" target="_blank" rel="noopener noreferrer"
                 class="btn btn-accent" style="padding: 13px 26px; color: #fff; background: ${BRAND_INFO.accentColor}; border-color: ${BRAND_INFO.accentColor}; font-weight: 700;">
@@ -306,7 +306,7 @@ export function ImportwayPage() {
             <div class="section-eyebrow" style="color: ${BRAND_INFO.accentColor};">Modelos em Estoque Manaus</div>
             <h2 class="section-title" style="margin-top: 10px; color: var(--text-primary); font-family: 'Sora', sans-serif;">Veículos Importway Disponíveis</h2>
             <p class="section-desc" style="margin: 12px auto 0; max-width: 560px; color: var(--text-secondary);">
-              Selecione o modelo ideal e simule uma proposta diretamente com nosso time comercial da Martins Mobilidade.
+              Selecione o modelo ideal e simule uma proposta diretamente com nosso time comercial da Martins Tech.
             </p>
           </div>
           ${productsListHtml}

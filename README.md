@@ -1,6 +1,6 @@
-# Martins Mobilidade Landing
+# Martins Tech Landing
 
-Landing page da Martins Mobilidade em Manaus.
+Landing page da Martins Tech em Manaus.
 
 ## Como rodar
 

@@ -43,7 +43,7 @@ export function ProdutoPage() {
               <img src="${p.imagem}" alt="${p.nome}" id="mainProductImg">
             </div>
             <div class="product-brand-teaser">
-              <p>Veículo pertencente à <strong>Linha ${brandName}</strong>. Concessionária oficial Martins Mobilidade em Manaus.</p>
+              <p>Veículo pertencente à <strong>Linha ${brandName}</strong>. Concessionária oficial Martins Tech em Manaus.</p>
               <a href="/${p.linha}" class="btn-brand-teaser">Ver toda a Linha ${brandName} →</a>
             </div>
           </div>

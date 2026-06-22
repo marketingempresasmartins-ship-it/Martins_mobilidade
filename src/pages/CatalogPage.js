@@ -56,7 +56,7 @@ export function CatalogoPage() {
     
     <header class="catalog-header">
       <div class="container">
-        <div class="section-eyebrow">Concessionária Martins Mobilidade</div>
+        <div class="section-eyebrow">Concessionária Martins Tech</div>
         <h1 class="section-title">Catálogo Multimarcas</h1>
         <p class="section-desc">Explore nossa linha completa de mobilidade inteligente em Manaus. Filtre por categoria de uso ou explore por marca exclusiva.</p>
         

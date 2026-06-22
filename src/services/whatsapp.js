@@ -21,7 +21,7 @@ export function buildLeadWhatsAppUrl(data, config) {
       data.interesse ? `*Interesse:* ${data.interesse}` : ""
     ].filter(Boolean).join("\n");
 
-    message = `Olá, Martins Mobilidade. Tenho interesse em receber uma cotação.\n\n${metadata}`;
+    message = `Olá, Martins Tech. Tenho interesse em receber uma cotação.\n\n${metadata}`;
   }
 
   return `https://wa.me/${rawPhone}?text=${encodeURIComponent(message)}`;
@@ -31,6 +31,6 @@ export function openQuestionWhatsApp(config) {
   const rawPhone = toWhatsAppPhone(config.whatsappNumber);
   if (!rawPhone) return;
 
-  const message = "Olá, Martins Mobilidade. Gostaria de tirar algumas dúvidas sobre as motos elétricas.";
+  const message = "Olá, Martins Tech. Gostaria de tirar algumas dúvidas sobre as motos elétricas.";
   window.open(`https://wa.me/${rawPhone}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
 }

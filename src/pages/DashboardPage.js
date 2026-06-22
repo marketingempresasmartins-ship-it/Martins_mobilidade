@@ -133,7 +133,7 @@ function getWhatsappUrl(lead) {
   const phone = getLeadPhone(lead).replace(/\D/g, "");
   if (!phone) return "";
   const normalized = phone.startsWith("55") ? phone : `55${phone}`;
-  const message = `Olá, ${getLeadName(lead)}. Aqui é a Martins Mobilidade. Recebemos seu contato sobre o veículo ${getLeadInterest(lead)} no nosso site.`;
+  const message = `Olá, ${getLeadName(lead)}. Aqui é a Martins Tech. Recebemos seu contato sobre o veículo ${getLeadInterest(lead)} no nosso site.`;
   return `https://wa.me/${normalized}?text=${encodeURIComponent(message)}`;
 }
 
@@ -163,9 +163,9 @@ function renderShell() {
         </div>
 
         <div class="ops-sidebar-workspace">
-          <div class="ops-workspace-circle">MM</div>
+          <div class="ops-workspace-circle">MT</div>
           <div class="ops-workspace-info">
-            <strong>Martins Mobilidade</strong>
+            <strong>Martins Tech</strong>
             <span>CONTA DE TESTE</span>
           </div>
         </div>
@@ -199,7 +199,7 @@ function renderShell() {
         <header class="ops-topbar">
           <div class="ops-topbar-left">
             <span class="ops-topbar-badge">${MARTINS_CONFIG.leadEndpoint ? "Google Sheets Live" : "Mock DB Local"}</span>
-            <span class="ops-topbar-path">Martins Mobilidade / dashboard</span>
+            <span class="ops-topbar-path">Martins Tech / dashboard</span>
           </div>
 
           <div class="ops-tools">
@@ -535,8 +535,8 @@ function renderLoginShell() {
   return `
     <div class="ops-login-container">
       <div class="ops-login-card">
-        <div class="ops-login-logo">MM</div>
-        <h2>Martins Mobilidade</h2>
+        <div class="ops-login-logo">MT</div>
+        <h2>Martins Tech</h2>
         <p>Acesse o painel do dashboard informando as credenciais de acesso.</p>
         
         <form id="opsLoginForm" class="ops-login-form">

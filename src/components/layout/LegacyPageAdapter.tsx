@@ -11,31 +11,31 @@ const ROUTE_BODY_CLASSES = ["product-light-body", "ventura-body"];
 
 const METADATA_MAPPING: Record<string, { description: string; image: string }> = {
   home: {
-    description: "Martins Mobilidade em Manaus. Concessionária oficial de motos, scooters e utilitários elétricos das marcas Watts, Ventura, Amazon Motors e Importway.",
+    description: "Martins Tech em Manaus. Concessionária oficial de motos, scooters e utilitários elétricos das marcas Watts, Ventura, Amazon Motors e Importway.",
     image: "/assets/watts/hero-bg-wide-new.jpg"
   },
   catalogo: {
-    description: "Confira o catálogo completo de veículos e utilitários elétricos na Martins Mobilidade Manaus. Escolha o seu modelo e simule uma proposta.",
+    description: "Confira o catálogo completo de veículos e utilitários elétricos na Martins Tech Manaus. Escolha o seu modelo e simule uma proposta.",
     image: "/assets/watts/w160s-carousel.webp"
   },
   produto: {
-    description: "Ficha técnica e detalhes do veículo elétrico. Encontre especificações, autonomia e solicite cotação na Martins Mobilidade.",
+    description: "Ficha técnica e detalhes do veículo elétrico. Encontre especificações, autonomia e solicite cotação na Martins Tech.",
     image: "/assets/watts/w160s-carousel.webp"
   },
   watts: {
-    description: "Conheça a linha Watts de motos elétricas na Martins Mobilidade. W160s, W-Trail e scooters com alta tecnologia e suporte local em Manaus.",
+    description: "Conheça a linha Watts de motos elétricas na Martins Tech. W160s, W-Trail e scooters com alta tecnologia e suporte local em Manaus.",
     image: "/assets/watts/w160s-carousel.webp"
   },
   ventura: {
-    description: "Explore a linha Ventura Off-Road e Náutica Premium na Martins Mobilidade. Quadriciclos e Jets elétricos de alta performance em Manaus.",
+    description: "Explore a linha Ventura Off-Road e Náutica Premium na Martins Tech. Quadriciclos e Jets elétricos de alta performance em Manaus.",
     image: "/assets/ventura/lancha-ventura.webp"
   },
   "amazon-motors": {
-    description: "Descubra os utilitários e triciclos de carga da Amazon Motors na Martins Mobilidade. Veículos elétricos fabricados no Polo Industrial de Manaus.",
+    description: "Descubra os utilitários e triciclos de carga da Amazon Motors na Martins Tech. Veículos elétricos fabricados no Polo Industrial de Manaus.",
     image: "/assets/watts/quadriciclo-eletrico.webp"
   },
   importway: {
-    description: "Mini veículos elétricos e brinquedos da Importway na Martins Mobilidade. Diversão garantida, segura e sustentável para toda a família.",
+    description: "Mini veículos elétricos e brinquedos da Importway na Martins Tech. Diversão garantida, segura e sustentável para toda a família.",
     image: "/assets/importway/bike-carousel.webp"
   }
 };

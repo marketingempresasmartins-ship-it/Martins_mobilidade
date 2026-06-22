@@ -7,7 +7,7 @@ export function ShowroomSection() {
       <div class="lineup-title-area reveal">
         <div class="section-eyebrow">Showroom Multimarcas</div>
         <h2 class="section-title">Explore nossos segmentos</h2>
-        <p class="section-desc">Na concessionária Martins Mobilidade você encontra o veículo elétrico ideal para cada necessidade, divididos em linhas exclusivas.</p>
+        <p class="section-desc">Na concessionária Martins Tech você encontra o veículo elétrico ideal para cada necessidade, divididos em linhas exclusivas.</p>
       </div>
 
       <div class="segments-grid reveal-grid">
