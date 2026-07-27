@@ -7,6 +7,7 @@ export type CouponState = {
 
 type CouponFieldProps = {
   formId: string;
+  selectedModel?: string;
   onCouponChange?: (couponState: CouponState) => void;
 };
 
