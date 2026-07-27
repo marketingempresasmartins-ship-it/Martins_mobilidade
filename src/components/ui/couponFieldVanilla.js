@@ -198,12 +198,13 @@ export function attachCouponField(formElement, options = {}) {
 }
 
 /**
- * Extrai e formata o cupom no formato simples (somente o código do cupom).
+ * Extrai o cupom compatível com qualquer versão do script Google.
  */
 export function getCouponPayloadFromForm(formElement) {
   const couponState = formElement?._couponState;
   const code = couponState?.code || "";
   return {
-    cupom: code
+    cupom: code,
+    cupom_codigo: code
   };
 }

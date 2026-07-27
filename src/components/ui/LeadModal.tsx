@@ -202,6 +202,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
 
     const code = couponData?.informed && couponData?.code ? couponData.code : "";
     leadData.cupom = code;
+    leadData.cupom_codigo = code;
 
     // Calculate duration spent on current page
     const pageStartTime = (window as any).pageStartTime || Date.now();
