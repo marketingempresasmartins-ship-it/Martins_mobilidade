@@ -200,28 +200,10 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
       leadData.interesse = selectedVehicle;
     }
 
-    // Estruturação e normalização dos dados do cupom
-    let finalCouponStatus = "NAO_INFORMADO";
-    if (couponData?.status === "valid") finalCouponStatus = "VALIDO";
-    else if (couponData?.status === "invalid") finalCouponStatus = "INVALIDO";
-    else if (couponData?.status === "pending") finalCouponStatus = "PENDENTE_VALIDACAO";
-
-    const hasCoupon = !!(couponData?.informed && couponData?.code);
-
-    leadData.coupon = {
-      informed: hasCoupon,
-      code: hasCoupon ? couponData.code : "",
-      status: finalCouponStatus,
-      campaign: couponData?.campaign || ""
-    };
-
-    leadData.cupom_informado = hasCoupon ? "SIM" : "NAO";
-    leadData.cupom_codigo = hasCoupon ? couponData.code : "";
-    leadData.cupom_status = finalCouponStatus;
-    leadData.cupom_campanha = couponData?.campaign || "";
-    leadData.cupom_beneficio = couponData?.customerMessage || "";
-    leadData.cupom_validado_em = hasCoupon ? new Date().toISOString() : "";
-    leadData.modelo_no_momento_da_validacao = selectedVehicle !== "Escolha o veículo" ? selectedVehicle : "";
+    const code = couponData?.informed && couponData?.code ? couponData.code : "";
+    leadData.cupom = code;
+    leadData.cupom_codigo = code;
+    leadData.cupom_informado = code ? "SIM" : "NAO";
 
     // Calculate duration spent on current page
     const pageStartTime = (window as any).pageStartTime || Date.now();
