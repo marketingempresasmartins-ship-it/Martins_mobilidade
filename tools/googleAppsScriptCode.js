@@ -1,8 +1,8 @@
 /**
- * GOOGLE APPS SCRIPT — SIMPLIFICADO PARA CAPTURA DE CUPOM
+ * GOOGLE APPS SCRIPT — ULTRASIMPLIFICADO (APENAS CÓDIGO DO CUPOM NA COLUNA M)
  * 
- * Preserva exatamente as colunas atuais A até L (até o Lead ID)
- * e insere o código do Cupom na Coluna M (13ª coluna).
+ * Preserva exatamente as colunas A até L (até o Lead ID)
+ * e insere SOMENTE o código do Cupom na Coluna M (sem SIM, sem VALIDO, sem datas extras).
  */
 
 function isHotCold(value) {
@@ -122,8 +122,8 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 
-  // 3. Salvamento do Lead (Grava o Cupom na Coluna M, logo após o Lead ID na Coluna L)
-  var rawCupom = data.cupom || data.cupom_codigo || (data.coupon ? data.coupon.code : "") || "";
+  // 3. Salvamento do Lead (Grava APENAS o código do Cupom na Coluna M, sem dados extras)
+  var rawCupom = data.cupom || data.cupom_codigo || "";
   var cupom = String(rawCupom).trim().toUpperCase();
 
   sheet.appendRow([
@@ -139,7 +139,7 @@ function doPost(e) {
     data.scoreLead || 0,                        // Coluna J (10) - Score
     "Novo",                                     // Coluna K (11) - Status
     data.id || "",                              // Coluna L (12) - Lead ID
-    cupom                                       // Coluna M (13) - Cupom
+    cupom                                       // Coluna M (13) - CUPOM (ex: TESTE123)
   ]);
 
   return ContentService.createTextOutput(JSON.stringify({ status: "success", action: "lead" }))

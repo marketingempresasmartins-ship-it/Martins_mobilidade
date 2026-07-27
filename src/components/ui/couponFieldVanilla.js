@@ -198,14 +198,12 @@ export function attachCouponField(formElement, options = {}) {
 }
 
 /**
- * Extrai e formata os dados do cupom prontos para envio no payload de lead.
+ * Extrai e formata o cupom no formato simples (somente o código do cupom).
  */
 export function getCouponPayloadFromForm(formElement) {
   const couponState = formElement?._couponState;
   const code = couponState?.code || "";
   return {
-    cupom: code,
-    cupom_codigo: code,
-    cupom_informado: code ? "SIM" : "NAO"
+    cupom: code
   };
 }
