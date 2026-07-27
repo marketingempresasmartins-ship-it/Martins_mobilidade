@@ -6,6 +6,8 @@ import { MARTINS_CONFIG } from "../config/martinsConfig.js";
 import { buildLeadWhatsAppUrl } from "../services/whatsapp.js";
 import { saveLead } from "../services/leadsStorage.js";
 import { enrichLeadTemperature } from "../services/leadTemperature.js";
+import { attachCouponField, getCouponPayloadFromForm } from "../components/ui/couponFieldVanilla.js";
+
 
 function getUrlParam(param) {
   const params = new URLSearchParams(window.location.search);
@@ -101,6 +103,8 @@ export function initProductPage() {
   const form = document.getElementById("productLeadForm");
   if (!form) return;
 
+  attachCouponField(form, { formId: "product_detail" });
+
   form.addEventListener("submit", async function(e) {
     e.preventDefault();
     const button = form.querySelector('button[type="submit"]');
@@ -109,6 +113,9 @@ export function initProductPage() {
     button.disabled = true;
 
     const rawData = Object.fromEntries(new FormData(form).entries());
+    const couponPayload = getCouponPayloadFromForm(form);
+    Object.assign(rawData, couponPayload);
+
     rawData.origem = `landing_martins_produto_detalhe`;
     rawData.enviadoEm = new Date().toISOString();
     const pageStartTime = window.pageStartTime || Date.now();

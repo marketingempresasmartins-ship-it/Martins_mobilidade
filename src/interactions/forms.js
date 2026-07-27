@@ -2,6 +2,8 @@ import { buildLeadWhatsAppUrl } from "../services/whatsapp.js";
 import { saveLead, updateLeadTimeSpent } from "../services/leadsStorage.js";
 import { enrichLeadTemperature } from "../services/leadTemperature.js";
 import { maskPhoneInput } from "../utils/phone.js";
+import { attachCouponField, getCouponPayloadFromForm } from "../components/ui/couponFieldVanilla.js";
+
 
 let pageStartTime = Date.now();
 if (typeof window !== "undefined") {
@@ -50,6 +52,9 @@ export function initLeadForms(config) {
     button.textContent = "Enviando...";
     button.disabled = true;
     button.style.opacity = "0.7";
+
+    const couponPayload = getCouponPayloadFromForm(form);
+    Object.assign(rawData, couponPayload);
 
     rawData.origem = `landing_martins_${formId}`;
     rawData.enviadoEm = new Date().toISOString();
@@ -104,13 +109,29 @@ export function initLeadForms(config) {
     }
   };
 
-  document.querySelector('[data-lead-form="hero"]')?.addEventListener("submit", (event) => {
-    handleLeadSubmit(event, "hero");
-  });
+  const heroForm = document.querySelector('[data-lead-form="hero"]');
+  if (heroForm) {
+    attachCouponField(heroForm, { formId: "hero" });
+    heroForm.addEventListener("submit", (event) => {
+      handleLeadSubmit(event, "hero");
+    });
+  }
 
-  document.querySelector('[data-lead-form="contact"]')?.addEventListener("submit", (event) => {
-    handleLeadSubmit(event, "contato");
-  });
+  const contactForm = document.querySelector('[data-lead-form="contact"]');
+  if (contactForm) {
+    attachCouponField(contactForm, { formId: "contato" });
+    contactForm.addEventListener("submit", (event) => {
+      handleLeadSubmit(event, "contato");
+    });
+  }
+
+  const productForm = document.querySelector("#productLeadForm");
+  if (productForm) {
+    attachCouponField(productForm, { formId: "product" });
+    productForm.addEventListener("submit", (event) => {
+      handleLeadSubmit(event, "product");
+    });
+  }
 
   // Mobile CTA click handler
   document.querySelector(".hero-mobile-cta")?.addEventListener("click", (e) => {

@@ -1207,3 +1207,439 @@ body.dashboard-body select {
 .ops-login-submit:hover svg {
   transform: translateX(3px);
 }
+
+/* ==========================================================================
+   COMPONENT: CUPOM DE DESCONTO NOS FORMULÁRIOS (STRICT STATE VISIBILITY)
+   ========================================================================== */
+
+.coupon-field-group,
+.raw-form .coupon-field-group,
+.lead-modal .coupon-field-group,
+.lead-modal .raw-form .coupon-field-group {
+  margin-top: 14px !important;
+  margin-bottom: 18px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  clear: both !important;
+  display: block !important;
+}
+
+/* Regras Estritas de Estado Alternado */
+.coupon-field-group.is-collapsed .coupon-toggle-btn,
+.coupon-field-group:not(.is-open):not(.is-applied) .coupon-toggle-btn {
+  display: flex !important;
+}
+.coupon-field-group.is-collapsed .coupon-box,
+.coupon-field-group.is-collapsed .coupon-valid-card,
+.coupon-field-group:not(.is-open):not(.is-applied) .coupon-box,
+.coupon-field-group:not(.is-open):not(.is-applied) .coupon-valid-card {
+  display: none !important;
+}
+
+.coupon-field-group.is-open .coupon-box {
+  display: flex !important;
+}
+.coupon-field-group.is-open .coupon-toggle-btn,
+.coupon-field-group.is-open .coupon-valid-card {
+  display: none !important;
+}
+
+.coupon-field-group.is-applied .coupon-valid-card {
+  display: flex !important;
+}
+.coupon-field-group.is-applied .coupon-toggle-btn,
+.coupon-field-group.is-applied .coupon-box {
+  display: none !important;
+}
+
+/* Botão recolhido "Informar cupom" */
+.coupon-toggle-btn,
+.raw-form .coupon-toggle-btn,
+.lead-modal .raw-form .coupon-toggle-btn,
+button.coupon-toggle-btn {
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-height: 42px !important;
+  height: 42px !important;
+  padding: 0 14px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px dashed rgba(255, 255, 255, 0.22) !important;
+  border-radius: 8px !important;
+  color: #a1a1aa !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  margin: 0 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+}
+
+.coupon-toggle-btn:hover,
+.raw-form .coupon-toggle-btn:hover,
+.lead-modal .raw-form .coupon-toggle-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.coupon-toggle-left {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.coupon-toggle-icon {
+  font-size: 14px !important;
+  display: inline-block !important;
+}
+
+.coupon-toggle-arrow {
+  font-size: 12px !important;
+  color: #71717a !important;
+  display: inline-block !important;
+}
+
+/* Caixa Expandida de Cupom */
+.coupon-box,
+.raw-form .coupon-box,
+.lead-modal .raw-form .coupon-box {
+  background: rgba(22, 22, 28, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  animation: couponFadeIn 0.2s ease-out !important;
+}
+
+@keyframes couponFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabeçalho da Caixa de Cupom (Label + Botão Fechar) */
+.coupon-box-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.coupon-label,
+.raw-form .coupon-label,
+.lead-modal .raw-form .coupon-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #a1a1aa !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.coupon-close-btn,
+.raw-form button.coupon-close-btn,
+.lead-modal .raw-form button.coupon-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #71717a !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  padding: 2px 6px !important;
+  line-height: 1 !important;
+  border-radius: 4px !important;
+  transition: color 0.15s ease !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: auto !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.coupon-close-btn:hover {
+  color: #ffffff !important;
+}
+
+/* Linha contendo Input + Botão Aplicar */
+.coupon-input-row,
+.raw-form .coupon-input-row,
+.lead-modal .raw-form .coupon-input-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Campo de Input */
+.coupon-input,
+.raw-form input.coupon-input,
+.lead-modal .raw-form input.coupon-input,
+.raw-form input[type="text"].coupon-input {
+  flex: 1 1 0% !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  padding: 0 12px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  outline: none !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+.coupon-input:focus,
+.raw-form input.coupon-input:focus,
+.lead-modal .raw-form input.coupon-input:focus {
+  border-color: #7BE721 !important;
+  box-shadow: 0 0 0 2px rgba(123, 231, 33, 0.25) !important;
+}
+
+.coupon-input::placeholder {
+  color: #71717a !important;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+}
+
+/* Botão APLICAR */
+.coupon-apply-btn,
+.raw-form button.coupon-apply-btn,
+.lead-modal .raw-form button.coupon-apply-btn,
+.raw-form button[type="button"].coupon-apply-btn {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 90px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  padding: 0 16px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+}
+
+.coupon-apply-btn:hover:not(:disabled),
+.raw-form button.coupon-apply-btn:hover:not(:disabled),
+.lead-modal .raw-form button.coupon-apply-btn:hover:not(:disabled) {
+  background: #7BE721 !important;
+  border-color: #7BE721 !important;
+  color: #000000 !important;
+}
+
+.coupon-apply-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* Card VÁLIDO */
+.coupon-valid-card {
+  background: rgba(123, 231, 33, 0.1) !important;
+  border: 1px solid rgba(123, 231, 33, 0.35) !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.coupon-valid-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.coupon-valid-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #7BE721 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+.coupon-valid-desc {
+  font-size: 11.5px !important;
+  color: #d4d4d8 !important;
+}
+
+.coupon-remove-btn,
+.raw-form button.coupon-remove-btn,
+.lead-modal .raw-form button.coupon-remove-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #a1a1aa !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  padding: 4px 6px !important;
+  margin: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: auto !important;
+  box-shadow: none !important;
+}
+
+.coupon-remove-btn:hover {
+  color: #ef4444 !important;
+}
+
+.coupon-msg {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  margin-top: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.coupon-msg-error {
+  color: #ef4444 !important;
+}
+
+.coupon-msg-warning {
+  color: #f59e0b !important;
+}
+
+.coupon-msg-info {
+  color: #a1a1aa !important;
+}
+
+.coupon-spinner-icon {
+  width: 14px !important;
+  height: 14px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-top-color: #ffffff !important;
+  border-radius: 50% !important;
+  animation: couponSpin 0.7s linear infinite !important;
+  display: inline-block !important;
+}
+
+/* ==========================================================================
+   TEMA CLARO (FOOTER / CONTACT / LIGHT THEME FORMS)
+   ========================================================================== */
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-toggle-btn,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form .coupon-toggle-btn {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px dashed rgba(0, 0, 0, 0.25) !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-toggle-btn:hover,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form .coupon-toggle-btn:hover {
+  border-color: rgba(0, 0, 0, 0.5) !important;
+  color: #111827 !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-toggle-icon,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-toggle-arrow {
+  color: #4b5563 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-box,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form .coupon-box {
+  background: #f9fafb !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-label,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form .coupon-label {
+  color: #4b5563 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-close-btn,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form button.coupon-close-btn {
+  color: #6b7280 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-close-btn:hover {
+  color: #111827 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-input,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form input.coupon-input {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.25) !important;
+  color: #111827 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-input::placeholder {
+  color: #9ca3af !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-apply-btn,
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form button.coupon-apply-btn {
+  background: #111827 !important;
+  border-color: #111827 !important;
+  color: #ffffff !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-apply-btn:hover:not(:disabled),
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .raw-form button.coupon-apply-btn:hover:not(:disabled) {
+  background: #7BE721 !important;
+  border-color: #7BE721 !important;
+  color: #000000 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-valid-card {
+  background: rgba(123, 231, 33, 0.12) !important;
+  border: 1px solid rgba(21, 128, 61, 0.3) !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-valid-title {
+  color: #15803d !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-valid-desc {
+  color: #374151 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-remove-btn {
+  color: #4b5563 !important;
+}
+
+:is(#contact, #showroom, #features, #faq, body.product-light-body) .coupon-remove-btn:hover {
+  color: #dc2626 !important;
+}
+
+
+
