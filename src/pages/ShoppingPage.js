@@ -1,4 +1,5 @@
 import { HeroSection } from "../components/HeroSection.js";
+import { DriftSection } from "../components/DriftSection.js";
 import { ModelsCarouselSection } from "../components/ModelsCarouselSection.js";
 import { TestimonialsSection } from "../components/TestimonialsSection.js";
 import { ContactSection } from "../components/ContactSection.js";
@@ -122,8 +123,9 @@ export function ShoppingFeaturesSection() {
 export function ShoppingPage() {
   return [
     ShoppingNavigation(),
-    HeroSection(),
-    ModelsCarouselSection(),
+    HeroSection({ variant: "martins" }),
+    ModelsCarouselSection({ variant: "martins" }),
+    DriftSection(),
     ShoppingFeaturesSection(),
     TestimonialsSection(),
     ContactSection(),

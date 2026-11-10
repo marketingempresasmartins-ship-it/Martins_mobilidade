@@ -1,6 +1,7 @@
 export function initModelsCarousel() {
   const section = document.getElementById("models-carousel-section");
   if (!section) return;
+  const isFiniteLineup = section.classList.contains("current-models");
 
   // ── Lightbox — injectado no body para cobrir a página inteira ────────────
   let lightbox = document.getElementById("model-lightbox");
@@ -88,17 +89,19 @@ export function initModelsCarousel() {
   const originalCards = Array.from(track.querySelectorAll(".carousel-card"));
   if (originalCards.length === 0) return;
 
-  // Clone all cards and append/prepend for seamless looping
-  originalCards.forEach((card) => {
-    const clone = card.cloneNode(true);
-    clone.setAttribute("aria-hidden", "true");
-    track.appendChild(clone);
-  });
-  originalCards.forEach((card) => {
-    const clone = card.cloneNode(true);
-    clone.setAttribute("aria-hidden", "true");
-    track.prepend(clone);
-  });
+  // The current four-model lineup is finite; the shared Shopping carousel keeps its loop.
+  if (!isFiniteLineup) {
+    originalCards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+    originalCards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.prepend(clone);
+    });
+  }
 
   const getCardStep = () => {
     const allCards = track.querySelectorAll(".carousel-card");
@@ -109,8 +112,26 @@ export function initModelsCarousel() {
     return cardWidth + gap;
   };
 
+  const updateFiniteControls = () => {
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const shouldShowArrows = maxScroll > 8 && !window.matchMedia("(max-width: 768px)").matches;
+    prevBtn.style.display = shouldShowArrows ? "" : "none";
+    nextBtn.style.display = shouldShowArrows ? "" : "none";
+    prevBtn.disabled = viewport.scrollLeft <= 2;
+    nextBtn.disabled = viewport.scrollLeft >= maxScroll - 2;
+    prevBtn.style.opacity = prevBtn.disabled ? "0.45" : "1";
+    nextBtn.style.opacity = nextBtn.disabled ? "0.45" : "1";
+    prevBtn.style.pointerEvents = prevBtn.disabled ? "none" : "auto";
+    nextBtn.style.pointerEvents = nextBtn.disabled ? "none" : "auto";
+  };
+
   // Jump to the real first card (skip the prepended clones) without animation
   const jumpToStart = () => {
+    if (isFiniteLineup) {
+      viewport.scrollLeft = 0;
+      updateFiniteControls();
+      return;
+    }
     const step = getCardStep();
     const startOffset = step * originalCards.length;
     viewport.scrollLeft = startOffset;
@@ -123,6 +144,10 @@ export function initModelsCarousel() {
   let isSilentScrolling = false;
 
   const checkBoundary = () => {
+    if (isFiniteLineup) {
+      updateFiniteControls();
+      return;
+    }
     if (isSilentScrolling) return;
     const step = getCardStep();
     const totalOriginalWidth = step * originalCards.length;
@@ -157,16 +182,21 @@ export function initModelsCarousel() {
     viewport.scrollBy({ left: step, behavior: "smooth" });
   });
 
-  // Always show both buttons (infinite loop – no disabled state needed)
-  prevBtn.style.opacity = "1";
-  prevBtn.style.pointerEvents = "auto";
-  nextBtn.style.opacity = "1";
-  nextBtn.style.pointerEvents = "auto";
+  if (isFiniteLineup) {
+    updateFiniteControls();
+  } else {
+    // Always show both buttons for the infinite shared carousel.
+    prevBtn.style.opacity = "1";
+    prevBtn.style.pointerEvents = "auto";
+    nextBtn.style.opacity = "1";
+    nextBtn.style.pointerEvents = "auto";
+  }
 
   // ── Auto-play ─────────────────────────────────────────────────────────────
   let autoPlayInterval = null;
 
   const startAutoPlay = () => {
+    if (isFiniteLineup || autoPlayInterval) return;
     autoPlayInterval = setInterval(() => {
       const step = getCardStep();
       viewport.scrollBy({ left: step, behavior: "smooth" });
@@ -236,5 +266,5 @@ export function initModelsCarousel() {
   }, { passive: true });
 
   // Recalculate on resize
-  window.addEventListener("resize", jumpToStart);
+  window.addEventListener("resize", isFiniteLineup ? updateFiniteControls : jumpToStart);
 }

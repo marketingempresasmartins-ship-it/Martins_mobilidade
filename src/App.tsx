@@ -125,6 +125,7 @@ export function App() {
         onClose={() => setIsModalOpen(false)}
         initialInterest={modalInterest}
         isContactForm={modalIsContact}
+        isCurrentLineup={normalizedPath === "/"}
       />
     </>
   );

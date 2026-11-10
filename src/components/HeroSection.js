@@ -1,4 +1,41 @@
-export function HeroSection() {
+const CLASSIC_INTERESTS = [
+  { value: "Watts W160s", label: "Watts W160s", image: "/assets/watts/w160s-carousel.webp" },
+  { value: "Watts W-Trail", label: "Watts W-Trail", image: "/assets/watts/wtrail-carousel.webp" },
+  { value: "Scooter Watts WS50", label: "Scooter Watts WS50", image: "/assets/watts/ws50-carousel.webp" },
+  { value: "Amazon Move", label: "Amazon Move", image: "/assets/watts/amazon-move-carousel.webp" },
+  { value: "Bike Elétrica Importway", label: "Bike Elétrica Importway", image: "/assets/importway/bike-carousel.webp" },
+  { value: "Amazon Pulse", label: "Amazon Pulse", image: "/assets/watts/amazon-pulse-carousel.webp" },
+  { value: "Outro", label: "Outro modelo / Ajuda comercial", image: null }
+];
+
+const MARTINS_INTERESTS = [
+  { value: "W120", label: "W120", image: "/assets/martins/models/w120.webp" },
+  { value: "W160", label: "W160", image: "/assets/watts/w160s-carousel.webp" },
+  { value: "W60", label: "W60", image: "/assets/martins/models/w60-autopropelido.webp" },
+  { value: "SB 46 Turbo", label: "SB 46 Turbo", image: "/assets/martins/models/sb46-turbo.webp" },
+  { value: "Drift 120 W", label: "Drift 120 W", image: "/assets/martins/models/drift-placeholder.webp" },
+  { value: "Drift 250 W", label: "Drift 250 W", image: "/assets/martins/models/drift-250w.webp" },
+  { value: "Drift 350 W", label: "Drift 350 W", image: "/assets/martins/models/drift-350w.webp" },
+  { value: "Outro", label: "Outro modelo / Ajuda comercial", image: null }
+];
+
+function renderInterestOption({ value, label, image }) {
+  const thumbnail = image
+    ? `<img src="${image}" alt="" class="dropdown-thumb" loading="lazy" decoding="async">`
+    : `<div class="dropdown-thumb-placeholder" style="width: 36px; height: 26px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; font-size: 12px; color: var(--text-muted);" aria-hidden="true">❔</div>`;
+
+  return `
+    <div class="custom-option" data-value="${value}">
+      ${thumbnail}
+      <span>${label}</span>
+    </div>
+  `;
+}
+
+export function HeroSection({ variant = "classic" } = {}) {
+  const interests = variant === "martins" ? MARTINS_INTERESTS : CLASSIC_INTERESTS;
+  const interestOptions = interests.map(renderInterestOption).join("\n");
+
   return String.raw`
 <section id="hero">
     <div class="container">
@@ -66,34 +103,7 @@ export function HeroSection() {
                       <div class="arrow"></div>
                     </div>
                     <div class="custom-select-options">
-                      <div class="custom-option" data-value="Watts W160s">
-                        <img src="/assets/watts/w160s-carousel.webp" alt="Watts W160s" class="dropdown-thumb">
-                        <span>Watts W160s</span>
-                      </div>
-                      <div class="custom-option" data-value="Watts W-Trail">
-                        <img src="/assets/watts/wtrail-carousel.webp" alt="Watts W-Trail" class="dropdown-thumb">
-                        <span>Watts W-Trail</span>
-                      </div>
-                      <div class="custom-option" data-value="Scooter Watts WS50">
-                        <img src="/assets/watts/ws50-carousel.webp" alt="Scooter Watts WS50" class="dropdown-thumb">
-                        <span>Scooter Watts WS50</span>
-                      </div>
-                      <div class="custom-option" data-value="Amazon Move">
-                        <img src="/assets/watts/amazon-move-carousel.webp" alt="Amazon Move" class="dropdown-thumb">
-                        <span>Amazon Move</span>
-                      </div>
-                      <div class="custom-option" data-value="Bike Elétrica Importway">
-                        <img src="/assets/importway/bike-carousel.webp" alt="Bike Elétrica Importway" class="dropdown-thumb">
-                        <span>Bike Elétrica Importway</span>
-                      </div>
-                      <div class="custom-option" data-value="Amazon Pulse">
-                        <img src="/assets/watts/amazon-pulse-carousel.webp" alt="Amazon Pulse" class="dropdown-thumb">
-                        <span>Amazon Pulse</span>
-                      </div>
-                      <div class="custom-option" data-value="Outro">
-                        <div class="dropdown-thumb-placeholder" style="width: 36px; height: 26px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; font-size: 12px; color: var(--text-muted);">❔</div>
-                        <span>Outro modelo / Ajuda comercial</span>
-                      </div>
+                      ${interestOptions}
                     </div>
                   </div>
                   <input type="hidden" name="interesse" id="interesse" required>

@@ -56,6 +56,14 @@ export function initCustomSelect() {
     button.addEventListener("click", function (event) {
       const interest = this.getAttribute("data-interest");
 
+      if (this.closest(".drift-card")) {
+        event.preventDefault();
+        window.dispatchEvent(new CustomEvent("martins:openModal", {
+          detail: { interest, isContact: false }
+        }));
+        return;
+      }
+
       if (!customSelect || !hiddenInput || !document.querySelector("#hero")) {
         event.preventDefault();
         const href = `/?interesse=${encodeURIComponent(interest)}#hero`;

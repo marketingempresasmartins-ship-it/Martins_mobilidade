@@ -18,8 +18,6 @@ export const legacyPaths: Record<string, string> = {
   "/ventura.html": "/ventura",
   "/amazon-motors.html": "/amazon-motors",
   "/importway.html": "/importway",
-  "/dashboard.html": "/dashboard",
-  "/dashboard2.html": "/dashboard2"
 };
 
 export function normalizePath(pathname: string) {
@@ -42,20 +40,6 @@ export function getRoute(pathname: string): LegacyRoute {
       render: () => import("../pages/ShoppingPage.js").then(m => m.ShoppingPage()),
       init: initLandingInteractions,
       title: "Martins Tech Manaus"
-    };
-  }
-
-  // 2. Dashboards: sempre acessíveis para visualização de leads e analytics
-  if (path === "/dashboard" || path === "/dashboard2") {
-    return {
-      id: "dashboard",
-      render: () => import("../pages/DashboardPage.js").then(m => m.DashboardPage()),
-      init: async () => {
-        const { initDashboardPage } = await import("../pages/DashboardPage.js");
-        initDashboardPage();
-      },
-      title: "Dashboard | Martins Tech",
-      dashboard: true
     };
   }
 

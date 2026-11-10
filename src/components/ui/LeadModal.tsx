@@ -12,9 +12,10 @@ type LeadModalProps = {
   onClose: () => void;
   initialInterest: string;
   isContactForm: boolean;
+  isCurrentLineup: boolean;
 };
 
-const VEHICLE_OPTIONS = [
+const GENERAL_VEHICLE_OPTIONS = [
   { value: "Watts W160s", label: "Watts W160s", image: "/assets/watts/w160s-carousel.webp" },
   { value: "Watts W-Trail", label: "Watts W-Trail", image: "/assets/watts/wtrail-carousel.webp" },
   { value: "Scooter Watts WS50", label: "Scooter Watts WS50", image: "/assets/watts/ws50-carousel.webp" },
@@ -24,8 +25,20 @@ const VEHICLE_OPTIONS = [
   { value: "Outro", label: "Outro modelo / Ajuda comercial", image: null }
 ];
 
-export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: LeadModalProps) {
+const MARTINS_LINEUP_OPTIONS = [
+  { value: "W120", label: "W120", image: "/assets/martins/models/w120.webp" },
+  { value: "W160", label: "W160", image: "/assets/watts/w160s-carousel.webp" },
+  { value: "W60", label: "W60", image: "/assets/martins/models/w60-autopropelido.webp" },
+  { value: "SB 46 Turbo", label: "SB 46 Turbo", image: "/assets/martins/models/sb46-turbo.webp" },
+  { value: "Drift 120 W", label: "Drift 120 W", image: "/assets/martins/models/drift-placeholder.webp" },
+  { value: "Drift 250 W", label: "Drift 250 W", image: "/assets/martins/models/drift-250w.webp" },
+  { value: "Drift 350 W", label: "Drift 350 W", image: "/assets/martins/models/drift-350w.webp" },
+  { value: "Outro", label: "Outro modelo / Ajuda comercial", image: null }
+];
+
+export function LeadModal({ isOpen, onClose, initialInterest, isContactForm, isCurrentLineup }: LeadModalProps) {
   const dialogRef = useRef<HTMLElement | null>(null);
+  const vehicleOptions = isCurrentLineup ? MARTINS_LINEUP_OPTIONS : GENERAL_VEHICLE_OPTIONS;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState("Escolha o veículo");
   
@@ -117,7 +130,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
   useEffect(() => {
     if (isOpen) {
       if (initialInterest) {
-        const option = VEHICLE_OPTIONS.find(
+        const option = vehicleOptions.find(
           (opt) =>
             opt.value.toLowerCase() === initialInterest.toLowerCase() ||
             opt.label.toLowerCase().includes(initialInterest.toLowerCase())
@@ -140,7 +153,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
         disabled: false
       });
     }
-  }, [isOpen, initialInterest, isContactForm]);
+  }, [isOpen, initialInterest, isContactForm, isCurrentLineup]);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -365,7 +378,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
                   <div className="custom-select-trigger">
                     <span>
                       {(() => {
-                        const opt = VEHICLE_OPTIONS.find((o) => o.value === selectedVehicle);
+                        const opt = vehicleOptions.find((o) => o.value === selectedVehicle);
                         if (opt) {
                           return (
                             <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
@@ -396,7 +409,7 @@ export function LeadModal({ isOpen, onClose, initialInterest, isContactForm }: L
                     <div className="arrow"></div>
                   </div>
                   <div className="custom-select-options">
-                    {VEHICLE_OPTIONS.map((opt) => (
+                    {vehicleOptions.map((opt) => (
                       <div
                         key={opt.value}
                         className={`custom-option ${
