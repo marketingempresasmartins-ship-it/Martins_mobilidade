@@ -89,7 +89,7 @@ export function initModelsCarousel() {
   const originalCards = Array.from(track.querySelectorAll(".carousel-card"));
   if (originalCards.length === 0) return;
 
-  // The current four-model lineup is finite; the shared Shopping carousel keeps its loop.
+  // The current Martins lineup is finite; the shared Shopping carousel keeps its loop.
   if (!isFiniteLineup) {
     originalCards.forEach((card) => {
       const clone = card.cloneNode(true);

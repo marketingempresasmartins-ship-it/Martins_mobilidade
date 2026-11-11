@@ -3367,8 +3367,10 @@
     @media (min-width: 1201px) {
       #models-carousel-section.current-models .carousel-track {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         width: 100%;
+        max-width: 1080px;
+        margin-inline: auto;
       }
 
       #models-carousel-section.current-models .carousel-card {
