@@ -11,7 +11,7 @@ const ROUTE_BODY_CLASSES = ["product-light-body", "ventura-body"];
 
 const METADATA_MAPPING: Record<string, { description: string; image: string }> = {
   home: {
-    description: "Conheça as motos elétricas W120, W160, W60 e SB 46 Turbo, além dos Drifts de 120 W, 250 W e 350 W na Martins Tech em Manaus.",
+    description: "Conheça as motos elétricas W160, W60 e SB 46 Turbo, além dos Drifts de 120 W, 250 W e 350 W na Martins Tech em Manaus.",
     image: "/assets/watts/hero-bg-wide-new.jpg"
   },
   catalogo: {

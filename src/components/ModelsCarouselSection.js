@@ -63,16 +63,6 @@ const LEGACY_MODELS = [
 
 const MARTINS_MODELS = [
   {
-    name: "W120",
-    image: "/assets/martins/models/w120.webp",
-    alt: "Moto elétrica W120 branca",
-    interest: "W120",
-    specs: [
-      ["Autonomia", "Até 120 km*"],
-      ["Velocidade", "Até 70 km/h*"]
-    ]
-  },
-  {
     name: "W160",
     image: "/assets/watts/w160s-carousel.webp",
     alt: "Moto elétrica W160",
@@ -159,7 +149,7 @@ export function ModelsCarouselSection({ variant = "classic" } = {}) {
         </button>
       </div>
       ${isCurrentLineup ? `
-        <p class="current-models__spec-note">* Na W120, autonomia e velocidade máximas correspondem ao modo Eco (120 km) e ao modo Esporte (70 km/h), com duas baterias. Na W160, são os modos Eco (100 km) e Sport (120 km/h). A autonomia varia conforme peso, velocidade e terreno.</p>
+        <p class="current-models__spec-note">* Na W160, autonomia e velocidade máximas correspondem aos modos Eco (100 km) e Sport (120 km/h). A autonomia varia conforme peso, velocidade e terreno.</p>
       ` : ""}
     </div>
   </section>

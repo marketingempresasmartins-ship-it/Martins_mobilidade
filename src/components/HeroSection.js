@@ -9,7 +9,6 @@ const CLASSIC_INTERESTS = [
 ];
 
 const MARTINS_INTERESTS = [
-  { value: "W120", label: "W120", image: "/assets/martins/models/w120.webp" },
   { value: "W160", label: "W160", image: "/assets/watts/w160s-carousel.webp" },
   { value: "W60", label: "W60", image: "/assets/martins/models/w60-autopropelido.webp" },
   { value: "SB 46 Turbo", label: "SB 46 Turbo", image: "/assets/martins/models/sb46-turbo.webp" },
